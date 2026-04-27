@@ -1,0 +1,19 @@
+[
+  { "type": "空白頁面", "name": "線上模擬測試", "url": "https://ipe.1shop-app.com/test" },
+  { "type": "空白頁面", "name": "服務條款", "url": "https://ipe.1shop-app.com/service_policy" },
+  { "type": "空白頁面", "name": "隱私權政策", "url": "https://ipe.1shop-app.com/policy" },
+  { "type": "空白頁面", "name": "講師申請", "url": "https://ipe.1shop-app.com/apply-teacher" },
+  { "type": "空白頁面", "name": "評審體系", "url": "https://ipe.1shop-app.com/trainer" },
+  { "type": "空白頁面", "name": "組織架構", "url": "https://ipe.1shop-app.com/organization" },
+  { "type": "空白頁面", "name": "成績查詢", "url": "https://ipe.1shop-app.com/exam-result" },
+  { "type": "空白頁面", "name": "證照報名", "url": "https://ipe.1shop-app.com/exam-reg" },
+  { "type": "空白頁面", "name": "檢定項目", "url": "https://ipe.1shop-app.com/cert-item" },
+  { "type": "空白頁面", "name": "講師團隊", "url": "https://ipe.1shop-app.com/faculty" },
+  { "type": "空白頁面", "name": "檢定體系", "url": "https://ipe.1shop-app.com/cert-system" },
+  { "type": "空白頁面", "name": "最新公告", "url": "https://ipe.1shop-app.com/news" },
+  { "type": "空白頁面", "name": "教育體系", "url": "https://ipe.1shop-app.com/edu-system" },
+  { "type": "空白頁面", "name": "聯絡我們", "url": "https://ipe.1shop-app.com/contact" },
+  { "type": "品牌故事", "name": "協會介紹", "url": "https://ipe.1shop-app.com/about" },
+  { "type": "空白頁面", "name": "[後台]放圖", "url": "https://ipe.1shop-app.com/xszsh4" },
+  { "type": "首頁", "name": "官方網站", "url": "https://ipe.1shop-app.com" }
+]

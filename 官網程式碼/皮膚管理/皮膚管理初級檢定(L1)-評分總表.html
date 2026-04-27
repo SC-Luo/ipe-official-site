@@ -1,0 +1,303 @@
+<div class="ipe-score-wrap">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* =========================================
+   A4 考官評分表列印版面設定
+   ========================================= */
+.ipe-score-wrap {
+    --ipe-navy: #2C3E50;
+    --ipe-gold: #C6A96B;
+    --ipe-red: #e74c3c;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: #111;
+    max-width: 850px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px 40px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+.score-header {
+    text-align: center;
+    border-bottom: 2px solid var(--ipe-navy);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+.score-header h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 26px;
+    color: var(--ipe-navy);
+    margin: 0 0 5px 0;
+    letter-spacing: 2px;
+}
+.score-header p { font-size: 14px; color: #555; margin: 0; }
+
+/* 考生資訊區 */
+.candidate-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background: #F6F8FB;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: 1px solid #E6EAF0;
+}
+.candidate-info span { display: inline-block; min-width: 150px; border-bottom: 1px solid #ccc; padding-bottom: 2px; }
+
+/* 表格共用設定 */
+.score-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    font-size: 13.5px;
+}
+.score-table th, .score-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    vertical-align: middle;
+}
+.score-table th {
+    background: var(--ipe-navy);
+    color: #fff;
+    font-weight: normal;
+    text-align: center;
+}
+.score-table .section-title {
+    background: #E6EAF0;
+    color: var(--ipe-navy);
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+    font-size: 15px;
+}
+
+/* 欄位寬度 */
+.col-no { width: 5%; text-align: center; }
+.col-item { width: 25%; font-weight: bold; }
+.col-desc { width: 45%; color: #444; }
+.col-max { width: 8%; text-align: center; font-weight: bold; }
+.col-score { width: 17%; text-align: center; }
+
+/* 扣分區特別標示 */
+.penalty-th { background: var(--ipe-red) !important; }
+.penalty-val { color: var(--ipe-red); font-weight: bold; }
+
+/* 總結算區 */
+.summary-box {
+    border: 2px solid var(--ipe-navy);
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 30px;
+    border-radius: 6px;
+}
+.summary-item { text-align: center; }
+.summary-item .label { display: block; font-size: 13px; color: #666; margin-bottom: 5px; }
+.summary-item .box { 
+    display: inline-block; width: 100px; height: 35px; 
+    border: 1px solid #333; line-height: 35px; font-weight: bold; font-size: 18px;
+}
+.final-score .box { width: 120px; border: 2px solid var(--ipe-gold); background: #FFFDF8; color: var(--ipe-navy); }
+
+/* 簽名區 */
+.signature-area {
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+.sig-line {
+    width: 200px;
+    border-bottom: 1px solid #333;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+@media print {
+    .ipe-score-wrap { box-shadow: none; padding: 0; }
+    body { background: #fff; }
+}
+</style>
+
+    <div class="score-header">
+        <h1>IPE 國際皮膚管理初階檢定 (L1)</h1>
+        <p>監評委員術科評分總表 (Evaluator Scoring Sheet)</p>
+    </div>
+
+    <div class="candidate-info">
+        <div>床位號碼：<span></span></div>
+        <div>考生姓名：<span></span></div>
+        <div>准考證號：<span></span></div>
+    </div>
+
+    <table class="score-table">
+        <tr>
+            <td colspan="5" class="section-title">【一、技術考核】滿分 100 分 (請於得分欄填寫實際給分)</td>
+        </tr>
+        <tr>
+            <th class="col-no">編號</th>
+            <th class="col-item">考核項目</th>
+            <th class="col-desc">評分標準重點</th>
+            <th class="col-max">配分</th>
+            <th class="col-score">實際得分</th>
+        </tr>
+        <tr>
+            <td class="col-no">1</td><td class="col-item">填寫顧客資料卡</td><td class="col-desc">全欄位必填、職業採勾選 (初階免畫臉部圖)</td>
+            <td class="col-max">5</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">2</td><td class="col-item">卸妝、洗臉</td><td class="col-desc">眼唇與全臉乾淨卸除，動作確實不滴水</td>
+            <td class="col-max">10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">3</td><td class="col-item">去角質</td><td class="col-desc">溫和操作，不拉扯皮膚，擦拭乾淨無殘留</td>
+            <td class="col-max">10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">4</td><td class="col-item">臉部勻油 / 按摩技能</td><td class="col-desc">含額頭、眼、鼻、臉頰、下巴、脖子、前胸肩頸耳朵按摩</td>
+            <td class="col-max">10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">5</td><td class="col-item">臉部按摩技能</td><td class="col-desc">手技服貼 / 柔軟 / 按摩順暢有韻律</td>
+            <td class="col-max">10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">6</td><td class="col-item">前胸肩頸按摩技能</td><td class="col-desc">涵蓋前胸與肩頸，雙手不隨意離開身體</td>
+            <td class="col-max">10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">7</td><td class="col-item">清粉刺前置工作</td><td class="col-desc">敷粉刺水、熱毛巾包覆，手與工具確實酒精消毒</td>
+            <td class="col-max">5</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">8</td><td class="col-item">清粉刺技能</td><td class="col-desc">需備2種以上工具，挑粉刺精準，無硬擠發炎痘痘</td>
+            <td class="col-max">10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">9</td><td class="col-item">敷臉面膜流程與技能</td><td class="col-desc">面膜有顏色、不可透膚，必須敷至下顎</td>
+            <td class="col-max">10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">10</td><td class="col-item">面膜後清潔與善後</td><td class="col-desc">面膜卸除乾淨，擦拭化妝水/精華液/乳液/隔離防曬</td>
+            <td class="col-max">10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">11</td><td class="col-item">全程操作技術熟練度</td><td class="col-desc">姿勢符合人體工學，桌面整潔，態度從容親切</td>
+            <td class="col-max">10</td><td></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: right; font-weight: bold; background: #fafafa;">技術得分小計：</td>
+            <td class="col-max">100</td><td style="background: #fafafa;"></td>
+        </tr>
+
+        <tr>
+            <td colspan="5" class="section-title" style="margin-top: 10px; border-top: 2px solid #ccc;">【二、扣分項目】自總分扣除 (若無違規請留白)</td>
+        </tr>
+        <tr>
+            <th class="col-no penalty-th">勾選</th>
+            <th class="col-item penalty-th">違規項目</th>
+            <th class="col-desc penalty-th">違規情節判定標準</th>
+            <th class="col-max penalty-th">扣減</th>
+            <th class="col-score penalty-th">實扣分數</th>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">應考期間手機鬧鈴響</td><td class="col-desc">考生或模特兒手機響起 (重大違規)</td>
+            <td class="col-max penalty-val">-100</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">造成顧客受傷</td><td class="col-desc">使用錯誤技法造成受傷或操作錯誤部位 (重大違規)</td>
+            <td class="col-max penalty-val">-30</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">指甲違規</td><td class="col-desc">考生雙手有立體造型/貼鑽，或長度長於指肉0.2公分</td>
+            <td class="col-max penalty-val">-20</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">毛巾違規</td><td class="col-desc">全部毛巾非單一素色 (未統一使用奶茶色)</td>
+            <td class="col-max penalty-val">-10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">飾品違規</td><td class="col-desc">考生及模特兒配戴任何飾品、手錶、項鍊、戒指</td>
+            <td class="col-max penalty-val">-10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">面膜違規</td><td class="col-desc">面膜顏色透明、厚度可看原本膚色，或未敷至下顎</td>
+            <td class="col-max penalty-val">-10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">刺青違規</td><td class="col-desc">模特兒操作部位有刺青（前胸以上）</td>
+            <td class="col-max penalty-val">-10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">隱私曝光違規</td><td class="col-desc">未正確使用毛巾，使模特兒胸前美容衣曝光</td>
+            <td class="col-max penalty-val">-10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">按摩手技方向錯誤</td><td class="col-desc">操作過程按摩畫圈方向錯誤或過度拉扯</td>
+            <td class="col-max penalty-val">-10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">產品標示違規</td><td class="col-desc">產品無中標或過期 (一項扣2分,最多扣10分)</td>
+            <td class="col-max penalty-val">-10</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">服儀違規 (考生)</td><td class="col-desc">考生未穿規定工作服</td>
+            <td class="col-max penalty-val">-5</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">服儀違規 (模特兒)</td><td class="col-desc">模特兒未穿素色美容衣、或不符合規定</td>
+            <td class="col-max penalty-val">-5</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">包頭違規</td><td class="col-desc">操作時模特兒頭髮未用毛巾包好</td>
+            <td class="col-max penalty-val">-5</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">衛生違規</td><td class="col-desc">工作前手部未消毒、未戴口罩、頭髮未紮好</td>
+            <td class="col-max penalty-val">-5</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">垃圾袋/消毒袋違規</td><td class="col-desc">未準備或未標示垃圾袋、待消毒袋、大待消毒袋</td>
+            <td class="col-max penalty-val">-5</td><td></td>
+        </tr>
+        <tr>
+            <td class="col-no">☐</td><td class="col-item">桌面整潔違規</td><td class="col-desc">工具使用未清潔擺放整齊</td>
+            <td class="col-max penalty-val">-5</td><td></td>
+        </tr>
+    </table>
+
+    <div class="summary-box">
+        <div class="summary-item">
+            <span class="label">【A】技術得分小計</span>
+            <span class="box"></span>
+        </div>
+        <div style="font-size: 24px; font-weight: bold;">－</div>
+        <div class="summary-item">
+            <span class="label">【B】實扣分數總計</span>
+            <span class="box"></span>
+        </div>
+        <div style="font-size: 24px; font-weight: bold;">＝</div>
+        <div class="summary-item final-score">
+            <span class="label">【最終總分】及格標準60分</span>
+            <span class="box"></span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 20px;">
+            <label style="font-size: 18px; font-weight: bold; cursor: pointer;"><input type="checkbox" style="width:18px; height:18px;"> 及格 Pass</label>
+            <label style="font-size: 18px; font-weight: bold; cursor: pointer;"><input type="checkbox" style="width:18px; height:18px;"> 不及格 Fail</label>
+        </div>
+    </div>
+
+    <div class="signature-area">
+        <div>監評委員簽名：<span class="sig-line"></span></div>
+        <div>評審長簽核：<span class="sig-line"></span></div>
+    </div>
+
+</div>

@@ -1,0 +1,80 @@
+<div class="ipe-print-wrap">
+
+<style>
+/* =========================================
+   A4 列印友善版面設定
+   ========================================= */
+.ipe-print-wrap {
+    --ipe-gold: #C6A96B;
+    --ipe-navy: #2C3E50;
+    --ipe-gray: #5F6B7A;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: #333;
+    max-width: 850px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+.print-header { text-align: center; border-bottom: 3px double var(--ipe-gold); padding-bottom: 20px; margin-bottom: 30px; }
+.print-header h1 { font-size: 28px; font-weight: 900; color: var(--ipe-navy); margin: 0 0 10px 0; }
+.print-header p { margin: 0; color: var(--ipe-gray); font-size: 15px; }
+.category-title { background: #F6F8FB; color: var(--ipe-navy); font-weight: bold; font-size: 18px; padding: 12px 20px; border-left: 5px solid var(--ipe-gold); margin: 25px 0 15px 0; }
+.check-list { display: flex; flex-wrap: wrap; gap: 15px 0; }
+.check-item { width: 50%; display: flex; align-items: center; font-size: 16px; padding-right: 15px; box-sizing: border-box; }
+.check-item.full-width { width: 100%; }
+.check-box { width: 20px; height: 20px; border: 2px solid var(--ipe-gray); border-radius: 4px; margin-right: 12px; flex-shrink: 0; }
+.item-qty { margin-left: auto; font-weight: bold; color: var(--ipe-navy); background: #E6EAF0; padding: 2px 10px; border-radius: 20px; font-size: 13px; }
+.print-btn-area { text-align: center; margin-top: 40px; }
+.btn-print { background: var(--ipe-navy); color: #fff; border: none; padding: 12px 30px; font-size: 16px; border-radius: 5px; cursor: pointer; }
+.highlight { color: #e74c3c; font-weight: bold; }
+@media print {
+    .print-btn-area, header, footer { display: none !important; }
+    .ipe-print-wrap { box-shadow: none; padding: 0; margin: 0; max-width: 100%; }
+    body { background: #fff; }
+}
+</style>
+
+    <div class="print-header">
+        <h1>芳香美體初級 (L1) 工具材料清點表</h1>
+        <p>請考生於測驗前列印此表，並確實清點考場必備各項器材</p>
+    </div>
+
+    <div class="category-title">一、 基本必備服儀與防護</div>
+    <div class="check-list">
+        <div class="check-item"><div class="check-box"></div> <span class="item-name">考生白色及膝檢定工作服 (無LOGO)</span> <span class="item-qty">1 套</span></div>
+        <div class="check-item"><div class="check-box"></div> <span class="item-name">模特兒黑色後扣小可愛及黑色安全褲</span> <span class="item-qty">1 套</span></div>
+        <div class="check-item"><div class="check-box"></div> <span class="item-name">醫療用口罩 (考生全程配戴)</span> <span class="item-qty">1 個</span></div>
+        <div class="check-item"><div class="check-box"></div> <span class="item-name">髮夾或髮圈 (綁馬尾/包頭用)</span> <span class="item-qty">適量</span></div>
+    </div>
+
+    <div class="category-title">二、 專業美體布巾 <span class="highlight">(必須統一為奶茶色)</span></div>
+    <div class="check-list">
+        <div class="check-item full-width"><div class="check-box"></div> <span class="item-name">大毛巾 (鋪床與蓋身體用，100x180cm以上)</span> <span class="item-qty">2 條</span></div>
+        <div class="check-item full-width"><div class="check-box"></div> <span class="item-name">小毛巾 (擦拭與保暖操作使用)</span> <span class="item-qty">6 條</span></div>
+    </div>
+
+    <div class="category-title">三、 技術操作耗材與工具</div>
+    <div class="check-list">
+        <div class="check-item full-width"><div class="check-box"></div> <span class="item-name">美體按摩油 (必須具備合格中文標示，不可過期)</span> <span class="item-qty">1 瓶</span></div>
+        <div class="check-item"><div class="check-box"></div> <span class="item-name">75% 酒精噴霧罐</span> <span class="item-qty">1 瓶</span></div>
+        <div class="check-item"><div class="check-box"></div> <span class="item-name">一般垃圾袋 (需有標示牌)</span> <span class="item-qty">1 個</span></div>
+        <div class="check-item"><div class="check-box"></div> <span class="item-name">待消毒袋 (需有標示牌)</span> <span class="item-qty">1 個</span></div>
+        <div class="check-item"><div class="check-box"></div> <span class="item-name">大待消毒袋 (裝使用過毛巾，需有標示牌)</span> <span class="item-qty">1 個</span></div>
+    </div>
+
+    <div class="category-title">四、 測驗行政核對</div>
+    <div class="check-list">
+        <div class="check-item"><div class="check-box"></div> <span class="item-name">考生身分證或具照片之有效證件</span> <span class="item-qty">1 張</span></div>
+        <div class="check-item"><div class="check-box"></div> <span class="item-name">模特兒身分證 (核對年滿15歲用)</span> <span class="item-qty">1 張</span></div>
+        <div class="check-item"><div class="check-box"></div> <span class="item-name">學科測驗用原子筆/文具</span> <span class="item-qty">1 組</span></div>
+    </div>
+
+    <div style="margin-top: 30px; font-size: 13px; color: var(--ipe-gray); text-align: center;">
+        提醒：請於考前剪短指甲（不超過0.2公分），並取下所有飾品、手錶、戒指等違禁物。
+    </div>
+
+    <div class="print-btn-area">
+        <button class="btn-print" onclick="window.print()">🖨️ 列印此清點表</button>
+    </div>
+</div>

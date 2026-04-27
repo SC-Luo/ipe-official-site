@@ -1,0 +1,287 @@
+<div class="ipe-form-wrap">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+.ipe-form-wrap {
+    --ipe-gold: #C6A96B;
+    --ipe-gold-light: #D8BE8A;
+    --ipe-gold-dark: #B89A5F;
+    --ipe-navy: #2C3E50;
+    max-width: 800px;
+    margin: 60px auto;
+    font-family: "PingFang TC", "Noto Sans TC", sans-serif;
+}
+
+/* 尊榮藍金留言表單區塊 (移植自聯絡我們) */
+.form-container {
+    background: var(--ipe-navy);
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(44, 62, 80, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--ipe-gold-dark), var(--ipe-gold-light));
+}
+.form-container h3 {
+    color: #fff;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 26px;
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+.form-container > p {
+    color: rgba(255,255,255,0.7);
+    font-size: 15px;
+    margin: 0 0 30px 0;
+    text-align: center;
+}
+
+/* 表單欄位：文字框使用極深藍融合感，純白文字 */
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.form-group label {
+    color: var(--ipe-gold-light);
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.form-control {
+    background-color: rgba(44, 62, 80, 0.5) !important; 
+    color: #ffffff !important; 
+    border: 1px solid rgba(198, 169, 107, 0.3) !important; 
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    /* 突破 1shop 預設高度限制，防止文字被裁切消失 */
+    height: auto !important;
+    line-height: 1.5 !important;
+}
+/* 下拉選單專屬美化與跨瀏覽器相容性修復 */
+select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C6A96B'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 24px;
+    padding-right: 40px;
+}
+/* 未選擇時的預設文字顏色 (模擬 placeholder) */
+select.form-control:invalid { color: rgba(255, 255, 255, 0.4) !important; }
+/* 修正 Safari/iOS 等瀏覽器下拉選單白底白字的問題 */
+.form-control option { 
+    color: #2C3E50 !important; 
+    background-color: #ffffff !important; 
+    font-weight: bold;
+}
+.form-control::placeholder { color: rgba(255, 255, 255, 0.5) !important; }
+.form-control:focus {
+    outline: none !important;
+    background-color: rgba(44, 62, 80, 0.7) !important;
+    border-color: var(--ipe-gold) !important;
+    box-shadow: 0 0 0 3px rgba(198, 169, 107, 0.2) !important;
+}
+
+/* 修正瀏覽器自動填入 (Autofill) 時背景與文字變色的問題 */
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover, 
+.form-control:-webkit-autofill:focus, 
+.form-control:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #2C3E50 inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+textarea.form-control { resize: vertical; min-height: 120px; }
+
+/* 漸層金送出按鈕 */
+.submit-btn {
+    background: linear-gradient(135deg, var(--ipe-gold-dark) 0%, var(--ipe-gold) 50%, var(--ipe-gold-light) 100%);
+    color: #fff !important;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(198, 169, 107, 0.3);
+    margin-top: 10px;
+    width: 100%;
+    letter-spacing: 2px;
+}
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(198, 169, 107, 0.5);
+}
+.submit-btn:disabled {
+    background: #bdc3c7;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#form-status { display: none; text-align: center; margin-top: 20px; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 15px; }
+
+/* 手機版優化 */
+@media (max-width: 768px) {
+    .form-row { flex-direction: column; gap: 20px; }
+    .form-container { padding: 40px 20px; }
+    .ipe-form-wrap { margin: 30px 15px; }
+}
+</style>
+
+    <div class="form-container" id="instructor-form-container">
+        <h3>講師資格審查申請表</h3>
+        <p>請填寫下方表單。委員會將於 3-5 個工作天內評估您的實務背景與動機，並由專人與您聯繫。</p>
+        
+        <form id="instructorForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">申請人姓名 *</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="請輸入真實姓名" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">聯絡電話 *</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="09XX-XXX-XXX" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="line_id">LINE ID *</label>
+                    <input type="text" id="line_id" name="line_id" class="form-control" placeholder="審查結果將透過此 ID 聯繫" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">目前服務單位 / 工作室</label>
+                    <input type="text" id="company" name="company" class="form-control" placeholder="若無可填「無」">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="subject">擬申請科目 *</label>
+                    <select id="subject" name="subject" class="form-control" required>
+                        <option value="" disabled selected>請選擇科目</option>
+                        <option value="皮膚管理">皮膚管理</option>
+                        <option value="芳香美體">芳香美體</option>
+                        <option value="美甲設計">美甲設計</option>
+                        <option value="美睫設計">美睫設計</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="level">目前 IPE 證照等級 *</label>
+                    <select id="level" name="level" class="form-control" required>
+                        <option value="" disabled selected>請選擇最高等級</option>
+                        <option value="L3 高級認證">L3 高級認證</option>
+                        <option value="L2 中級認證">L2 中級認證</option>
+                        <option value="L1 初級認證">L1 初級認證</option>
+                        <option value="尚未取得">尚未取得 IPE 證照</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="years">相關從業年資 *</label>
+                    <input type="text" id="years" name="years" class="form-control" placeholder="例如：5 年" required>
+                </div>
+                <div class="form-group">
+                    <label for="classroom">是否有實體教學場地？ *</label>
+                    <select id="classroom" name="classroom" class="form-control" required>
+                        <option value="" disabled selected>請選擇</option>
+                        <option value="是 (自有場地)">是 (自有場地)</option>
+                        <option value="是 (可租借場地)">是 (可租借場地)</option>
+                        <option value="否">否</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label for="portfolio">個人作品集或粉絲專頁連結</label>
+                <input type="url" id="portfolio" name="portfolio" class="form-control" placeholder="https:// (IG / FB / 個人網站)">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 30px;">
+                <label for="motivation">為什麼想成為 IPE 授權講師？</label>
+                <textarea id="motivation" name="motivation" class="form-control" placeholder="請簡述您的教學願景或對體系的期待..."></textarea>
+            </div>
+
+            <div id="form-status"></div>
+
+            <button type="submit" id="submitBtn" class="submit-btn">
+                <span id="btn-text"><i class="fas fa-paper-plane" style="margin-right: 8px;"></i> 提交資格審查</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // ⚠️ 稍後你要把這裡換成你從 Google 拿到的網址
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbweC8vouJKAJySg6YcXny7c-Z8YR3-U23CM15GpJskwRRyTEQF1hHChz-C0LVTk7jZP/exec'; 
+    const form = document.getElementById('instructorForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const statusDiv = document.getElementById('form-status');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault(); // 阻止原本的跳轉
+        
+        // 如果還沒貼上網址，給予提示
+        if(scriptURL === '請貼上你的_Google_Apps_Script_網址'){
+            alert('請先在程式碼中填入 Google Apps Script 網址！');
+            return;
+        }
+
+    const btnText = document.getElementById('btn-text');
+        submitBtn.disabled = true;
+    btnText.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i> 資料加密傳送中...';
+        statusDiv.style.display = 'none';
+
+        const formData = new FormData(form);
+
+        // 傳送資料到 Google
+        fetch(scriptURL, { method: 'POST', body: formData })
+            .then(response => {
+                statusDiv.style.display = 'block';
+            statusDiv.style.backgroundColor = 'rgba(39, 174, 96, 0.1)';
+            statusDiv.style.color = '#27ae60';
+            statusDiv.style.border = '1px solid #27ae60';
+            statusDiv.innerHTML = '<i class="fas fa-check-circle"></i> 申請已成功送出！委員會將盡快與您聯繫。';
+                form.reset(); // 清空表單
+            })
+            .catch(error => {
+                statusDiv.style.display = 'block';
+            statusDiv.style.backgroundColor = 'rgba(231, 76, 60, 0.1)';
+            statusDiv.style.color = '#c0392b';
+            statusDiv.style.border = '1px solid #c0392b';
+            statusDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> 系統連線發生錯誤，請稍後再試或聯繫官方客服。';
+                console.error('Error!', error.message);
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+            btnText.innerHTML = '<i class="fas fa-paper-plane" style="margin-right: 8px;"></i> 提交資格審查';
+            });
+    });
+</script>

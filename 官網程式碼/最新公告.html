@@ -1,0 +1,398 @@
+<div class="ipe-wrap">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* =========================================
+   1. 基礎變數與佈局 (最高標準版)
+   ========================================= */
+.ipe-wrap {
+    --ipe-gold: #C6A96B;
+    --ipe-gold-light: #D8BE8A;
+    --ipe-gold-dark: #B89A5F;
+    --ipe-navy: #2C3E50;
+    --ipe-gray: #5F6B7A;
+    --ipe-bg: #F6F8FB;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: var(--ipe-gray);
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; 
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.ipe-main-content { flex: 1; min-width: 320px; padding: 80px 60px; order: 1; text-align: left; }
+.ipe-side-console { flex: 0 0 300px; background: var(--ipe-bg); padding: 60px 25px; border-left: 1px solid #E6EAF0; order: 2; text-align: center; }
+
+/* =========================================
+   2. 共用明體標題與側邊欄細節
+   ========================================= */
+.ipe-wrap h1, .ipe-wrap .statement-title, .ipe-wrap .ipe-chapter-title, .ipe-wrap .culture-h3, .info-card h3 {
+    font-family: 'Noto Serif TC', serif !important; font-weight: 900 !important; letter-spacing: 0.05em; -webkit-font-smoothing: antialiased;
+}
+
+.brand-intro { font-size: 18px; line-height: 1.8; color: #222222; font-weight: 500; }
+.section-label { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 13px; letter-spacing: 3px; color: var(--ipe-gold); text-transform: uppercase; margin-bottom: 30px; display: block; border-bottom: 1px solid #E6EAF0; padding-bottom: 10px; }
+
+.ipe-side-label { font-size: 11px; color: #CBD5E0; letter-spacing: 4px; display: block; margin-top: 35px; }
+.ipe-chapter-title { font-size: 36px; color: #111111; margin: 15px 0 20px 0; }
+.ipe-sub-nav-list { list-style: none; padding: 0; margin: 0; }
+.ipe-nav-item a { display: block; padding: 10px 0; color: var(--ipe-gray); text-decoration: none; font-size: 16px; transition: all 0.3s; }
+.ipe-nav-item a:hover, .ipe-active-page a { color: var(--ipe-gold); font-weight: 600; }
+
+/* =========================================
+   3. 最新公告專屬樣式 (★ 手風琴下拉版 ★)
+   ========================================= */
+.news-section { margin-bottom: 60px; }
+
+.training-overview {
+    background: #FAFAFA;
+    border-left: 4px solid var(--ipe-gold);
+    padding: 25px 30px;
+    margin: 40px 0 50px 0;
+    border-radius: 0 8px 8px 0;
+}
+.training-overview p { margin: 0; font-size: 16px; line-height: 1.8; color: #333; }
+
+/* 載入中提示 */
+.loading-status { text-align: center; padding: 50px 0; color: var(--ipe-gray); font-size: 18px; }
+
+/* 公告列表容器 */
+.news-list { display: flex; flex-direction: column; gap: 20px; }
+
+/* 獨立公告卡片 (改為區塊) */
+.news-item {
+    background: #fff;
+    border: 1px solid #E6EAF0;
+    border-radius: 12px;
+    padding: 25px 30px;
+    color: inherit;
+    transition: all 0.3s ease;
+    cursor: pointer; /* 滑鼠變成手指 */
+}
+.news-item:hover {
+    box-shadow: 0 12px 25px rgba(0,0,0,0.06);
+    border-color: var(--ipe-gold-light);
+}
+/* 展開時的卡片狀態 */
+.news-item.active {
+    border-color: var(--ipe-gold);
+    box-shadow: 0 12px 25px rgba(198, 169, 107, 0.1);
+}
+
+/* 上半部：標題與日期 */
+.news-header {
+    display: flex;
+    align-items: center;
+}
+
+/* 左側：日曆方塊 */
+.news-date {
+    flex: 0 0 85px;
+    background: #FAFAFA;
+    border: 1px solid #E6EAF0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
+    margin-right: 30px;
+    transition: all 0.3s ease;
+}
+.news-item:hover .news-date, .news-item.active .news-date {
+    background: var(--ipe-navy);
+    border-color: var(--ipe-navy);
+}
+.news-date .day {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--ipe-navy);
+    line-height: 1;
+    font-family: 'Noto Serif TC', serif;
+    transition: color 0.3s ease;
+}
+.news-item:hover .news-date .day, .news-item.active .news-date .day { color: var(--ipe-gold-light); }
+.news-date .month-year {
+    font-size: 13px;
+    color: var(--ipe-gray);
+    margin-top: 5px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+.news-item:hover .news-date .month-year, .news-item.active .news-date .month-year { color: #fff; }
+
+/* 中間：標題區塊 */
+.news-summary { flex: 1; }
+.news-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ipe-gold-dark);
+    background: rgba(198, 169, 107, 0.1);
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+.tag-cert { color: #2980b9; background: rgba(41, 128, 185, 0.1); }
+.tag-course { color: #27ae60; background: rgba(39, 174, 96, 0.1); }
+
+.news-title {
+    font-size: 20px;
+    color: #111111;
+    margin: 0;
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+.news-item:hover .news-title, .news-item.active .news-title { color: var(--ipe-gold-dark); }
+
+/* 右側：下拉箭頭 */
+.news-arrow {
+    flex: 0 0 40px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+    color: #CBD5E0;
+    transition: all 0.4s ease; /* 延長過場時間讓旋轉更平滑 */
+}
+.news-item:hover .news-arrow { color: var(--ipe-gold); }
+/* 展開時箭頭旋轉 180 度 */
+.news-item.active .news-arrow {
+    transform: rotate(180deg);
+    color: var(--ipe-gold);
+}
+
+/* ★ 下半部：隱藏的完整內文區塊 ★ */
+.news-full-content {
+    display: none; /* 預設隱藏 */
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px dashed #E6EAF0;
+    animation: fadeIn 0.5s ease;
+}
+/* 當父元素加上 active 類別時顯示 */
+.news-item.active .news-full-content {
+    display: block;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.news-full-text {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 0;
+}
+
+/* 附件/連結按鈕 */
+.news-link-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: #fff;
+    color: var(--ipe-navy);
+    border: 2px solid var(--ipe-navy);
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.news-link-btn:hover {
+    background: var(--ipe-navy);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(44, 62, 80, 0.2);
+}
+.news-link-btn i { margin-left: 8px; }
+
+/* =========================================
+   4. RWD 手機版
+   ========================================= */
+@media (max-width: 992px) {
+    .ipe-wrap { flex-direction: column; width: 100%; }
+    .ipe-main-content { order: 1; width: 100%; padding: 50px 20px; box-sizing: border-box; }
+    .ipe-side-console { 
+        order: 2; flex: none; width: 100%; max-width: 100%; box-sizing: border-box;
+        border-left: none; border-top: 1px solid #E6EAF0; padding: 50px 20px; 
+    }
+    .ipe-chapter-title { font-size: 32px; text-align: center; }
+    .brand-intro { text-align: center; }
+    
+    .news-item { padding: 25px 20px; }
+    .news-header { flex-direction: column; align-items: flex-start; position: relative; }
+    
+    .news-date {
+        flex-direction: row; width: auto; height: auto; padding: 0; background: transparent;
+        border: none; margin-right: 0; margin-bottom: 15px; align-items: baseline; gap: 8px;
+    }
+    .news-date .day { font-size: 22px; color: var(--ipe-navy); }
+    .news-item:hover .news-date, .news-item.active .news-date { background: transparent; }
+    .news-item:hover .news-date .day, .news-item.active .news-date .day { color: var(--ipe-gold-dark); }
+    .news-item:hover .news-date .month-year, .news-item.active .news-date .month-year { color: var(--ipe-gray); }
+    
+    .news-arrow { position: absolute; right: 0; top: 0; }
+}
+</style>
+
+<main class="ipe-main-content">
+    <section class="news-section">
+        <span class="section-label">Latest News</span>
+        <h2 class="ipe-chapter-title">最新公告</h2>
+        
+        <div class="training-overview">
+            <p>掌握 IPE 中華國際職能檢定與教育發展協會的最新動態。這裡提供所有關於檢定考試時程、師資培訓開課資訊，以及協會各項重大政策與活動發布。</p>
+        </div>
+
+        <div id="dynamic-news-list" class="news-list">
+            <div class="loading-status">
+                <i class="fas fa-spinner fa-spin"></i> 正在載入最新公告...
+            </div>
+        </div>
+
+    </section>
+</main>
+
+<aside class="ipe-side-console">
+    <span class="ipe-side-label">News</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">最新消息</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item ipe-active-page"><a href="https://ipe.1shop-app.com/news">公告總覽</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Certification</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">檢定與證照</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-system">檢定體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-item">檢定項目</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-reg">證照報名</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-result">成績查詢</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Faculty</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">講師與教育</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/faculty">講師團隊</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/edu-system">講師體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/trainer">評審體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/apply-teacher">講師申請</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Corporate</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">關於 IPE</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/about">協會介紹</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/organization">組織架構</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/board">理監事</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/contact">聯絡我們</a></li>
+    </ul>
+
+</aside>
+
+<script>
+// =========================================================================
+// ★ 載入試算表資料 API ★
+// =========================================================================
+const API_URL = 'https://script.google.com/macros/s/AKfycby4EKQYiPt4P7iacGEsB5Wmft29-wdkOgapynz_Swcw-7Axb4AKzcs2tZW_HD0Pt4HX/exec'; 
+
+// 輔助函數：將 YYYY-MM-DD 轉換為月份縮寫與日期
+function formatDate(dateString) {
+    if (!dateString) return { day: '--', monthYear: '' };
+    const dateObj = new Date(dateString);
+    if (isNaN(dateObj.getTime())) return { day: '--', monthYear: dateString }; 
+
+    const day = ('0' + dateObj.getDate()).slice(-2);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const monthYear = `${months[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+    return { day, monthYear };
+}
+
+// 畫面載入後自動執行抓取資料
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('dynamic-news-list');
+    
+    if(API_URL === 'YOUR_GAS_API_URL_HERE') {
+        container.innerHTML = '<div class="loading-status" style="color:#e74c3c;">請先在 HTML 底部填入您的 Google Apps Script 網址！</div>';
+        return;
+    }
+
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+            if (!data || data.length === 0) {
+                container.innerHTML = '<div class="loading-status">目前尚無最新公告。</div>';
+                return;
+            }
+
+            container.innerHTML = '';
+
+            data.forEach(item => {
+                const dateInfo = formatDate(item.date);
+                const tagClass = item.tagClass ? ` ${item.tagClass}` : ''; 
+                const tagHtml = item.tag ? `<span class="news-tag${tagClass}">${item.tag}</span>` : '';
+                
+                // 處理完整內文 (如果有 content 欄位就抓 content，沒有就抓 excerpt)，並自動將換行轉為 <br>
+                const fullTextRaw = item.content || item.excerpt || '目前無詳細內容。';
+                const fullTextHtml = fullTextRaw.replace(/\n/g, '<br>');
+
+                // 處理外部連結按鈕
+                const linkUrl = (item.link && item.link.trim() !== '') ? item.link.trim() : '';
+                const btnHtml = linkUrl ? `<a href="${linkUrl}" target="_blank" class="news-link-btn">查看相關連結 <i class="fas fa-external-link-alt"></i></a>` : '';
+
+                // ★ 改為 div 結構，並加上隱藏的 news-full-content 區塊 ★
+                const articleHtml = `
+                    <div class="news-item">
+                        <div class="news-header">
+                            <div class="news-date">
+                                <span class="day">${dateInfo.day}</span>
+                                <span class="month-year">${dateInfo.monthYear}</span>
+                            </div>
+                            <div class="news-summary">
+                                ${tagHtml}
+                                <h3 class="news-title">${item.title}</h3>
+                            </div>
+                            <div class="news-arrow"><i class="fas fa-chevron-down"></i></div>
+                        </div>
+                        
+                        <div class="news-full-content">
+                            <div class="news-full-text">${fullTextHtml}</div>
+                            ${btnHtml}
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', articleHtml);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching news:', error);
+            container.innerHTML = '<div class="loading-status" style="color:#e74c3c;"><i class="fas fa-exclamation-triangle"></i> 無法載入公告，請稍後再試。</div>';
+        });
+
+    // =========================================================================
+    // ★ 加入事件監聽：處理手風琴展開/收合效果 ★
+    // =========================================================================
+    container.addEventListener('click', function(e) {
+        // 尋找被點擊的卡片元素 (.news-item)
+        const clickedItem = e.target.closest('.news-item');
+        if (!clickedItem) return; // 如果點擊的不是卡片，直接結束
+        
+        // 如果點擊的是裡面的連結按鈕，不要收合卡片，讓它正常跳轉
+        if (e.target.closest('.news-link-btn')) return;
+
+        // 如果想要「點開一個就自動收起其他」，可以解除這兩行的註解：
+        // const allItems = container.querySelectorAll('.news-item');
+        // allItems.forEach(item => { if (item !== clickedItem) item.classList.remove('active'); });
+
+        // 切換展開狀態 (加上或移除 active 類別)
+        clickedItem.classList.toggle('active');
+    });
+});
+</script>
+
+</div>

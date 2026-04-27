@@ -1,0 +1,277 @@
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* =========================================
+   IPE 旗艦版頁尾樣式 (Premium Corporate Footer)
+========================================= */
+
+/* =========================================
+   IPE 旗艦版頁尾樣式 (Premium Corporate Footer)
+========================================= */
+
+.ipe-footer-wrap {
+    --ipe-gold: #C6A96B;
+    --ipe-gold-light: #D8BE8A;
+    --ipe-gold-dark: #B89A5F;
+    --ipe-navy: #1B2836;
+    --ipe-navy-light: #2C3E50;
+    --ipe-text-main: #FFFFFF;
+    --ipe-text-sub: #A0AAB5;
+    
+    background: linear-gradient(180deg, var(--ipe-navy) 0%, #15202B 100%);
+    color: var(--ipe-text-sub);
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    
+    /* 🚨 關鍵修改 1：移除上方圓角，僅保留下方圓角，使其能與上方白底無縫接合 */
+    border-radius: 0 0 20px 20px; 
+    position: relative;
+    overflow: hidden; 
+    padding: 70px 0 30px 0;
+    /* 🚨 關鍵修改 2：將原本的 margin-top: 60px 改為 0，消除灰色斷層 */
+    margin-top: 0; 
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05); /* 調整陰影方向與主內容一致 */
+}
+
+/* 頂部極細金色光感飾條 */
+.ipe-footer-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--ipe-gold-dark) 0%, var(--ipe-gold-light) 50%, var(--ipe-gold-dark) 100%);
+    /* 🚨 關鍵修改 3：配合無縫設計，將金線的圓角完全移除 */
+    border-radius: 0; 
+}
+.ipe-footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 2.2fr 1fr 1.5fr;
+    gap: 60px;
+}
+
+.footer-brand h2 {
+    font-family: 'Noto Serif TC', serif;
+    color: var(--ipe-text-main);
+    font-size: 24px;
+    font-weight: 900;
+    margin: 0 0 15px 0;
+    letter-spacing: 1px;
+}
+
+.footer-brand p {
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    color: var(--ipe-text-sub);
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+}
+.footer-social a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--ipe-text-main);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+.footer-social a:hover {
+    background: var(--ipe-gold);
+    border-color: var(--ipe-gold);
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(198, 169, 107, 0.3);
+}
+
+.footer-title {
+    font-family: 'Noto Serif TC', serif;
+    color: var(--ipe-gold);
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 25px 0;
+    letter-spacing: 1.5px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-links li {
+    margin-bottom: 18px; /* 稍微增加行距讓 4 個選項更大氣 */
+}
+.footer-links a {
+    color: var(--ipe-text-sub);
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+.footer-links a::before {
+    content: '\f105';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 12px;
+    margin-right: 8px;
+    color: var(--ipe-gold-dark);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateX(-5px);
+}
+.footer-links a:hover {
+    color: var(--ipe-gold-light);
+}
+.footer-links a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.footer-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-contact li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 18px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+.footer-contact i {
+    color: var(--ipe-gold);
+    font-size: 16px;
+    margin-top: 4px;
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+}
+.footer-contact a {
+    color: var(--ipe-text-sub);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.footer-contact a:hover {
+    color: var(--ipe-gold-light);
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 50px auto 0;
+    padding: 25px 40px 0 40px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+}
+.footer-bottom-links a {
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.3s;
+}
+.footer-bottom-links a:hover {
+    color: var(--ipe-gold);
+}
+
+@media (max-width: 992px) {
+    .ipe-footer-container {
+        grid-template-columns: 1fr;
+        gap: 45px;
+        padding: 0 30px;
+    }
+    .footer-brand h2 { font-size: 22px; }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .footer-bottom-links a {
+        margin: 0 10px;
+    }
+}
+</style>
+
+<footer class="ipe-footer-wrap">
+    <div class="ipe-footer-container">
+        
+        <div class="footer-brand">
+            <h2>中華國際職能檢定與教育發展協會</h2>
+            <p>引領亞太職能標準，培育頂尖專業人才。<br>建立具備市場鑑別度與高公信力的檢定教育生態圈。</p>
+            <div class="footer-social">
+                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://lin.ee/vmuTtIx" target="_blank" title="LINE 官方帳號"><i class="fab fa-line"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="footer-title">快速導覽</h3>
+            <ul class="footer-links">
+                <li><a href="/about">關於協會</a></li>
+                <li><a href="/cert-system">檢定與證照</a></li>
+                <li><a href="/edu-system">師資與監評</a></li>
+                <li><a href="/news">最新公告</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-title">聯絡我們</h3>
+            <ul class="footer-contact">
+                <li>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>臺南市北區西門路四段367號4樓</span>
+                </li>
+                <li>
+                    <i class="fas fa-phone-alt"></i>
+                    <span>06-2510988</span>
+                </li>
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <span id="ipe-mail"></span>
+                </li>
+                <li>
+                    <i class="fas fa-clock"></i>
+                    <span>週一至週五 09:30 - 18:00</span>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <div class="copyright">
+            © 2026 中華國際職能檢定與教育發展協會 (IPE). All Rights Reserved.
+        </div>
+        <div class="footer-bottom-links">
+            <a href="/policy">隱私政策</a>
+            <a href="/service_policy">服務條款</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+/* 防 Email 爬蟲設計 */
+(function(){
+    var user = "ipce2026";
+    var domain = "gmail.com";
+    var email = user + "@" + domain;
+    document.getElementById("ipe-mail").innerHTML = '<a href="mailto:' + email + '">' + email + '</a>';
+})();
+</script>

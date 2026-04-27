@@ -1,0 +1,186 @@
+<div class="ipe-quiz-wrap">
+
+<style>
+.ipe-quiz-wrap {
+    --ipe-gold: #C6A96B;
+    --ipe-navy: #2C3E50;
+    --ipe-bg: #F6F8FB;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    max-width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    overflow: hidden;
+    color: #333;
+}
+.quiz-header { background: var(--ipe-navy); color: #fff; text-align: center; padding: 40px 20px; border-bottom: 5px solid var(--ipe-gold); }
+.quiz-header h1 { margin: 0 0 10px 0; font-size: 26px; font-weight: 900; }
+.quiz-header p { margin: 0; font-size: 15px; opacity: 0.8; }
+.question-item { background: var(--ipe-bg); padding: 25px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--ipe-gold); }
+.q-text { font-size: 18px; font-weight: bold; margin-bottom: 15px; color: var(--ipe-navy); }
+.options { display: flex; flex-direction: column; gap: 12px; }
+.options label { background: #fff; padding: 15px; border-radius: 6px; border: 1px solid #E6EAF0; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; font-size: 16px; }
+.options label:hover { border-color: var(--ipe-gold); background: #FFFDF8; }
+.btn-primary { background: var(--ipe-gold); color: #fff; border: none; padding: 15px 40px; font-size: 18px; font-weight: bold; border-radius: 50px; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(198,169,107,0.3); }
+.btn-primary:hover { background: #B89A5F; transform: translateY(-3px); }
+.correct { background: #e8f8f5 !important; border-color: #2ecc71 !important; color: #27ae60; font-weight: bold; }
+.wrong { background: #fdedec !important; border-color: #e74c3c !important; color: #c0392b; text-decoration: line-through; }
+#quiz-result { display: none; text-align: center; padding: 40px; background: #fff; border-top: 1px solid #eee; }
+.score-circle { width: 120px; height: 120px; border-radius: 50%; background: var(--ipe-navy); color: var(--ipe-gold); display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: bold; margin: 0 auto 20px auto; border: 5px solid #E6EAF0; }
+.pass-msg { color: #27ae60; font-weight: bold; font-size: 20px; }
+.fail-msg { color: #e74c3c; font-weight: bold; font-size: 20px; }
+</style>
+
+    <div class="quiz-header">
+        <h1>芳香美體初級 (L1) 模擬測驗</h1>
+        <p>範圍：芳香美體檢定規範、服儀與操作須知 (共 10 題)</p>
+    </div>
+    
+    <div id="quiz-container" style="padding: 30px;">
+        
+        <div class="question-item">
+            <div class="q-text">1. 芳香美體檢定中，考生應穿著何種顏色的檢定工作服？</div>
+            <div class="options">
+                <label><input type="radio" name="q0" value="0"> 黑色及膝工作服</label>
+                <label><input type="radio" name="q0" value="1"> 顏色不拘，乾淨即可</label>
+                <label id="lbl-q0-opt2"><input type="radio" name="q0" value="2"> 白色無LOGO及膝檢定服</label>
+            </div>
+        </div>
+
+        <div class="question-item">
+            <div class="q-text">2. 檢定考場中，模特兒應穿著何種服裝？</div>
+            <div class="options">
+                <label id="lbl-q1-opt0"><input type="radio" name="q1" value="0"> 黑色後扣小可愛及黑色安全褲</label>
+                <label><input type="radio" name="q1" value="1"> 白色美容衣</label>
+                <label><input type="radio" name="q1" value="2"> 自備輕便休閒服</label>
+            </div>
+        </div>
+
+        <div class="question-item">
+            <div class="q-text">3. 關於毛巾的顏色與數量規範，下列何者正確？</div>
+            <div class="options">
+                <label><input type="radio" name="q2" value="0"> 純白色大毛巾2條、小毛巾4條</label>
+                <label id="lbl-q2-opt1"><input type="radio" name="q2" value="1"> 奶茶色大毛巾2條、小毛巾6條</label>
+                <label><input type="radio" name="q2" value="2"> 顏色不拘，大毛巾3條</label>
+            </div>
+        </div>
+
+        <div class="question-item">
+            <div class="q-text">4. 芳香美體 L1 學科測驗的及格標準為何？</div>
+            <div class="options">
+                <label><input type="radio" name="q3" value="0"> 70 分</label>
+                <label><input type="radio" name="q3" value="1"> 80 分</label>
+                <label id="lbl-q3-opt2"><input type="radio" name="q3" value="2"> 60 分</label>
+            </div>
+        </div>
+
+        <div class="question-item">
+            <div class="q-text">5. 考生的指甲長度與造型規範為何？</div>
+            <div class="options">
+                <label id="lbl-q4-opt0"><input type="radio" name="q4" value="0"> 不可有立體造型/貼鑽，不長於指肉 0.2 公分</label>
+                <label><input type="radio" name="q4" value="1"> 只要配戴手套，指甲長度不限</label>
+                <label><input type="radio" name="q4" value="2"> 可以做光療，長度不可超過 0.5 公分</label>
+            </div>
+        </div>
+
+        <div class="question-item">
+            <div class="q-text">6. 檢定過程中，關於飾品的配戴規範？</div>
+            <div class="options">
+                <label><input type="radio" name="q5" value="0"> 考生可以戴手錶以便計時</label>
+                <label id="lbl-q5-opt1"><input type="radio" name="q5" value="1"> 雙方皆不可配戴任何飾品、手錶、項鍊、戒指</label>
+                <label><input type="radio" name="q5" value="2"> 模特兒不可配戴，考生可戴結婚戒指</label>
+            </div>
+        </div>
+
+        <div class="question-item">
+            <div class="q-text">7. 學科測驗遲到多久即視同缺考（以零分計）？</div>
+            <div class="options">
+                <label><input type="radio" name="q6" value="0"> 10 分鐘</label>
+                <label id="lbl-q6-opt1"><input type="radio" name="q6" value="1"> 5 分鐘</label>
+                <label><input type="radio" name="q6" value="2"> 15 分鐘</label>
+            </div>
+        </div>
+
+        <div class="question-item">
+            <div class="q-text">8. 關於使用的美體按摩油，有何規定？</div>
+            <div class="options">
+                <label><input type="radio" name="q7" value="0"> 必須由考場統一提供</label>
+                <label><input type="radio" name="q7" value="1"> 可以使用自製分裝的精油</label>
+                <label id="lbl-q7-opt2"><input type="radio" name="q7" value="2"> 必須具備合格的中文標示</label>
+            </div>
+        </div>
+
+        <div class="question-item">
+            <div class="q-text">9. 考生的頭髮儀容規定為何？</div>
+            <div class="options">
+                <label id="lbl-q8-opt0"><input type="radio" name="q8" value="0"> 長髮必須扎馬尾或包頭，瀏海不得蓋到眼睛</label>
+                <label><input type="radio" name="q8" value="1"> 只要戴上口罩，髮型不拘</label>
+                <label><input type="radio" name="q8" value="2"> 必須全部盤起並戴上拋棄式髮網</label>
+            </div>
+        </div>
+
+        <div class="question-item">
+            <div class="q-text">10. 對於外籍考生的學科測驗，協會提供何種友善機制？</div>
+            <div class="options">
+                <label><input type="radio" name="q9" value="0"> 允許帶翻譯人員進場</label>
+                <label id="lbl-q9-opt1"><input type="radio" name="q9" value="1"> 採「口述考試」，提供錄音檔測驗</label>
+                <label><input type="radio" name="q9" value="2"> 免除學科測驗，直接考術科</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="submit-area" style="text-align: center; padding: 0 30px 40px 30px;">
+        <button onclick="checkQuiz()" class="btn-primary">交卷並結算成績</button>
+    </div>
+
+    <div id="quiz-result">
+        <h2 style="color: var(--ipe-navy); margin-top: 0;">測驗結果</h2>
+        <div class="score-circle"><span id="final-score">0</span></div>
+        <div id="result-text" style="margin-bottom: 20px;"></div>
+        <button onclick="location.reload()" style="background: #E6EAF0; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; color: var(--ipe-navy);">重新測驗</button>
+    </div>
+
+<script>
+    const currentQuiz = [
+        { answer: 2 }, { answer: 0 }, { answer: 1 }, { answer: 2 }, { answer: 0 },
+        { answer: 1 }, { answer: 1 }, { answer: 2 }, { answer: 0 }, { answer: 1 }
+    ];
+
+    function checkQuiz() {
+        let score = 0;
+        
+        currentQuiz.forEach((q, index) => {
+            let selected = document.querySelector(`input[name="q${index}"]:checked`);
+            let correctOptIndex = q.answer;
+            
+            let correctLabel = document.getElementById(`lbl-q${index}-opt${correctOptIndex}`);
+            if(correctLabel) correctLabel.classList.add('correct');
+            
+            if (selected) {
+                let userAns = parseInt(selected.value);
+                if (userAns === correctOptIndex) {
+                    score += 10; 
+                } else {
+                    let wrongLabel = document.getElementById(`lbl-q${index}-opt${userAns}`);
+                    if(wrongLabel) wrongLabel.classList.add('wrong');
+                }
+            }
+            
+            let radios = document.querySelectorAll(`input[name="q${index}"]`);
+            radios.forEach(r => r.disabled = true);
+        });
+
+        document.querySelector('.submit-area').style.display = 'none';
+        document.getElementById('quiz-result').style.display = 'block';
+        
+        document.getElementById('final-score').innerText = score;
+        let msgBox = document.getElementById('result-text');
+        if(score >= 60) {
+            msgBox.innerHTML = `<span class="pass-msg">🎉 恭喜及格！您具備極佳的基礎認知，請放心報名術科檢定！</span>`;
+        } else {
+            msgBox.innerHTML = `<span class="fail-msg">⚠️ 分數未達 60 分。請詳閱官方簡章並重新測驗，確保熟悉考場規範！</span>`;
+        }
+    }
+</script>
+</div>

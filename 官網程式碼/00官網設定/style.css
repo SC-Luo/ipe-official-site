@@ -1,0 +1,256 @@
+/* ==========================================
+IPE 手機版優化系統（完整版）
+========================================== */
+
+
+/* ================================
+隱藏側邊欄 理監事
+================================ */
+
+.ipe-nav-item a[href*="director"],
+.ipe-nav-item a[href*="board"],
+.ipe-nav-item a[href*="理監事"] {
+
+display:none !important;
+
+}
+
+
+
+/* ================================
+手機版優化
+================================ */
+
+@media(max-width:992px){
+
+/* 版面改為直式 */
+
+.ipe-wrap{
+flex-direction:column;
+}
+
+
+/* 主內容縮小 */
+
+.ipe-main-content{
+padding:50px 22px;
+text-align:left;
+}
+
+
+/* 標題優化 */
+
+.brand-hero h1{
+font-size:28px;
+line-height:1.4;
+}
+
+
+/* 副標優化 */
+
+.brand-intro{
+font-size:16px;
+line-height:1.8;
+}
+
+
+/* 卡片縮小 */
+
+.ipe-card{
+padding:25px;
+border-radius:16px;
+}
+
+
+/* 卡片間距 */
+
+.culture-grid{
+grid-template-columns:1fr;
+gap:18px;
+}
+
+
+/* 區塊間距 */
+
+.value-section{
+margin-bottom:60px;
+}
+
+
+/* Statement Box */
+
+.statement-box{
+padding:28px;
+}
+
+
+/* 大標題 */
+
+.ipe-big-title{
+font-size:24px;
+}
+
+
+/* 深色區塊 */
+
+.ipe-dark-box{
+padding:28px;
+}
+
+
+
+/* ================================
+側邊欄 手機版優化
+================================ */
+
+.ipe-side-console{
+
+position:relative;
+top:0;
+background:#F8FAFD;
+padding:20px;
+border-radius:14px;
+margin-top:35px;
+border:none;
+
+}
+
+
+/* 側邊標題 */
+
+.ipe-chapter-title{
+
+font-size:18px;
+margin-bottom:15px;
+
+}
+
+
+/* 側邊欄變卡片 */
+
+.ipe-sub-nav-list{
+
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+
+}
+
+
+/* 兩欄 */
+
+.ipe-nav-item{
+width:48%;
+}
+
+
+/* 按鈕化 */
+
+.ipe-nav-item a{
+
+background:#ffffff;
+padding:10px 8px;
+border-radius:8px;
+font-size:13px;
+text-align:center;
+border:1px solid #E6EAF0;
+
+}
+
+
+/* hover */
+
+.ipe-nav-item a:hover{
+
+background:#F8FAFD;
+border-color:#C6A96B;
+
+}
+
+}
+
+
+
+/* ================================
+超小手機優化
+================================ */
+
+@media(max-width:576px){
+
+.brand-hero h1{
+font-size:24px;
+}
+
+.ipe-nav-item{
+width:100%;
+}
+
+.ipe-main-content{
+padding:40px 18px;
+}
+
+.statement-box{
+padding:22px;
+}
+
+.ipe-card{
+padding:22px;
+}
+
+}
+
+
+
+/* ==========================================
+手機滑動順暢優化
+========================================== */
+
+html{
+scroll-behavior:smooth;
+}
+
+
+
+/* ==========================================
+側邊欄動畫優化
+========================================== */
+
+.ipe-side-console{
+
+transition:all .35s ease;
+
+}
+
+
+
+/* ==========================================
+卡片動畫優化
+========================================== */
+
+.ipe-card{
+
+transition:all .35s ease;
+
+}
+
+
+
+/* ==========================================
+手機字體優化
+========================================== */
+
+@media(max-width:768px){
+
+.statement-title{
+font-size:20px;
+}
+
+.culture-h3{
+font-size:17px;
+}
+
+.ipe-card-desc{
+font-size:13px;
+}
+
+}

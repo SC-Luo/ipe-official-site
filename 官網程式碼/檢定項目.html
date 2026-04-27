@@ -1,0 +1,292 @@
+<div class="ipe-wrap">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* =========================================
+   1. 基礎變數與佈局
+   ========================================= */
+.ipe-wrap {
+    --ipe-gold: #C6A96B;
+    --ipe-gold-light: #D8BE8A;
+    --ipe-gold-dark: #B89A5F;
+    --ipe-navy: #2C3E50;
+    --ipe-gray: #5F6B7A;
+    --ipe-bg: #F6F8FB;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: var(--ipe-gray);
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; 
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.ipe-main-content { flex: 1; min-width: 320px; padding: 80px 60px; order: 1; text-align: left; }
+.ipe-side-console { flex: 0 0 300px; background: var(--ipe-bg); padding: 60px 25px; border-left: 1px solid #E6EAF0; order: 2; text-align: center; }
+
+/* 共用標題與側邊欄 */
+.ipe-wrap h1, .ipe-wrap .statement-title, .ipe-wrap .ipe-chapter-title, .ipe-wrap .culture-h3, .info-card h3 {
+    font-family: 'Noto Serif TC', serif !important; font-weight: 900 !important; letter-spacing: 0.05em; -webkit-font-smoothing: antialiased;
+}
+.brand-intro { font-size: 18px; line-height: 1.8; color: #222222; font-weight: 500; }
+.section-label { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 13px; letter-spacing: 3px; color: var(--ipe-gold); text-transform: uppercase; margin-bottom: 30px; display: block; border-bottom: 1px solid #E6EAF0; padding-bottom: 10px; }
+.ipe-side-label { font-size: 11px; color: #CBD5E0; letter-spacing: 4px; display: block; margin-top: 35px; }
+.ipe-chapter-title { font-size: 36px; color: #111111; margin: 15px 0 20px 0; }
+.ipe-sub-nav-list { list-style: none; padding: 0; margin: 0; }
+.ipe-nav-item a { display: block; padding: 10px 0; color: var(--ipe-gray); text-decoration: none; font-size: 16px; transition: all 0.3s; }
+.ipe-nav-item a:hover, .ipe-active-page a { color: var(--ipe-gold); font-weight: 600; }
+
+/* =========================================
+   長青版 (Evergreen) 卡片設計
+   ========================================= */
+.cert-item-section { margin-bottom: 60px; }
+.training-overview {
+    background: #FAFAFA; border-left: 4px solid var(--ipe-gold); padding: 25px 30px; margin: 40px 0 50px 0; border-radius: 0 8px 8px 0;
+}
+.training-overview p { margin: 0; font-size: 16px; line-height: 1.8; color: #333; }
+
+.item-card {
+    background: var(--ipe-navy); border-radius: 16px; padding: 35px; margin-bottom: 30px;
+    display: flex; gap: 35px; border: 1px solid rgba(198, 169, 107, 0.2); box-shadow: 0 10px 30px rgba(44, 62, 80, 0.1);
+    position: relative; overflow: hidden; transition: all 0.4s ease; align-items: stretch;
+    /* 🚨 修復 Safari 圓角與溢出裁切失效的 Bug 🚨 */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    transform: translateZ(0); 
+    text-decoration: none; color: inherit; cursor: pointer; display: block;
+}
+.item-card:hover {
+    transform: translateY(-8px); border-color: var(--ipe-gold); box-shadow: 0 20px 40px rgba(198, 169, 107, 0.25); background: #233446;
+}
+.item-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(to right, var(--ipe-gold-dark), var(--ipe-gold-light));
+}
+
+.item-card-inner { display: flex; gap: 35px; }
+
+.item-info {
+    flex: 0 0 200px; border-right: 1px dashed rgba(198, 169, 107, 0.3); padding-right: 30px;
+    display: flex; flex-direction: column; justify-content: flex-start; padding-top: 10px;
+}
+.item-icon {
+    width: 60px; height: 60px; background: rgba(198, 169, 107, 0.1); border-radius: 12px;
+    display: flex; justify-content: center; align-items: center; font-size: 28px; color: var(--ipe-gold-light);
+    margin-bottom: 20px; border: 1px solid rgba(198, 169, 107, 0.2); transition: all 0.3s ease;
+}
+.item-card:hover .item-icon { background: var(--ipe-gold); color: #fff; transform: scale(1.1); }
+.item-title { font-family: 'Noto Serif TC', serif; font-size: 26px; color: #fff; margin: 0 0 10px 0; line-height: 1.4; }
+
+/* 長青版提示文字 */
+.click-hint {
+    font-size: 14px; color: #D8BE8A; font-weight: 700; margin-top: auto; padding-bottom: 10px; transition: all 0.3s ease; opacity: 0.8;
+}
+.item-card:hover .click-hint { opacity: 1; transform: translateX(5px); color: #fff; }
+
+.item-levels { flex: 1; display: flex; flex-direction: column; gap: 15px; }
+.level-box {
+    background: rgba(0, 0, 0, 0.2); padding: 15px 25px; border-radius: 12px;
+    border-left: 4px solid rgba(198, 169, 107, 0.3); transition: all 0.3s ease;
+    display: flex; align-items: center; gap: 20px;
+}
+.item-card:hover .level-box { background: rgba(0, 0, 0, 0.4); border-left-color: var(--ipe-gold); }
+.level-box h5 {
+    color: var(--ipe-gold-light); font-size: 16px; margin: 0; display: flex; align-items: center; gap: 8px; flex: 0 0 80px;
+    border-right: 1px solid rgba(255,255,255,0.1); padding-right: 15px;
+}
+.level-box ul {
+    padding-left: 20px; margin: 0; color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.8; flex: 1; display: flex; flex-wrap: wrap; column-gap: 30px; 
+}
+.level-box li { margin-bottom: 0; flex: 1 1 auto; }
+
+/* RWD */
+@media (max-width: 992px) {
+    .ipe-wrap { flex-direction: column; width: 100%; }
+    .ipe-main-content { order: 1; width: 100%; padding: 40px 20px; box-sizing: border-box; }
+    .ipe-side-console { order: 2; flex: none; width: 100%; max-width: 100%; box-sizing: border-box; border-left: none; border-top: 1px solid #E6EAF0; padding: 40px 20px; }
+    .item-card-inner { flex-direction: column; gap: 20px; }
+    .item-info { flex: auto; border-right: none; border-bottom: 1px dashed rgba(198, 169, 107, 0.3); padding-right: 0; padding-bottom: 20px; text-align: center; align-items: center; }
+    .level-box { flex-direction: column; align-items: flex-start; gap: 10px; border-left: none; border-top: 3px solid rgba(198, 169, 107, 0.5); }
+    .level-box h5 { flex: auto; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding-right: 0; padding-bottom: 10px; width: 100%; }
+    .level-box ul { flex-direction: column; }
+    .level-box li { margin-bottom: 8px; }
+}
+</style>
+
+<main class="ipe-main-content">
+    <section class="cert-item-section">
+        <span class="section-label">Certification Items</span>
+        <h2 class="ipe-chapter-title">專業檢定項目</h2>
+        
+        <div class="training-overview">
+            <p>IPE 依據產業現況與未來趨勢，開辦多項符合市場需求的高階專業檢定。各項目皆嚴格對應本會「初、中、高」三階職能標準，請點選下方項目查看各級別簡章與報名狀態。</p>
+        </div>
+
+        <a href="https://ipe.1shop-app.com/products/ipe-skincare-level" class="item-card">
+            <div class="item-card-inner">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fas fa-smile-beam"></i></div>
+                    <h3 class="item-title">皮膚管理檢定</h3>
+                    <div class="click-hint"><i class="fas fa-search"></i> 查看報名狀態與簡章</div>
+                </div>
+                <div class="item-levels">
+                    <div class="level-box">
+                        <h5>初階 L1</h5><ul><li>皮膚構造與生理學基礎</li><li>標準化清潔與基礎保養</li></ul>
+                    </div>
+                    <div class="level-box">
+                        <h5>中階 L2</h5><ul><li>問題膚況精準分析判斷</li><li>進階精華導入與面皰處理</li></ul>
+                    </div>
+                    <div class="level-box">
+                        <h5>高階 L3</h5><ul><li>客製化全方位療程設計</li><li>醫美術後修護整合規劃</li></ul>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="item-card">
+            <div class="item-card-inner">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fas fa-hand-sparkles"></i></div>
+                    <h3 class="item-title">專業美甲檢定</h3>
+                    <div class="click-hint"><i class="fas fa-search"></i> 查看報名狀態與簡章</div>
+                </div>
+                <div class="item-levels">
+                    <div class="level-box">
+                        <h5>初階 L1</h5><ul><li>基礎手足保養與衛生規範</li><li>單色凝膠塗佈技巧</li></ul>
+                    </div>
+                    <div class="level-box">
+                        <h5>中階 L2</h5><ul><li>進階彩繪與指甲延甲技術</li><li>問題指甲修護處理</li></ul>
+                    </div>
+                    <div class="level-box">
+                        <h5>高階 L3</h5><ul><li>高階創意藝術美甲設計</li><li>沙龍經營與顧客服務管理</li></ul>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="item-card">
+            <div class="item-card-inner">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fas fa-eye"></i></div>
+                    <h3 class="item-title">專業美睫檢定</h3>
+                    <div class="click-hint"><i class="fas fa-search"></i> 查看報名狀態與簡章</div>
+                </div>
+                <div class="item-levels">
+                    <div class="level-box">
+                        <h5>初階 L1</h5><ul><li>眼部生理學與安全衛生</li><li>單根睫毛嫁接基礎</li></ul>
+                    </div>
+                    <div class="level-box">
+                        <h5>中階 L2</h5><ul><li>多根開花嫁接技術 (3D/6D)</li><li>眼型判斷與客製化設計</li></ul>
+                    </div>
+                    <div class="level-box">
+                        <h5>高階 L3</h5><ul><li>高階層次感嫁接與色彩搭配</li><li>美睫沙龍客訴處理與經營</li></ul>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://ipe.1shop-app.com/products/ipe-beautybody-level" class="item-card">
+            <div class="item-card-inner">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fas fa-spa"></i></div>
+                    <h3 class="item-title">芳香美體檢定</h3>
+                    <div class="click-hint"><i class="fas fa-search"></i> 查看報名狀態與簡章</div>
+                </div>
+                <div class="item-levels">
+                    <div class="level-box">
+                        <h5>初階 L1</h5><ul><li>人體解剖學基礎概論</li><li>基礎舒壓按摩與安全規範</li></ul>
+                    </div>
+                    <div class="level-box">
+                        <h5>中階 L2</h5><ul><li>經絡理療與淋巴引流技術</li><li>體態雕塑與身心平衡護理</li></ul>
+                    </div>
+                    <div class="level-box">
+                        <h5>高階 L3</h5><ul><li>全方位身心靈整合療程規劃</li><li>高階儀器輔助與SPA經營管理</li></ul>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="item-card">
+            <div class="item-card-inner">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fas fa-magic"></i></div>
+                    <h3 class="item-title">熱蠟美肌檢定</h3>
+                    <div class="click-hint"><i class="fas fa-search"></i> 查看報名狀態與簡章</div>
+                </div>
+                <div class="item-levels">
+                    <div class="level-box">
+                        <h5>初階 L1</h5><ul><li>基礎保養與彩妝技巧</li><li>美容衛生安全與工具消毒</li></ul>
+                    </div>
+                    <div class="level-box">
+                        <h5>中階 L2</h5><ul><li>專業新娘秘書與宴會彩妝</li><li>整體造型搭配與設計</li></ul>
+                    </div>
+                    <div class="level-box">
+                        <h5>高階 L3</h5><ul><li>高階特效彩妝與影視造型</li><li>美容美髮沙龍營運與行銷</li></ul>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="item-card">
+            <div class="item-card-inner">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fas fa-pen-nib"></i></div>
+                    <h3 class="item-title">專業紋繡檢定</h3>
+                    <div class="click-hint"><i class="fas fa-search"></i> 查看報名狀態與簡章</div>
+                </div>
+                <div class="item-levels">
+                    <div class="level-box">
+                        <h5>初階 L1</h5><ul><li>紋繡衛生安全與無菌操作</li><li>基礎皮損控制與眉型設計</li></ul>
+                    </div>
+                    <div class="level-box">
+                        <h5>中階 L2</h5><ul><li>手工/機器霧眉與飄眉技術</li><li>眼線與隱形眼線操作技巧</li></ul>
+                    </div>
+                    <div class="level-box">
+                        <h5>高階 L3</h5><ul><li>水晶嘟嘟唇與髮際線紋繡</li><li>改眉與老舊紋繡修護處理</li></ul>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    </section>
+</main>
+
+<aside class="ipe-side-console">
+    <span class="ipe-side-label">News</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">最新消息</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/news">公告總覽</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Certification</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">檢定與證照</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-system">檢定體系</a></li>
+        <li class="ipe-nav-item ipe-active-page"><a href="https://ipe.1shop-app.com/cert-item">檢定項目</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-reg">證照報名</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-result">成績查詢</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Faculty</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">講師與教育</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/faculty">講師團隊</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/edu-system">講師體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/trainer">評審體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/apply-teacher">講師申請</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Corporate</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">關於 IPE</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/about">協會介紹</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/organization">組織架構</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/board">理監事</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/contact">聯絡我們</a></li>
+    </ul>
+
+</aside>
+
+</div>

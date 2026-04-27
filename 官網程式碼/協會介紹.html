@@ -1,0 +1,274 @@
+<div class="ipe-wrap">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* =========================================
+   1. 基礎變數與佈局
+   ========================================= */
+.ipe-wrap {
+    --ipe-gold: #C6A96B;
+    --ipe-gold-light: #D8BE8A;
+    --ipe-gold-dark: #B89A5F;
+    --ipe-navy: #2C3E50;
+    --ipe-gray: #5F6B7A;
+    --ipe-bg: #F6F8FB;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: var(--ipe-gray);
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; 
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.ipe-main-content { flex: 1; min-width: 320px; padding: 80px 60px; order: 1; text-align: left; }
+.ipe-side-console { flex: 0 0 300px; background: var(--ipe-bg); padding: 60px 25px; border-left: 1px solid #E6EAF0; order: 2; text-align: center; }
+
+/* =========================================
+   2. 共用明體標題與側邊欄細節
+   ========================================= */
+.ipe-wrap h1, .ipe-wrap .statement-title, .ipe-wrap .ipe-chapter-title, .ipe-wrap .culture-h3, .info-card h3 {
+    font-family: 'Noto Serif TC', serif !important; font-weight: 900 !important; letter-spacing: 0.05em; -webkit-font-smoothing: antialiased;
+}
+
+.section-label { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 13px; letter-spacing: 3px; color: var(--ipe-gold); text-transform: uppercase; margin-bottom: 30px; display: block; border-bottom: 1px solid #E6EAF0; padding-bottom: 10px; }
+
+.ipe-side-label { font-size: 11px; color: #CBD5E0; letter-spacing: 4px; display: block; margin-top: 35px; }
+.ipe-chapter-title { font-size: 36px; color: #111111; margin: 15px 0 20px 0; }
+.ipe-sub-nav-list { list-style: none; padding: 0; margin: 0; }
+.ipe-nav-item a { display: block; padding: 10px 0; color: var(--ipe-gray); text-decoration: none; font-size: 16px; transition: all 0.3s; }
+.ipe-nav-item a:hover, .ipe-active-page a { color: var(--ipe-gold); font-weight: 600; }
+
+/* =========================================
+   3. 協會介紹專屬樣式 (極簡版)
+   ========================================= */
+.about-section { margin-bottom: 60px; }
+
+.intro-text {
+    font-size: 16px; 
+    color: #444; 
+    line-height: 1.8; 
+    margin-bottom: 50px;
+    background: #FAFAFA;
+    border-left: 4px solid var(--ipe-gold);
+    padding: 25px 30px;
+    border-radius: 0 12px 12px 0;
+}
+.intro-text p { margin: 0 0 10px 0; }
+.intro-text p:last-child { margin: 0; }
+
+/* 使命與願景區塊 (雙深藍金卡) */
+.mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+.mv-card {
+    background: var(--ipe-navy);
+    padding: 40px 35px;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(44, 62, 80, 0.15);
+    transition: transform 0.4s ease;
+}
+.mv-card:hover { transform: translateY(-5px); }
+.mv-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--ipe-gold-dark), var(--ipe-gold-light));
+}
+.mv-icon {
+    font-size: 36px;
+    color: var(--ipe-gold-light);
+    margin-bottom: 20px;
+}
+.mv-card h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 24px;
+    color: #fff;
+    margin: 0 0 15px 0;
+}
+.mv-card p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.8;
+    margin: 0;
+}
+.mv-list {
+    margin: 0;
+    padding-left: 20px;
+    color: rgba(255,255,255,0.85);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* 組織任務區塊 (白底精緻卡片) */
+.tasks-container { margin-top: 60px; }
+.tasks-container h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 26px;
+    color: var(--ipe-navy);
+    text-align: center;
+    margin-bottom: 35px;
+}
+.tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.task-card {
+    text-align: center;
+    padding: 35px 25px;
+    background: #fff;
+    border: 1px solid #E6EAF0;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+}
+.task-card:hover {
+    border-color: var(--ipe-gold-light);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(198, 169, 107, 0.1);
+}
+.task-card .t-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(198, 169, 107, 0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px auto;
+    font-size: 24px;
+    color: var(--ipe-gold-dark);
+}
+.task-card h4 {
+    font-size: 18px;
+    color: var(--ipe-navy);
+    margin: 0 0 10px 0;
+    font-weight: 700;
+}
+.task-card p {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* =========================================
+   4. RWD 手機版
+   ========================================= */
+@media (max-width: 992px) {
+    .ipe-wrap { flex-direction: column; width: 100%; }
+    .ipe-main-content { order: 1; width: 100%; padding: 50px 20px; box-sizing: border-box; }
+    .ipe-side-console { 
+        order: 2; flex: none; width: 100%; max-width: 100%; box-sizing: border-box;
+        border-left: none; border-top: 1px solid #E6EAF0; padding: 50px 20px; 
+    }
+    .ipe-chapter-title { font-size: 32px; text-align: center; }
+    .mv-grid { grid-template-columns: 1fr; gap: 20px; }
+    .tasks-grid { grid-template-columns: 1fr; gap: 20px; }
+}
+</style>
+
+<main class="ipe-main-content">
+    <section class="about-section">
+        <span class="section-label">About Us</span>
+        <h2 class="ipe-chapter-title">協會介紹</h2>
+        
+        <div class="intro-text">
+            <p><strong>中華國際職能檢定與教育發展協會 (IPE)</strong>，為依法設立之公益性社會團體。</p>
+            <p>我們致力於推動職能教育與專業人才培育，透過系統化課程與客觀的技能評量，為亞太地區培育具備扎實實務能力的專業人才，全面提升產業服務品質與標準。</p>
+        </div>
+
+        <div class="mv-grid">
+            <div class="mv-card">
+                <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
+                <h3>協會使命 Mission</h3>
+                <ul class="mv-list">
+                    <li>建立職能導向培訓制度</li>
+                    <li>建立客觀專業檢定標準</li>
+                    <li>培育頂尖實務技能人才</li>
+                    <li>提升整體產業服務品質</li>
+                </ul>
+            </div>
+            
+            <div class="mv-card">
+                <div class="mv-icon"><i class="fas fa-globe-asia"></i></div>
+                <h3>協會願景 Vision</h3>
+                <p>建立制度化與專業化的職能培訓平台，引領專業技術服務業邁向高端化，協助持證者成功接軌國際舞台。</p>
+            </div>
+        </div>
+
+        <div class="tasks-container">
+            <h3>核心組織任務</h3>
+            <div class="tasks-grid">
+                
+                <div class="task-card">
+                    <div class="t-icon"><i class="fas fa-book-open"></i></div>
+                    <h4>職能培訓與教育</h4>
+                    <p>辦理專業培訓課程，出版相關教材與多媒體資源，推動職能教育制度化。</p>
+                </div>
+
+                <div class="task-card">
+                    <div class="t-icon"><i class="fas fa-medal"></i></div>
+                    <h4>專業檢定與評量</h4>
+                    <p>推廣專業職能檢定與民間證照制度，為從業人員提供具公信力之能力證明。</p>
+                </div>
+
+                <div class="task-card">
+                    <div class="t-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h4>講師培育與交流</h4>
+                    <p>培育專業講師與評審人才，推動國內外職能教育交流，舉辦各類研習與論壇。</p>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+</main>
+
+<aside class="ipe-side-console">
+    <span class="ipe-side-label">News</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">最新消息</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/news">公告總覽</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Certification</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">檢定與證照</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-system">檢定體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-item">檢定項目</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-reg">證照報名</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-result">成績查詢</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Faculty</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">講師與教育</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/faculty">講師團隊</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/edu-system">講師體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/trainer">評審體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/apply-teacher">講師申請</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Corporate</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">關於 IPE</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item ipe-active-page"><a href="https://ipe.1shop-app.com/about">協會介紹</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/organization">組織架構</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/board">理監事</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/contact">聯絡我們</a></li>
+    </ul>
+
+</aside>
+
+</div>

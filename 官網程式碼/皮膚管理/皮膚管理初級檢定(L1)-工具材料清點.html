@@ -1,0 +1,216 @@
+<div class="ipe-print-wrap">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* =========================================
+   A4 列印友善版面設定
+   ========================================= */
+.ipe-print-wrap {
+    --ipe-gold: #C6A96B;
+    --ipe-navy: #2C3E50;
+    --ipe-gray: #5F6B7A;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: #333;
+    max-width: 850px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+/* 頁首標題區 */
+.print-header {
+    text-align: center;
+    border-bottom: 3px double var(--ipe-gold);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+.print-header h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 28px;
+    color: var(--ipe-navy);
+    margin: 0 0 10px 0;
+    letter-spacing: 2px;
+}
+.print-header p {
+    font-size: 15px;
+    color: #666;
+    margin: 0;
+}
+
+/* 分類區塊 */
+.tool-category {
+    margin-bottom: 30px;
+}
+.tool-category h3 {
+    font-size: 18px;
+    color: #fff;
+    background: var(--ipe-navy);
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin: 0 0 15px 0;
+    display: flex;
+    align-items: center;
+}
+.tool-category h3 i {
+    color: var(--ipe-gold);
+    margin-right: 10px;
+}
+
+/* 清單網格 */
+.checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px 30px;
+}
+.check-item {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 8px;
+}
+/* 模擬打勾方框 */
+.check-box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--ipe-gray);
+    border-radius: 3px;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+.item-name {
+    flex: 1;
+    color: #444;
+    display: flex;
+    align-items: center;
+}
+.item-qty {
+    font-weight: 700;
+    color: var(--ipe-navy);
+    background: #F6F8FB;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+/* 狀態標籤 (Badges) */
+.badge-self {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+    font-weight: 700;
+}
+.badge-provided {
+    background: rgba(44, 62, 80, 0.1);
+    color: var(--ipe-navy);
+    border: 1px solid var(--ipe-navy);
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+    font-weight: 700;
+}
+
+/* 底部注意事項 */
+.print-footer {
+    margin-top: 40px;
+    padding: 20px;
+    background: #FAFAFA;
+    border-left: 4px solid var(--ipe-gold);
+    font-size: 13px;
+    color: #555;
+    line-height: 1.8;
+}
+.highlight {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* 列印時隱藏陰影與邊距 */
+@media print {
+    .ipe-print-wrap { box-shadow: none; padding: 0; }
+    body { background: #fff; }
+}
+</style>
+
+    <div class="print-header">
+        <h1>國際皮膚管理初階檢定 (L1)</h1>
+        <p>考場標準工具與材料清點表 Checklist</p>
+    </div>
+
+    <div class="tool-category">
+        <h3><i class="fas fa-user-shield"></i> 服裝與防護類</h3>
+        <div class="checklist-grid">
+            <div class="check-item"><div class="check-box"></div><span class="item-name">工作服 (白色)</span><span class="item-qty">1 件</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">平口美容衣</span><span class="item-qty">1 件</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">口罩 (操作時須配戴) </span><span class="item-qty">1 個</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">室內拖</span><span class="item-qty">2 雙</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">待消毒袋 與 垃圾袋</span><span class="item-qty">1 個</span></div>
+        </div>
+    </div>
+
+    <div class="tool-category">
+        <h3><i class="fas fa-scroll"></i>布巾與耗材類</h3>
+        <div class="checklist-grid">
+            <div class="check-item"><div class="check-box"></div><span class="item-name">鋪床巾 <span class="highlight">(奶茶色)</span></span><span class="item-qty">2 條</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">小毛巾 <span class="highlight">(奶茶色)</span></span><span class="item-qty">6 條</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">洗臉巾</span><span class="item-qty">數張</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">化妝棉</span><span class="item-qty">數張</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">棉花棒</span><span class="item-qty">數支</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">面膜紙</span><span class="item-qty">數張</span></div>
+        </div>
+    </div>
+
+    <div class="tool-category">
+        <h3><i class="fas fa-toolbox"></i>專業工具與設備類</h3>
+        <div class="checklist-grid">
+            <div class="check-item"><div class="check-box"></div><span class="item-name">檯燈 </span><span class="item-qty">1 座</span></div>
+            
+            <div class="check-item"><div class="check-box"></div><span class="item-name">水盆 </span><span class="item-qty">2 個</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">置物架 </span><span class="item-qty">1 個</span></div>
+            
+            <div class="check-item"><div class="check-box"></div><span class="item-name">工具籃</span><span class="item-qty">1 個</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">分納收納盒</span><span class="item-qty">1 個</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">美容缽</span><span class="item-qty">3 個</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">敷臉刷</span><span class="item-qty">2 支</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">塑膠挖棒</span><span class="item-qty">5 支</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">山口夾</span><span class="item-qty">2 個</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">粉刺針 / 痘針</span><span class="item-qty">1 支</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">粉刺夾</span><span class="item-qty">1 支</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">擠痘棒</span><span class="item-qty">1 支</span></div>
+        </div>
+    </div>
+
+    <div class="tool-category">
+        <h3><i class="fas fa-pump-soap"></i> 保養品類 (須為合格產品)</h3>
+        <div class="checklist-grid">
+            <div class="check-item"><div class="check-box"></div><span class="item-name">卸眼唇液</span><span class="item-qty">1 瓶</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">卸妝乳</span><span class="item-qty">1 瓶</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">洗面乳</span><span class="item-qty">1 瓶</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">化妝水</span><span class="item-qty">1 瓶</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">去角質霜</span><span class="item-qty">1 瓶</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">按摩霜</span><span class="item-qty">1 瓶</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">粉刺水</span><span class="item-qty">1 瓶</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">敷臉霜 <span class="highlight">(有顏色)</span></span><span class="item-qty">1 瓶</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">乳液</span><span class="item-qty">1 瓶</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">隔離或防曬霜</span><span class="item-qty">1 瓶</span></div>
+            <div class="check-item"><div class="check-box"></div><span class="item-name">75% 酒精罐 </span><span class="item-qty">1 瓶</span></div>
+        </div>
+    </div>
+
+    <div class="print-footer">
+        <strong>【考前重要提醒】</strong><br>
+        1. 所有使用之保養產品必須為<strong>合格產品並具備完整中文標示</strong>，若標示不全或過期，將依規定於衛生項目扣分。<br>
+        2. 請務必於考前再三確認上述物品是否備齊，自備項目考場恕不提供借用。<br>
+        3. 如需透過本會統一訂購標準檢定套組材料，請至官網「證照報名」專區選購。
+    </div>
+
+</div>

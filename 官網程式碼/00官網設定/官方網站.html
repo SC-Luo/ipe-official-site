@@ -1,0 +1,375 @@
+<div class="slide-v1-1shop-container">
+  <div class="slide-v1-1shop-main">
+    <div>
+      <a href="https://ipe.1shop-app.com/products/ipe-skincare-level">
+        <img src="https://img.1shop.tw/k3xVqyrnXN2J741NBZKbomdG/o7KQGvx83OMyKae7NnVR9Xkj/original.png" style="width:100%; display:block;">
+      </a>
+    </div>
+    <div>
+      <a href="https://ipe.1shop-app.com/products/ipe-beautybody-level">
+        <img src="https://img.1shop.tw/k3xVqyrnXN2J741NBZKbomdG/j7m6e8BLYJAmK0MPNaG5RKMX/original.png" style="width:100%; display:block;">
+      </a>
+    </div>
+      <div>
+      <a href="https://ipe.1shop-app.com/products/ipe-beautybody-level">
+        <img src="https://img.1shop.tw/k3xVqyrnXN2J741NBZKbomdG/0nMRz1wGlRwLWQM0NV9Kjv6E/original.jpg" style="width:100%; display:block;">
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+/* 基礎樣式微調 */
+.slide-v1-1shop-container { width: 100%; overflow: hidden; margin-bottom: 20px; }
+.slide-v1-1shop-main img { border: none; }
+/* 分頁圓點樣式優化 */
+.slide-v1-1shop-main .slick-dots { bottom: 15px; }
+.slide-v1-1shop-main .slick-dots li button:before { font-size: 12px; color: #fff; opacity: 0.5; }
+.slide-v1-1shop-main .slick-dots li.slick-active button:before { color: #fff; opacity: 1; }
+</style>
+
+<script>
+(function() {
+  var retryCount = 0;
+  var maxRetries = 50; // 最多等待 5 秒
+
+  function initSlickV1() {
+    // 防呆檢查：確保 jQuery 與 Slick 插件皆已載入
+    if (window.jQuery && jQuery.fn.slick) {
+      var $target = jQuery('.slide-v1-1shop-main');
+      
+      // 避免重複初始化
+      if ($target.hasClass('slick-initialized')) return;
+
+      $target.slick({
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        pauseOnHover: false, // 強制不因滑鼠停滯
+        pauseOnFocus: false,
+        adaptiveHeight: true
+      });
+
+      // 保險機制：初始化後強制啟動播放
+      setTimeout(function() {
+        $target.slick('slickPlay');
+      }, 500);
+
+    } else {
+      if (retryCount < maxRetries) {
+        retryCount++;
+        setTimeout(initSlickV1, 100); // 每 0.1 秒重試一次
+      }
+    }
+  }
+
+  // 1shop 環境建議：不只依賴 DOMContentLoaded，直接啟動監測流程
+  initSlickV1();
+})();
+</script>
+
+<div class="ipe-wrap">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================
+   1. 基礎變數與佈局
+   ========================================= */
+.ipe-wrap {
+    --ipe-gold: #C6A96B;
+    --ipe-gold-light: #D8BE8A;
+    --ipe-gold-dark: #B89A5F;
+    --ipe-navy: #2C3E50;
+    --ipe-gray: #5F6B7A;
+    --ipe-bg: #F6F8FB;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: var(--ipe-gray);
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; 
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    box-sizing: border-box;
+}
+.ipe-wrap * { box-sizing: border-box; }
+
+.ipe-main-content { flex: 1; min-width: 320px; padding: 60px 60px; order: 1; text-align: left; }
+.ipe-side-console { flex: 0 0 300px; background: var(--ipe-bg); padding: 60px 25px; border-left: 1px solid #E6EAF0; order: 2; text-align: center; }
+
+/* =========================================
+   2. 共用明體標題與側邊欄細節
+   ========================================= */
+.ipe-wrap h1, .ipe-wrap .ipe-chapter-title {
+    font-family: 'Noto Serif TC', serif !important; font-weight: 900 !important; letter-spacing: 0.05em;
+}
+.ipe-side-label { font-size: 11px; color: #CBD5E0; letter-spacing: 4px; display: block; margin-top: 35px; }
+.ipe-sub-nav-list { list-style: none; padding: 0; margin: 0; }
+.ipe-nav-item a { display: block; padding: 10px 0; color: var(--ipe-gray); text-decoration: none; font-size: 16px; transition: all 0.3s; }
+.ipe-nav-item a:hover, .ipe-active-page a { color: var(--ipe-gold); font-weight: 600; }
+
+/* =========================================
+   3. 首頁專屬樣式 (Portal Design)
+   ========================================= */
+/* 尊榮迎賓橫幅 (Hero Banner) */
+.home-hero {
+    background: linear-gradient(135deg, var(--ipe-navy) 0%, #1a252f 100%);
+    color: #fff;
+    padding: 70px 40px;
+    border-radius: 16px;
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(44, 62, 80, 0.2);
+}
+.home-hero::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+    background: linear-gradient(to right, var(--ipe-gold-dark), var(--ipe-gold-light));
+}
+.hero-icon {
+    font-size: 45px;
+    color: var(--ipe-gold-light);
+    margin-bottom: 20px;
+}
+.hero-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin: 0 0 10px 0;
+    color: #fff;
+}
+.hero-subtitle {
+    font-size: 14px;
+    color: var(--ipe-gold-light);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+.hero-desc {
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* 核心業務導航網格 (Quick Links) */
+.home-section-title {
+    text-align: center;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 28px;
+    color: var(--ipe-navy);
+    margin: 0 0 40px 0;
+    position: relative;
+}
+.home-section-title::after {
+    content: ''; display: block; width: 60px; height: 3px;
+    background: var(--ipe-gold); margin: 15px auto 0 auto;
+}
+
+.core-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 60px;
+}
+.core-card {
+    display: block;
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid #E6EAF0;
+    border-radius: 12px;
+    padding: 40px 25px;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+.core-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--ipe-gold);
+    box-shadow: 0 15px 30px rgba(198, 169, 107, 0.15);
+}
+.core-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
+    background: #E6EAF0; transition: all 0.4s ease;
+}
+.core-card:hover::before {
+    background: var(--ipe-gold);
+}
+.core-icon {
+    width: 80px; height: 80px;
+    background: rgba(198, 169, 107, 0.1);
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    margin: 0 auto 20px auto;
+    font-size: 32px;
+    color: var(--ipe-gold-dark);
+    transition: all 0.4s ease;
+}
+.core-card:hover .core-icon {
+    background: var(--ipe-gold);
+    color: #fff;
+}
+.core-card h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 22px;
+    color: var(--ipe-navy);
+    margin: 0 0 10px 0;
+}
+.core-card p {
+    font-size: 14px; color: #666; margin: 0; line-height: 1.6;
+}
+
+/* 快速查詢區塊 (公告 & 成績) */
+.action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+.action-box {
+    background: #FAFAFA;
+    border: 1px dashed #CBD5E0;
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.action-box:hover {
+    border-color: var(--ipe-gold-light);
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+}
+.action-icon {
+    font-size: 36px;
+    color: var(--ipe-navy);
+}
+.action-text h4 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px; color: var(--ipe-navy); margin: 0 0 5px 0;
+}
+.action-text p {
+    font-size: 13px; color: #666; margin: 0;
+}
+.action-arrow {
+    margin-left: auto;
+    color: var(--ipe-gold);
+    font-size: 18px;
+}
+
+/* =========================================
+   4. RWD 手機版
+   ========================================= */
+@media (max-width: 992px) {
+    .ipe-wrap { flex-direction: column; width: 100%; }
+    .ipe-main-content { order: 1; width: 100%; padding: 40px 20px; }
+    .ipe-side-console { order: 2; flex: none; width: 100%; border-left: none; border-top: 1px solid #E6EAF0; padding: 40px 20px; }
+    
+    .hero-title { font-size: 28px; }
+    .core-grid { grid-template-columns: 1fr; gap: 20px; }
+    .action-grid { grid-template-columns: 1fr; gap: 20px; }
+}
+</style>
+
+<main class="ipe-main-content">
+    
+    <div class="home-hero">
+        <div class="hero-icon"><i class="fas fa-crown"></i></div>
+        <h2 class="hero-title">中華國際職能檢定與教育發展協會</h2>
+        <div class="hero-subtitle">International Professional Certification & Education</div>
+        <p class="hero-desc">引領亞太職能標準，培育頂尖專業人才。本會致力於建立高階專業檢定體系、推動職能教育發展，並透過系統化認證，協助美容與技術服務產業成功接軌國際舞台。</p>
+    </div>
+
+    <h3 class="home-section-title">協會核心服務</h3>
+    <div class="core-grid">
+        <a href="/about" class="core-card">
+            <div class="core-icon"><i class="fas fa-university"></i></div>
+            <h3>關於 IPE 協會</h3>
+            <p>了解本會宗旨、願景與理監事團隊，以及我們為產業發展所建立的權威架構。</p>
+        </a>
+
+        <a href="/edu-system" class="core-card">
+            <div class="core-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+            <h3>職能教育與培訓</h3>
+            <p>系統化培訓地圖，由頂尖名師親自授課，打造業界高階管理與技術人才。</p>
+        </a>
+
+
+        <a href="/cert-system" class="core-card">
+            <div class="core-icon"><i class="fas fa-medal"></i></div>
+            <h3>專業檢定與證照</h3>
+            <p>客觀嚴謹的技能評量制度，提供具公信力之能力證明，接軌國際標準。</p>
+        </a>
+
+    
+    </div>
+
+    <div class="action-grid">
+        <a href="https://ipe.1shop-app.com/news" class="action-box">
+            <div class="action-icon"><i class="fas fa-bullhorn"></i></div>
+            <div class="action-text">
+                <h4>最新會務公告</h4>
+                <p>檢視最新梯次檢定日期與培訓課程資訊</p>
+            </div>
+            <div class="action-arrow"><i class="fas fa-chevron-right"></i></div>
+        </a>
+
+        <a href="https://ipe.1shop-app.com/exam-result" class="action-box">
+            <div class="action-icon"><i class="fas fa-search"></i></div>
+            <div class="action-text">
+                <h4>檢定成績查詢</h4>
+                <p>輸入證號，快速查詢您的專屬檢定結果</p>
+            </div>
+            <div class="action-arrow"><i class="fas fa-chevron-right"></i></div>
+        </a>
+    </div>
+
+</main>
+
+<aside class="ipe-side-console">
+    <span class="ipe-side-label">News</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">最新消息</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/news">公告總覽</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Certification</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">檢定與證照</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-system">檢定體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-item">檢定項目</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-reg">證照報名</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-result">成績查詢</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Faculty</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">講師與教育</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/faculty">講師團隊</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/edu-system">講師體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/trainer">評審體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/apply-teacher">講師申請</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Corporate</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">關於 IPE</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/about">協會介紹</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/organization">組織架構</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/board">理監事</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/contact">聯絡我們</a></li>
+    </ul>
+
+</aside>
+
+</div>
