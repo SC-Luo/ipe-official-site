@@ -1,0 +1,88 @@
+<div class="ipe-wrap">
+<main class="ipe-main-content">
+    <span class="section-label">Learning Portfolio</span>
+    <h2 class="ipe-chapter-title">個人檢定歷程查詢</h2>
+    <p class="chapter-subtitle">請輸入您的驗證資訊，系統將為您調閱所有的檢定歷史紀錄。</p>
+
+    <div class="query-layout">
+        <div class="info-panel">
+            <h4><i class="fas fa-info-circle info-icon"></i> 考生查詢須知</h4>
+            <ul class="info-list">
+                <li><strong><i class="far fa-calendar-alt"></i> 查詢開放時間</strong>各科成績將於測驗結束後 <b>14 個工作天</b> 統一開放查詢。</li>
+                <li><strong><i class="fas fa-certificate"></i> 證書寄發作業</strong>成績判定為「合格」者，實體證書將於成績公告後 <b>30 日內</b>以掛號郵寄。</li>
+                <li><strong><i class="fas fa-search-plus"></i> 成績複查申請</strong>若對未達標準之結果有疑慮，可點擊該紀錄下方之「申請成績複查」進入專案流程。</li>
+            </ul>
+        </div>
+        <div>
+            <div class="query-form-card">
+                <form id="scoreQueryForm">
+                    <div class="form-group">
+                        <label>身分證字號後 4 碼</label>
+                        <input type="text" name="id_last4" class="form-control" placeholder="例如：5678" maxlength="4" pattern="\d{4}" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 25px;">
+                        <label>報名填寫之聯絡電話</label>
+                        <input type="tel" name="phone" class="form-control" placeholder="例如：0912345678" required>
+                    </div>
+                    <button type="submit" id="queryBtn" class="submit-btn">
+                        <i class="fas fa-search"></i> 調閱檢定歷程
+                    </button>
+                    <div id="statusMsg" class="status-msg"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="result-container">
+        <div class="profile-header">
+            <div class="profile-info">
+                <h3><i class="fas fa-user-graduate" style="margin-right: 10px;"></i><span id="res-name">考生姓名</span></h3>
+                <p>IPE 官方檢定歷程檔案</p>
+            </div>
+            <div class="profile-stats">
+                <div class="stats-num" id="res-count">0</div>
+                <div class="stats-label">累計報考次數</div>
+            </div>
+        </div>
+        <div class="record-list" id="records-wrapper">
+            </div>
+    </div>
+</main>
+
+<aside class="ipe-side-console">
+    <span class="ipe-side-label">News</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">最新消息</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/news">公告總覽</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Certification</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">檢定與證照</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-system">檢定體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-item">檢定項目</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-reg">證照報名</a></li>
+        <li class="ipe-nav-item ipe-active-page"><a href="https://ipe.1shop-app.com/exam-result">成績查詢</a></li>
+       
+    </ul>
+
+    <span class="ipe-side-label">Faculty</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">講師與教育</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/faculty">講師團隊</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/edu-system">講師體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/trainer">評審體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/apply-teacher">講師申請</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Corporate</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">關於 IPE</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/about">協會介紹</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/organization">組織架構</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/board">理監事</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/contact">聯絡我們</a></li>
+    </ul>
+</aside>
+
+</div>
