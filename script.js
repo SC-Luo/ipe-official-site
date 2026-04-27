@@ -1,5 +1,3 @@
-<script>
-
 document.querySelectorAll('.ipe-card').forEach(el=>{
 el.addEventListener('mouseenter',()=>{
 el.style.transform="translateY(-10px)"
@@ -8,5 +6,3 @@ el.addEventListener('mouseleave',()=>{
 el.style.transform="translateY(0px)"
 })
 })
-
-</script>
