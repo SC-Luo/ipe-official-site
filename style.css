@@ -253,4 +253,72 @@ font-size:17px;
 font-size:13px;
 }
 
+/* =========================================
+   IPE 網站全域核心樣式 (Headless Components)
+   ========================================= */
+:root {
+    --ipe-deep-blue: #2C3E50;
+    --ipe-pure-white: #FFFFFF;
+    --ipe-gold: #C6A96B;
+    --ipe-gold-light: #D8BE8A;
+    --ipe-gold-dark: #B89A5F;
+    --ipe-navy: #1B2836;
+    --ipe-navy-light: #2C3E50;
+    --ipe-bg: #F6F8FB;
+    --ipe-gray: #5F6B7A;
+    --ipe-text-dark: #2C3E50;
+    --ipe-text-gray: #5f6b7a;
+    --ipe-bg-cloud: #F5F8FC;
+    --ipe-border-light: #E3EAF2;
+}
+
+/* 雙欄主架構與容器 */
+.ipe-wrap {
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: var(--ipe-gray); max-width: 1200px; margin: 0 auto; display: flex;
+    flex-direction: row; background: #fff; box-shadow: 0 10px 40px rgba(0,0,0,0.05); box-sizing: border-box;
+}
+.ipe-wrap * { box-sizing: border-box; }
+.ipe-main-content { flex: 1; min-width: 320px; padding: 80px 60px; order: 1; text-align: left; }
+.ipe-side-console { flex: 0 0 300px; background: var(--ipe-bg); padding: 60px 25px; border-left: 1px solid #E6EAF0; order: 2; text-align: center; }
+
+/* 共用明體標題與文字 */
+.ipe-wrap h1, .ipe-wrap h2, .ipe-wrap h3, .ipe-wrap .ipe-chapter-title {
+    font-family: 'Noto Serif TC', serif !important; font-weight: 900 !important; letter-spacing: 0.05em; -webkit-font-smoothing: antialiased;
+}
+.section-label { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 13px; letter-spacing: 3px; color: var(--ipe-gold); text-transform: uppercase; margin-bottom: 30px; display: block; border-bottom: 1px solid #E6EAF0; padding-bottom: 10px; }
+.ipe-chapter-title { font-size: 36px; color: #111111; margin: 15px 0 20px 0; }
+
+/* 側邊欄導航 */
+.ipe-side-label { font-size: 11px; color: #CBD5E0; letter-spacing: 4px; display: block; margin-top: 35px; }
+.ipe-sub-nav-list { list-style: none; padding: 0; margin: 0; }
+.ipe-nav-item a { display: block; padding: 10px 0; color: var(--ipe-gray); text-decoration: none; font-size: 16px; transition: all 0.3s; }
+.ipe-nav-item a:hover, .ipe-active-page a { color: var(--ipe-gold); font-weight: 600; }
+
+/* 通用 Loading 與表單與 UI 組件 */
+.loading-status { text-align: center; padding: 50px 0; color: var(--ipe-gray); font-size: 18px; width: 100%; }
+.submit-btn {
+    background: linear-gradient(135deg, var(--ipe-gold-dark) 0%, var(--ipe-gold) 50%, var(--ipe-gold-light) 100%);
+    color: #fff !important; border: none; padding: 16px 40px; border-radius: 50px; font-size: 18px; font-weight: 700;
+    cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 20px rgba(198, 169, 107, 0.3); width: 100%;
+}
+.submit-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(198, 169, 107, 0.5); }
+.submit-btn:disabled { background: #bdc3c7; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* 表單輸入框修正 */
+.form-control {
+    background-color: rgba(44, 62, 80, 0.5) !important; color: #ffffff !important; border: 1px solid rgba(198, 169, 107, 0.3) !important; 
+    padding: 15px 20px; border-radius: 8px; font-size: 16px; width: 100%; height: auto !important; line-height: 1.5 !important;
+}
+.form-control:focus { background-color: rgba(44, 62, 80, 0.7) !important; border-color: var(--ipe-gold) !important; outline: none; }
+
+/* =========================================
+   全域 RWD 響應式優化
+   ========================================= */
+@media (max-width: 992px) {
+    .ipe-wrap { flex-direction: column; width: 100%; }
+    .ipe-main-content { order: 1; width: 100%; padding: 40px 20px; }
+    .ipe-side-console { order: 2; flex: none; width: 100%; border-left: none; border-top: 1px solid #E6EAF0; padding: 40px 20px; }
+}
+
 }
