@@ -242,8 +242,7 @@
             <!-- 注意：此處 PDF 連結暫時為空，待您上傳後可直接替換 # -->
             <a href="https://drive.google.com/file/d/1-VomNF9nZut705_uCs4OJ9h2cHVxcjhi/view?usp=sharing" target="_blank" class="download-btn">
                 <i class="fas fa-file-pdf" style="margin-right: 8px; font-size: 18px;"></i> 下載完整 PDF 題庫 
-                
-
+            </a>
             <div id="qna-container" class="qna-grid">
                 <!-- JS 會在此自動生成題庫卡片 -->
             </div>
@@ -493,9 +492,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 let optsText = content.substring(firstOptionMatch.index);
                 
                 // 將每個選項替換成獨立的 Flex 區塊，解決跑版問題
-                optsText = optsText.replace(/\s+([A-D]\.|\([A-D]\))/g, '</div><div class="qna-opt"><span class="opt-badge">$1</span><span class="opt-text">');
+                optsText = optsText.replace(/\s+([A-D]\.|\([A-D]\))/g, '</span></div><div class="qna-opt"><span class="opt-badge">$1</span><span class="opt-text">');
                 // 移除一開始多出來的閉合標籤，並在尾端補齊
-                optsText = optsText.replace(/^<\/div>/, '') + '</span></div>';
+                optsText = optsText.replace(/^<\/span><\/div>/, '') + '</span></div>';
                 
                 formattedBody = `<div class="qna-q">${qText}</div><div class="qna-opts">${optsText}</div>`;
             }
