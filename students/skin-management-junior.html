@@ -41,6 +41,7 @@
 .badge-danger { background: #FFEAEA; color: #E74C3C; padding: 5px 15px; border-radius: 6px; font-weight: 900; font-size: 15px; white-space: nowrap; display: inline-block; border: 1px solid #FFD6D6; }
 .highlight-row { background: #FFF9ED !important; text-align: center; color: var(--ipe-gold-dark) !important; font-weight: bold; letter-spacing: 1px; }
 
+
 /* =========================================
    3. 題庫專區 (動態生成卡片)
    ========================================= */
@@ -74,6 +75,10 @@
 .ipe-content { padding: 30px 25px; animation: fadeIn 0.4s ease; }
 .svg-arrow { transition: transform 0.3s ease; color: var(--ipe-gray); }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* PDF 下載按鈕 */
+.download-btn { display: inline-flex; align-items: center; background: linear-gradient(135deg, var(--ipe-gold-dark) 0%, var(--ipe-gold) 50%, var(--ipe-gold-light) 100%); color: #fff !important; padding: 12px 28px; border-radius: 50px; font-size: 15px; font-weight: bold; text-decoration: none; box-shadow: 0 4px 15px rgba(198, 169, 107, 0.3); transition: all 0.3s ease; margin-bottom: 25px; letter-spacing: 1px; }
+.download-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(198, 169, 107, 0.5); color: #fff; }
 
 /* 回到頂部按鈕 */
 .back-to-top { position: fixed; bottom: 40px; right: 40px; background: var(--ipe-gold); color: #fff; width: 50px; height: 50px; border-radius: 50%; border: none; font-size: 20px; cursor: pointer; box-shadow: 0 5px 15px rgba(198, 169, 107, 0.4); display: none; align-items: center; justify-content: center; z-index: 999; transition: all 0.3s ease; }
@@ -128,7 +133,9 @@
                     <td><strong>15%</strong></td>
                 </tr>
                 <tr>
-                    
+                    <td colspan="4" class="highlight-row">
+                        <i class="fas fa-tint"></i> 【換水時間】 考生可離開考場至供水區更換水盆（不計時且不可交談）
+                    </td>
                 </tr>
                 <tr>
                     <td><strong>二、去角質及臉部按摩</strong></td>
@@ -231,6 +238,11 @@
         </summary>
         <div class="ipe-content">
             <p class="qna-desc" style="margin-top: 0;">以下為初級測驗範圍（共 95 題），系統已自動為您排版並標示正確解答：</p>
+            
+            <a href="./students/【初級】皮膚管理總題庫.pdf" target="_blank" download="【初級】皮膚管理總題庫.pdf" class="download-btn">
+                <i class="fas fa-file-pdf" style="margin-right: 8px; font-size: 18px;"></i> 下載完整 PDF 題庫
+            </a>
+
             <div id="qna-container" class="qna-grid">
                 <!-- JS 會在此自動生成題庫卡片 -->
             </div>
