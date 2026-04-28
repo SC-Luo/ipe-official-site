@@ -93,6 +93,32 @@
     .qna-header { flex-wrap: wrap; }
     .back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px; font-size: 18px; }
 }
+
+@media (max-width: 768px) {
+    /* 標題與副標題手機版放大 */
+    .ipe-chapter-title { font-size: 28px; line-height: 1.4; }
+    .ipe-chapter-title span { font-size: 20px !important; display: block; margin-top: 8px; }
+    .chapter-subtitle { font-size: 16px; margin-bottom: 25px; }
+    
+    /* 摺疊面板與一般內文手機版優化 */
+    .ipe-summary { padding: 18px 20px; font-size: 18px; }
+    .ipe-content { padding: 25px 15px; }
+    .qna-desc { font-size: 16px; line-height: 1.6; }
+    
+    /* 表格與標籤字體放大 */
+    .ipe-table th, .ipe-table td { padding: 15px; font-size: 15px; }
+    .badge-time, .badge-danger { font-size: 14px; }
+    
+    /* 下載按鈕滿版與字體放大 */
+    .download-btn { display: flex; width: 100%; justify-content: center; padding: 16px; font-size: 16px; margin-bottom: 25px; }
+    
+    /* ★ 題庫卡片手機版字體有感放大 ★ */
+    .qna-item { padding: 25px 18px; }
+    .qna-num, .qna-ans { font-size: 14px; padding: 6px 14px; }
+    .qna-body { font-size: 17px; line-height: 1.7; }
+    .qna-opt .opt-badge { font-size: 17px; flex: 0 0 35px; }
+    .qna-opt .opt-text { font-size: 16px; color: #444; }
+}
 </style>
 
 <main class="ipe-main-content">
