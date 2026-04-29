@@ -1,0 +1,264 @@
+<!-- ★★★ IPE 網站內容頁：理監事名冊 (動態載入) ★★★ -->
+
+<div class="ipe-wrap">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* =========================================
+   1. 基礎變數與佈局 (最高標準版)
+   ========================================= */
+.ipe-wrap {
+    --ipe-gold: #C6A96B;
+    --ipe-gold-light: #D8BE8A;
+    --ipe-gold-dark: #B89A5F;
+    --ipe-navy: #2C3E50;
+    --ipe-gray: #5F6B7A;
+    --ipe-bg: #F6F8FB;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: var(--ipe-gray);
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; 
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    box-sizing: border-box;
+}
+.ipe-wrap * { box-sizing: border-box; }
+
+.ipe-main-content { flex: 1; min-width: 320px; padding: 80px 60px; order: 1; text-align: left; }
+.ipe-side-console { flex: 0 0 300px; background: var(--ipe-bg); padding: 60px 25px; border-left: 1px solid #E6EAF0; order: 2; text-align: center; }
+
+/* =========================================
+   2. 共用明體標題與側邊欄細節
+   ========================================= */
+.ipe-wrap h1, .ipe-wrap .ipe-chapter-title {
+    font-family: 'Noto Serif TC', serif !important; font-weight: 900 !important; letter-spacing: 0.05em;
+}
+.section-label { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 13px; letter-spacing: 3px; color: var(--ipe-gold); text-transform: uppercase; margin-bottom: 30px; display: block; border-bottom: 1px solid #E6EAF0; padding-bottom: 10px; }
+.ipe-chapter-title { font-size: 36px; color: #111111; margin: 15px 0 20px 0; }
+
+.ipe-side-label { font-size: 11px; color: #CBD5E0; letter-spacing: 4px; display: block; margin-top: 35px; }
+.ipe-sub-nav-list { list-style: none; padding: 0; margin: 0; }
+.ipe-nav-item a { display: block; padding: 10px 0; color: var(--ipe-gray); text-decoration: none; font-size: 16px; transition: all 0.3s; }
+.ipe-nav-item a:hover, .ipe-active-page a { color: var(--ipe-gold); font-weight: 600; }
+
+/* =========================================
+   3. 理監事名片專屬樣式 (動態載入版)
+   ========================================= */
+.board-intro {
+    font-size: 16px; color: #555; line-height: 1.8; margin-bottom: 50px;
+    background: #FAFAFA; border-left: 4px solid var(--ipe-gold); padding: 25px 30px; border-radius: 0 12px 12px 0;
+}
+
+/* 載入中提示 */
+.loading-status {
+    text-align: center; padding: 50px 0; color: var(--ipe-gray); font-size: 18px; width: 100%;
+}
+
+/* 名片網格 */
+.board-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* 獨立名片卡 */
+.board-card {
+    background: #fff;
+    border: 1px solid #E6EAF0;
+    border-radius: 16px;
+    padding: 35px 25px;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+.board-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    border-color: var(--ipe-gold-light);
+}
+/* 頂部裝飾線 */
+.board-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(to right, var(--ipe-navy), var(--ipe-gold));
+}
+
+/* 照片區塊 */
+.board-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px auto;
+    border-radius: 50%;
+    background-color: var(--ipe-bg);
+    border: 3px solid #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+.board-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.board-avatar-fallback {
+    font-size: 40px;
+    color: var(--ipe-gold-light);
+}
+
+/* 文字資訊 */
+.board-title {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ipe-gold-dark);
+    background: rgba(198, 169, 107, 0.1);
+    padding: 4px 12px;
+    border-radius: 50px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+.board-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 22px;
+    color: var(--ipe-navy);
+    margin: 0 0 10px 0;
+    font-weight: 700;
+}
+.board-exp {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* =========================================
+   4. RWD 手機版
+   ========================================= */
+@media (max-width: 992px) {
+    .ipe-wrap { flex-direction: column; width: 100%; }
+    .ipe-main-content { order: 1; width: 100%; padding: 50px 20px; }
+    .ipe-side-console { order: 2; flex: none; width: 100%; border-left: none; border-top: 1px solid #E6EAF0; padding: 50px 20px; }
+    .ipe-chapter-title { font-size: 32px; text-align: center; }
+    .board-grid { grid-template-columns: 1fr 1fr; gap: 20px; } /* 平板雙欄 */
+}
+@media (max-width: 600px) {
+    .board-grid { grid-template-columns: 1fr; } /* 手機單欄 */
+}
+</style>
+
+<main class="ipe-main-content">
+    <section>
+        <span class="section-label">Board of Directors</span>
+        <h2 class="ipe-chapter-title">理監事團隊</h2>
+        
+        <div class="board-intro">
+            <p style="margin:0;">中華國際職能檢定與教育發展協會 (IPE) 的理監事團隊，由產業界資深領袖、學界專家及專業教育者共同組成。透過跨領域的豐富經驗與宏觀視野，引領協會持續推動職能教育的革新與發展。</p>
+        </div>
+
+        <div id="dynamic-board-grid" class="board-grid">
+            <div class="loading-status">
+                <i class="fas fa-spinner fa-spin"></i> 正在載入團隊資訊...
+            </div>
+        </div>
+
+    </section>
+</main>
+
+<aside class="ipe-side-console">
+    <span class="ipe-side-label">News</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">最新消息</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/news">公告總覽</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Certification</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">檢定與證照</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-system">檢定體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-item">檢定項目</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-reg">證照報名</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-result">成績查詢</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Faculty</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">講師與教育</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/faculty">講師團隊</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/edu-system">講師體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/trainer">評審體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/apply-teacher">講師申請</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Corporate</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">關於 IPE</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/about">協會介紹</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/organization">組織架構</a></li>
+        <li class="ipe-nav-item ipe-active-page"><a href="https://ipe.1shop-app.com/board">理監事</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/contact">聯絡我們</a></li>
+    </ul>
+
+</aside>
+
+<script>
+// =========================================================================
+// ★ 請將下方字串替換為你部署 Google Apps Script 後獲得的 Web App URL ★
+// =========================================================================
+const API_URL = 'https://script.google.com/macros/s/AKfycbzM0uZedkApt-0UmkM3W4TC31tn410DnCNsqTAH7Ru71ylmUTEyz-W8BqBGH2ep2p516A/exec'; 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('dynamic-board-grid');
+    
+    // 防呆提示
+    if(API_URL === 'YOUR_GAS_API_URL_HERE') {
+        container.innerHTML = '<div class="loading-status" style="color:#e74c3c;">請先在 HTML 底部填入您的 Google Apps Script 網址！</div>';
+        return;
+    }
+
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+            if (!data || data.length === 0) {
+                container.innerHTML = '<div class="loading-status">目前尚無理監事資料。</div>';
+                return;
+            }
+
+            container.innerHTML = ''; // 清空載入中提示
+
+            data.forEach(item => {
+                // 如果有提供圖片網址就顯示圖片，否則顯示預設的金色 icon
+                const avatarHtml = (item.photoUrl && item.photoUrl.trim() !== '') 
+                    ? `<img src="${item.photoUrl}" alt="${item.name}">` 
+                    : `<div class="board-avatar-fallback"><i class="fas fa-user-tie"></i></div>`;
+
+                // 處理換行：將試算表裡的換行符號轉為 <br>
+                const experienceHtml = item.experience ? item.experience.replace(/\n/g, '<br>') : '';
+
+                const cardHtml = `
+                    <div class="board-card">
+                        <div class="board-avatar">
+                            ${avatarHtml}
+                        </div>
+                        <span class="board-title">${item.title || '理監事'}</span>
+                        <h3 class="board-name">${item.name}</h3>
+                        <p class="board-exp">${experienceHtml}</p>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching board members:', error);
+            container.innerHTML = '<div class="loading-status" style="color:#e74c3c;"><i class="fas fa-exclamation-triangle"></i> 無法載入資料，請稍後再試。</div>';
+        });
+});
+</script>
+
+</div>

@@ -1,0 +1,236 @@
+<!-- ★★★ IPE 網站內容頁：評審體系 ★★★ -->
+
+<div class="ipe-wrap">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* =========================================
+   1. 基礎變數與佈局
+   ========================================= */
+.ipe-wrap {
+    --ipe-gold: #C6A96B; --ipe-gold-light: #D8BE8A; --ipe-gold-dark: #B89A5F;
+    --ipe-navy: #2C3E50; --ipe-gray: #5F6B7A; --ipe-bg: #F6F8FB;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: var(--ipe-gray); max-width: 1200px; margin: 0 auto; display: flex;
+    flex-direction: row; background: #fff; box-shadow: 0 10px 40px rgba(0,0,0,0.05); box-sizing: border-box;
+}
+
+.ipe-main-content { flex: 1; min-width: 320px; padding: 80px 60px; order: 1; text-align: left; }
+.ipe-side-console { flex: 0 0 300px; background: var(--ipe-bg); padding: 60px 25px; border-left: 1px solid #E6EAF0; order: 2; text-align: center; }
+
+.ipe-wrap h1, .ipe-wrap h2, .ipe-wrap h3 { font-family: 'Noto Serif TC', serif !important; font-weight: 900 !important; letter-spacing: 0.05em; -webkit-font-smoothing: antialiased;}
+.section-label { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 13px; letter-spacing: 3px; color: var(--ipe-gold); text-transform: uppercase; margin-bottom: 20px; display: block; border-bottom: 1px solid #E6EAF0; padding-bottom: 10px; }
+.ipe-chapter-title { font-size: 34px; color: #111111; margin: 0 0 25px 0; line-height: 1.4; }
+
+/* 頂部引言區塊 */
+.intro-overview { background: #FAFAFA; border-left: 4px solid var(--ipe-gold); padding: 30px 35px; margin: 30px 0 50px 0; border-radius: 0 8px 8px 0; }
+.intro-overview p { margin: 0; font-size: 17px; line-height: 1.8; color: #2C3E50; font-weight: bold;}
+
+/* =========================================
+   2. 尊榮深藍：四階晉升藍圖 (垂直階梯)
+   ========================================= */
+.roadmap-container {
+    background: var(--ipe-navy);
+    padding: 50px 45px;
+    border-radius: 20px;
+    color: #fff;
+    margin-bottom: 60px;
+    box-shadow: 0 15px 35px rgba(44, 62, 80, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+.roadmap-container::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(to right, var(--ipe-gold-dark), var(--ipe-gold-light));
+}
+.roadmap-header { text-align: center; margin-bottom: 45px; }
+.roadmap-header h3 { color: var(--ipe-gold-light); font-size: 26px; margin: 0 0 10px 0; }
+.roadmap-header p { color: rgba(255,255,255,0.7); font-size: 15px; margin: 0; }
+
+.roadmap-step { display: flex; align-items: flex-start; gap: 25px; margin-bottom: 35px; position: relative; }
+.roadmap-step:last-child { margin-bottom: 0; }
+/* 垂直連接線 */
+.roadmap-step:not(:last-child)::after {
+    content: ''; position: absolute; left: 24px; top: 50px; bottom: -25px; width: 2px; background: rgba(198, 169, 107, 0.2);
+}
+
+.step-icon-wrapper {
+    min-width: 50px; height: 50px; border-radius: 50%; background: var(--ipe-gold);
+    display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; z-index: 2;
+    box-shadow: 0 0 0 6px rgba(198, 169, 107, 0.15);
+}
+.step-content h5 { font-size: 20px; color: #fff; margin: 0 0 8px 0; font-weight: 900; letter-spacing: 1px;}
+.step-content p { font-size: 15px; color: rgba(255,255,255,0.8); margin: 0; line-height: 1.6; }
+
+/* =========================================
+   3. 信任白底卡片：三大公信力 (三欄網格)
+   ========================================= */
+.trust-section-title { font-size: 26px; color: #111; margin: 0 0 15px 0; text-align: center;}
+.trust-section-sub { font-size: 16px; color: #666; text-align: center; margin-bottom: 40px; }
+
+.trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 60px; }
+.trust-card { 
+    padding: 40px 25px; background: #fff; border: 1px solid #E6EAF0; border-radius: 16px; 
+    text-align: center; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+}
+.trust-card:hover { transform: translateY(-5px); border-color: var(--ipe-gold-light); box-shadow: 0 15px 30px rgba(198, 169, 107, 0.1); }
+.trust-icon { font-size: 40px; color: var(--ipe-gold); margin-bottom: 20px; }
+.trust-card h4 { font-size: 19px; color: var(--ipe-navy); margin: 0 0 12px 0; font-weight: 900; }
+.trust-card p { font-size: 15px; color: #555; margin: 0; line-height: 1.6; text-align: left;}
+
+/* =========================================
+   4. 底部 CTA 區塊
+   ========================================= */
+.ipe-cta-box {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #FAFBFE; padding: 40px 45px; border-radius: 16px; border: 1px solid #E6EAF0;
+}
+.cta-text h4 { font-size: 22px; color: #111; margin: 0 0 8px 0; font-weight: 900; }
+.cta-text p { font-size: 15px; color: #666; margin: 0; }
+
+.cta-btn {
+    background: linear-gradient(135deg, var(--ipe-gold-dark) 0%, var(--ipe-gold) 50%, var(--ipe-gold-light) 100%);
+    color: #fff !important; text-decoration: none; padding: 16px 35px; border-radius: 50px; font-size: 16px; font-weight: 700;
+    transition: all 0.3s ease; box-shadow: 0 8px 20px rgba(198, 169, 107, 0.3); letter-spacing: 1px; white-space: nowrap;
+}
+.cta-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(198, 169, 107, 0.5); }
+
+/* =========================================
+   5. 側邊欄與手機版適應
+   ========================================= */
+.ipe-side-label { font-size: 11px; color: #CBD5E0; letter-spacing: 4px; display: block; margin-top: 35px; }
+.ipe-sub-nav-list { list-style: none; padding: 0; margin: 0; }
+.ipe-nav-item a { display: block; padding: 10px 0; color: var(--ipe-gray); text-decoration: none; font-size: 16px; transition: all 0.3s; }
+.ipe-nav-item a:hover, .ipe-active-page a { color: var(--ipe-gold); font-weight: 600; }
+
+@media (max-width: 992px) {
+    .ipe-wrap { flex-direction: column; width: 100%; }
+    .ipe-main-content { padding: 50px 25px; }
+    .trust-grid { grid-template-columns: 1fr; }
+    .ipe-cta-box { flex-direction: column; text-align: center; gap: 25px; padding: 35px 25px;}
+    .ipe-side-console { width: 100%; border-left: none; border-top: 1px solid #E6EAF0; padding: 50px 25px; }
+}
+</style>
+
+<main class="ipe-main-content">
+    <span class="section-label">Evaluator System</span>
+    <h2 class="ipe-chapter-title">專業評審體系</h2>
+    
+    <div class="intro-overview">
+        <p>建立公信力，從嚴格的標準開始。</p>
+        <p style="font-size: 15px; color: #555; font-weight: normal; margin-top: 10px;">
+            IPE 拒絕浮濫發證，透過嚴謹的「講師與監評」機制，守護證照含金量，讓專業具備絕對的市場鑑別度。
+        </p>
+    </div>
+
+    <div class="roadmap-container">
+        <div class="roadmap-header">
+            <h3>四階晉升藍圖</h3>
+            <p>評審不僅是稱號，更是經層層把關的榮譽與責任。</p>
+        </div>
+
+        <div class="roadmap-step">
+            <div class="step-icon-wrapper"><i class="fas fa-medal"></i></div>
+            <div class="step-content">
+                <h5>STEP 1. 技術標竿</h5>
+                <p>取得 <strong>IPE L3 證照</strong>，奠定頂尖實務技術基石。</p>
+            </div>
+        </div>
+
+        <div class="roadmap-step">
+            <div class="step-icon-wrapper"><i class="fas fa-chalkboard-teacher"></i></div>
+            <div class="step-content">
+                <h5>STEP 2. 教學賦能</h5>
+                <p>完成「講師訓練」，掌握標準化教學，精準傳承技術。</p>
+            </div>
+        </div>
+
+        <div class="roadmap-step">
+            <div class="step-icon-wrapper"><i class="fas fa-store"></i></div>
+            <div class="step-content">
+                <h5>STEP 3. 官方授權</h5>
+                <p>獲頒講師證，取得招生授權，升級為「認證基地」。</p>
+            </div>
+        </div>
+
+        <div class="roadmap-step">
+            <div class="step-icon-wrapper"><i class="fas fa-gavel"></i></div>
+            <div class="step-content">
+                <h5>STEP 4. 權威把關</h5>
+                <p>通過 <strong>100分制評核</strong>，正式受聘為監評委員，執行檢定任務。</p>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="trust-section-title">IPE 檢定公信力</h3>
+    <p class="trust-section-sub">監評選任基於「客觀數據」，杜絕私交與盲點。</p>
+
+    <div class="trust-grid">
+        <div class="trust-card">
+            <div class="trust-icon"><i class="fas fa-clipboard-list"></i></div>
+            <h4>嚴格考核制</h4>
+            <p>候選人須通過 100 分制複審，確保對標準的理解零誤差。</p>
+        </div>
+        <div class="trust-card">
+            <div class="trust-icon"><i class="fas fa-balance-scale"></i></div>
+            <h4>科學化評分</h4>
+            <p>落實標準化規準與利益迴避，確保考生獲公正公平對待。</p>
+        </div>
+        <div class="trust-card">
+            <div class="trust-icon"><i class="fas fa-sync-alt"></i></div>
+            <h4>全國齊一校準</h4>
+            <p>定期參與「校準講習」，維持全國各區評分標竿一致。</p>
+        </div>
+    </div>
+
+    <div class="ipe-cta-box">
+        <div class="cta-text">
+            <h4>專業，需要正確定義</h4>
+            <p>若您堅信專業不容妥協，歡迎加入 IPE 團隊。</p>
+        </div>
+        <a href="https://ipe.1shop-app.com/apply-teacher" class="cta-btn">
+            <i class="fas fa-file-signature" style="margin-right: 8px;"></i> 了解申請與審查流程
+        </a>
+    </div>
+
+</main>
+
+<aside class="ipe-side-console">
+    <span class="ipe-side-label">News</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">最新消息</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/news">公告總覽</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Certification</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">檢定與證照</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-system">檢定體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-item">檢定項目</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-reg">證照報名</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-result">成績查詢</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Faculty</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">講師與教育</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/faculty">講師團隊</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/edu-system">講師體系</a></li>
+        <li class="ipe-nav-item ipe-active-page"><a href="https://ipe.1shop-app.com/trainer">評審體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/apply-teacher">講師申請</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Corporate</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">關於 IPE</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/about">協會介紹</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/organization">組織架構</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/board">理監事</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/contact">聯絡我們</a></li>
+    </ul>
+
+</aside>
+
+</div>

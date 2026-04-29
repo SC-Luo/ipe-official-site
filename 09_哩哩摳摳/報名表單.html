@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<!-- ★★★ IPE 列印品：通用技能檢定報名表 ★★★ -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中華國際職能檢定與教育發展協會 - 專業技能檢定報名表</title>
+<style>
+    :root {
+        --line-color: #000;
+        --text-main: #000;
+        --bg-shade: #e6e6e6; 
+    }
+
+    body {
+        font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+        color: var(--text-main);
+        background-color: #fff;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* A4 列印嚴格設定 (確保一頁) */
+    .page {
+        width: 210mm;
+        height: 297mm;
+        padding: 10mm; 
+        box-sizing: border-box;
+        background: white;
+    }
+
+    .form-container {
+        border: 2px solid var(--line-color);
+        padding: 4px;
+        height: 100%; 
+        box-sizing: border-box;
+    }
+    
+    /* 浮水印與內框設定 */
+    .form-inner {
+        border: 1px solid var(--line-color);
+        padding: 12px 15px; 
+        position: relative;
+        z-index: 1;
+        background-color: transparent;
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+    /* 背景浮水印 (已使用透明 PNG) */
+    .form-inner::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60%; 
+        height: 60%;
+        background-image: url('IPE-logo.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0.04; 
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    /* 標題區塊 */
+    .header {
+        border-bottom: 3px double var(--line-color);
+        padding-bottom: 8px; 
+        margin-bottom: 12px;
+    }
+
+    /* 獨立的右上角序號區塊 */
+    .header-top {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 5px;
+    }
+
+    .serial-number {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 12px;
+        border: 1px solid var(--line-color);
+        padding: 4px 8px;
+        background-color: var(--bg-shade);
+    }
+
+    .header-content {
+        position: relative;
+        text-align: center; 
+        padding: 5px 0;
+    }
+
+    /* --- Logo 設定 (移除 filter 濾鏡，避免 PDF 透明度渲染錯誤) --- */
+    .header-logo {
+        position: absolute;
+        left: 25px; 
+        top: 50%;
+        transform: translateY(-50%);
+        width: 94px; 
+    }
+
+    .header-text {
+        display: inline-block; 
+        text-align: center;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 21px;
+        letter-spacing: 1px;
+        font-weight: 900;
+    }
+
+    .header p {
+        margin: 2px 0 0 0;
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+    
+    .header h2 {
+        margin: 6px 0 0 0;
+        font-size: 17px;
+        letter-spacing: 5px;
+    }
+
+    /* 區塊標題 */
+    .section-title {
+        background-color: var(--line-color);
+        color: #fff;
+        display: inline-block;
+        padding: 3px 10px;
+        font-size: 13px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        margin-top: 8px;
+    }
+
+    /* 網格排版系統 */
+    .grid-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 8px;
+    }
+    
+    .grid-full {
+        grid-template-columns: 1fr;
+    }
+
+    .field {
+        display: flex;
+        align-items: flex-end;
+        border-bottom: 1px solid var(--line-color);
+        padding-bottom: 3px;
+    }
+
+    .field label {
+        font-weight: bold;
+        white-space: nowrap;
+        margin-right: 10px;
+        font-size: 13px;
+    }
+
+    .field .value {
+        flex-grow: 1;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 13px;
+        min-height: 20px;
+    }
+
+    /* 照片與特殊需求區塊 */
+    .photo-section {
+        display: grid;
+        grid-template-columns: 1fr 3.5cm;
+        gap: 15px;
+        border: 1px solid var(--line-color);
+        padding: 8px 15px;
+        background-color: rgba(250, 250, 250, 0.8);
+    }
+
+    .checkbox-group {
+        margin-bottom: 6px;
+        font-size: 13px;
+    }
+
+    .checkbox-group label {
+        margin-right: 12px;
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 4px;
+    }
+
+    .checkbox-box {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border: 1px solid var(--line-color);
+        margin-right: 5px;
+        background-color: #fff;
+    }
+
+    .photo-box {
+        width: 3.5cm;
+        height: 4.5cm;
+        border: 1px dashed var(--line-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 11px;
+        color: #333;
+        background-color: #fff;
+        line-height: 1.4;
+    }
+
+    /* 表格設計 - 矩陣式報價與勾選 */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 5px;
+        font-size: 13px;
+    }
+
+    th, td {
+        border: 1px solid var(--line-color);
+        padding: 6px 8px; 
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    th {
+        background-color: var(--bg-shade);
+        font-weight: bold;
+    }
+
+    td.text-center-bold {
+        text-align: center;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .price-check {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .total-amount {
+        text-align: right;
+        margin-top: 8px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    /* 聲明區塊 */
+    .declaration {
+        margin-top: 10px;
+        border-top: 2px dashed var(--line-color);
+        padding-top: 8px;
+        font-size: 12px;
+        line-height: 1.5;
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .declaration ol {
+        margin: 0;
+        padding-left: 20px;
+        font-size: 11px;
+    }
+
+    /* 列印最佳化 */
+    @media print {
+        body { background-color: white; }
+        .page {
+            margin: 0;
+            padding: 10mm;
+            box-shadow: none;
+            height: 297mm;
+        }
+        .section-title, th, .serial-number, .photo-section {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .form-inner::before {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="page">
+    <div class="form-container">
+        <div class="form-inner">
+            
+            <div class="header">
+                <div class="header-top">
+                    <div class="serial-number">NO. ___________</div>
+                </div>
+                <div class="header-content">
+                    <img src="IPE-logo.png" alt="IPE Logo" class="header-logo">
+                    <div class="header-text">
+                        <h1>中華國際職能檢定與教育發展協會</h1>
+                        <p>PROFESSIONAL SKILLS CERTIFICATION</p>
+                        <h2>專業技能檢定報名表</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title">01 / 基本資料 </div>
+            <div class="grid-row">
+                <div class="field"><label>中文姓名</label><div class="value"></div></div>
+                <div class="field"><label>英文拼音</label><div class="value"></div></div>
+            </div>
+            <div class="grid-row">
+                <div class="field"><label>身分證字號</label><div class="value"></div></div>
+                <div class="field"><label>出生日期</label><div class="value">西元&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</div></div>
+            </div>
+
+            <div class="section-title">02 / 聯繫資訊 </div>
+            <div class="grid-row">
+                <div class="field"><label>聯絡電話</label><div class="value"></div></div>
+                <div class="field"><label>行動電話</label><div class="value"></div></div>
+            </div>
+            <div class="grid-row grid-full">
+                <div class="field"><label>電子信箱</label><div class="value"></div></div>
+            </div>
+            <div class="grid-row grid-full">
+                <div class="field"><label>通訊地址</label><div class="value"></div></div>
+            </div>
+
+            <div class="section-title">03 / 附件與查驗 </div>
+            <div class="photo-section">
+                <div>
+                    <div class="checkbox-group">
+                        <strong>證件查驗</strong> (檢定當日備驗正本，報名提供影本)<br><br>
+                        <label><span class="checkbox-box"></span> 國民身分證</label>
+                        <label><span class="checkbox-box"></span> 健保卡</label>
+                        <label><span class="checkbox-box"></span> 駕照</label>
+                        <label><span class="checkbox-box"></span> 護照</label>
+                        <label><span class="checkbox-box"></span> 外籍人士居留證</label>
+                    </div>
+                    <div style="border-top: 1px dotted var(--line-color); margin: 8px 0;"></div>
+                    <div class="checkbox-group">
+                        <strong>特殊需求</strong><br><br>
+                        <label><span class="checkbox-box"></span> 外籍人士申請口述測試</label><br>
+                        <small style="color: #666; margin-top: 5px; display: inline-block;">(註：報名時若未申請，檢定當天恕不另行安排)</small>
+                    </div>
+                </div>
+                <div class="photo-box">
+                    3個月內1吋正面<br>半身脫帽照片<br><br>不得粘貼印表機<br>所列印之照片
+                </div>
+            </div>
+
+            <div class="section-title">04 / 檢定項目與費用 </div>
+            
+            <div class="checkbox-group" style="margin: 10px 0;">
+                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
+                    <strong>報名場次：</strong> 
+                    <label style="margin: 0;"><span class="checkbox-box"></span> 台南</label>
+                    <label style="margin: 0;"><span class="checkbox-box"></span> 專案場：________________________</label>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
+                    <strong>報名資格：</strong> 
+                    <label style="margin: 0;"><span class="checkbox-box" style="background-color: var(--line-color);"></span> 一般報名</label>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                    <strong>推薦單位：</strong>________________________
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th width="28%">檢定項目</th>
+                        <th width="24%">初級</th>
+                        <th width="24%">中級</th>
+                        <th width="24%">高級</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center-bold">皮膚管理</td>
+                        <td><div class="price-check"><span class="checkbox-box"></span> $2,700</div></td>
+                        <td><div class="price-check"><span class="checkbox-box"></span> $3,000</div></td>
+                        <td><div class="price-check"><span class="checkbox-box"></span> $3,500</div></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center-bold">芳香美體</td>
+                        <td><div class="price-check"><span class="checkbox-box"></span> $2,700</div></td>
+                        <td><div class="price-check"><span class="checkbox-box"></span> $3,000</div></td>
+                        <td><div class="price-check"><span class="checkbox-box"></span> $3,500</div></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center-bold">熱蠟美肌</td>
+                        <td><div class="price-check"><span class="checkbox-box"></span> $2,200</div></td>
+                        <td><div class="price-check"><span class="checkbox-box"></span> $2,500</div></td>
+                        <td><div class="price-check"><span class="checkbox-box"></span> $3,500</div></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="total-amount">
+                本表檢定報名費用總計：NT$ _________________ 元
+            </div>
+
+            <div class="declaration">
+                <strong>⚠️ 報名須知與聲明 </strong>
+                <ol>
+                    <li>凡完成報名手續並繳交費用者，報檢人不得以任何理由要求退費及延後考試。</li>
+                    <li>應考日期安排以報名收件日期先後為依據標準，額滿不再接受報名。</li>
+                    <li>中華國際職能檢定與教育發展協會（IPE）保留本報名表、檢定簡章及相關規定之最終解釋、修改及決定權。未盡事宜，悉依本會最新公告為準。</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

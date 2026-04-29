@@ -1,0 +1,312 @@
+<!-- ★★★ IPE 網站內容頁：組織架構 ★★★ -->
+
+<div class="ipe-wrap">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* =========================================
+   1. 基礎變數與佈局 (完美防跑版)
+   ========================================= */
+.ipe-wrap {
+    --ipe-gold: #C6A96B;
+    --ipe-gold-light: #D8BE8A;
+    --ipe-gold-dark: #B89A5F;
+    --ipe-navy: #2C3E50;
+    --ipe-gray: #5F6B7A;
+    --ipe-bg: #F6F8FB;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: var(--ipe-gray);
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; 
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    box-sizing: border-box;
+}
+.ipe-wrap * { box-sizing: border-box; }
+
+.ipe-main-content { flex: 1; min-width: 320px; padding: 80px 60px; order: 1; text-align: left; }
+.ipe-side-console { flex: 0 0 300px; background: var(--ipe-bg); padding: 60px 25px; border-left: 1px solid #E6EAF0; order: 2; text-align: center; }
+
+/* =========================================
+   2. 共用明體標題與側邊欄細節
+   ========================================= */
+.ipe-wrap h1, .ipe-wrap .ipe-chapter-title {
+    font-family: 'Noto Serif TC', serif !important; font-weight: 900 !important; letter-spacing: 0.05em;
+}
+.section-label { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 13px; letter-spacing: 3px; color: var(--ipe-gold); text-transform: uppercase; margin-bottom: 30px; display: block; border-bottom: 1px solid #E6EAF0; padding-bottom: 10px; }
+.ipe-chapter-title { font-size: 36px; color: #111111; margin: 15px 0 20px 0; }
+
+.ipe-side-label { font-size: 11px; color: #CBD5E0; letter-spacing: 4px; display: block; margin-top: 35px; }
+.ipe-sub-nav-list { list-style: none; padding: 0; margin: 0; }
+.ipe-nav-item a { display: block; padding: 10px 0; color: var(--ipe-gray); text-decoration: none; font-size: 16px; transition: all 0.3s; }
+.ipe-nav-item a:hover, .ipe-active-page a { color: var(--ipe-gold); font-weight: 600; }
+
+/* =========================================
+   3. 組織架構專屬樣式 (絕對穩固防跑版設計)
+   ========================================= */
+.ipe-org-intro {
+    font-size: 16px; color: #555; line-height: 1.8; margin-bottom: 50px;
+    background: #FAFAFA; border-left: 4px solid var(--ipe-gold); padding: 25px 30px; border-radius: 0 12px 12px 0;
+}
+
+/* 架構圖大容器 */
+.ipe-org-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* 穩定的垂直連接線 */
+.ipe-org-line {
+    width: 3px;
+    height: 35px;
+    background: linear-gradient(to bottom, var(--ipe-navy), var(--ipe-gold));
+    margin: 0 auto;
+}
+
+/* 級別 1：最高權力機構 */
+.ipe-org-level-1 {
+    background: var(--ipe-navy);
+    color: #fff;
+    padding: 20px 50px;
+    border-radius: 12px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 4px solid var(--ipe-gold);
+    box-shadow: 0 10px 25px rgba(44, 62, 80, 0.15);
+}
+.ipe-org-level-1 span { display: block; font-size: 14px; color: var(--ipe-gold-light); font-family: sans-serif; letter-spacing: 2px; margin-top: 5px; }
+
+/* 級別 2：理監事會 (並排雙欄) */
+.ipe-org-level-2 {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    justify-content: center;
+}
+.ipe-org-board {
+    flex: 0 1 350px;
+    background: #fff;
+    border: 2px solid var(--ipe-navy);
+    border-radius: 12px;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+}
+.ipe-org-board-header {
+    background: var(--ipe-navy);
+    color: #fff;
+    padding: 15px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.ipe-org-board-body {
+    padding: 20px;
+    background: #FAFAFA;
+}
+.ipe-org-board-body p {
+    margin: 0 0 8px 0;
+    color: var(--ipe-navy);
+    font-size: 15px;
+    font-weight: 700;
+}
+.ipe-org-board-body span { display: inline-block; font-size: 13px; color: #888; background: #eee; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px;}
+
+/* 級別 3：執行秘書處 */
+.ipe-org-level-3 {
+    background: #fff;
+    border: 2px dashed var(--ipe-gold-dark);
+    padding: 20px 60px;
+    border-radius: 50px;
+    text-align: center;
+    color: var(--ipe-navy);
+}
+.ipe-org-level-3 h4 { margin: 0 0 5px 0; font-size: 20px; font-weight: 700; font-family: 'Noto Serif TC', serif; }
+.ipe-org-level-3 p { margin: 0; font-size: 14px; color: #666; }
+
+/* 級別 4：專業委員會 (三欄網格) */
+.ipe-org-level-4 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    border-top: 2px solid #E6EAF0;
+    padding-top: 35px;
+    position: relative;
+    margin-top: 15px;
+}
+/* 網格頂部的連接點 */
+.ipe-org-level-4::before {
+    content: '';
+    position: absolute;
+    top: -15px; left: 50%;
+    transform: translateX(-50%);
+    width: 15px; height: 15px;
+    background: var(--ipe-gold);
+    border-radius: 50%;
+}
+.ipe-org-dept {
+    background: #fff;
+    border: 1px solid #E6EAF0;
+    border-radius: 12px;
+    padding: 25px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.ipe-org-dept:hover {
+    border-color: var(--ipe-gold);
+    box-shadow: 0 10px 25px rgba(198, 169, 107, 0.1);
+    transform: translateY(-5px);
+}
+.ipe-org-dept i { font-size: 28px; color: var(--ipe-gold-dark); margin-bottom: 15px; }
+.ipe-org-dept h5 { margin: 0 0 10px 0; font-size: 16px; color: var(--ipe-navy); font-weight: 700; }
+.ipe-org-dept p { margin: 0; font-size: 13px; color: #666; line-height: 1.6; }
+
+/* =========================================
+   4. RWD 手機版
+   ========================================= */
+@media (max-width: 992px) {
+    .ipe-wrap { flex-direction: column; width: 100%; }
+    .ipe-main-content { order: 1; width: 100%; padding: 50px 20px; box-sizing: border-box; }
+    .ipe-side-console { 
+        order: 2; flex: none; width: 100%; max-width: 100%; box-sizing: border-box;
+        border-left: none; border-top: 1px solid #E6EAF0; padding: 50px 20px; 
+    }
+    .ipe-chapter-title { font-size: 32px; text-align: center; }
+    
+    .ipe-org-level-2 { flex-direction: column; gap: 20px; align-items: center; }
+    .ipe-org-board { width: 100%; max-width: 400px; }
+    .ipe-org-level-3 { padding: 20px 30px; border-radius: 12px; width: 100%; }
+    .ipe-org-level-4 { grid-template-columns: 1fr; }
+}
+</style>
+
+<main class="ipe-main-content">
+    <section>
+        <span class="section-label">Organization Structure</span>
+        <h2 class="ipe-chapter-title">組織架構</h2>
+        
+        <div class="ipe-org-intro">
+            <p style="margin:0;">本會依據正式章程設立權責分明之組織體系。由會員大會作為最高權力機構，理監事會負責決策與監督，並下設秘書處與多個專業委員會，落實各項推廣任務與職能檢定評量，確保協會運作之專業度與公信力。</p>
+        </div>
+
+        <div class="ipe-org-container">
+            
+            <div class="ipe-org-level-1">
+                會員大會
+                <span>最高權力機構</span>
+            </div>
+            
+            <div class="ipe-org-line"></div>
+
+            <div class="ipe-org-level-2">
+                <div class="ipe-org-board">
+                    <div class="ipe-org-board-header">理事會 (執行與決策)</div>
+                    <div class="ipe-org-board-body">
+                        <p>理事長 <span>1名</span></p>
+                        <p>常務理事 <span>若干名</span></p>
+                        <p>理事 <span>9人以上</span></p>
+                    </div>
+                </div>
+                <div class="ipe-org-board">
+                    <div class="ipe-org-board-header" style="background: #5F6B7A;">監事會 (監察與督導)</div>
+                    <div class="ipe-org-board-body">
+                        <p>常務監事 <span>1名</span></p>
+                        <p>監事 <span>3人以上</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ipe-org-line"></div>
+
+            <div class="ipe-org-level-3">
+                <h4>秘書處</h4>
+                <p>置秘書長 1 人，承理事長之命處理本會日常事務</p>
+            </div>
+
+            <div class="ipe-org-line"></div>
+
+            <div class="ipe-org-level-4">
+                <div class="ipe-org-dept">
+                    <i class="fas fa-certificate"></i>
+                    <h5>職能檢定委員會</h5>
+                    <p>負責制定評量標準、題庫開發與證照核發審核。</p>
+                </div>
+                <div class="ipe-org-dept">
+                    <i class="fas fa-user-graduate"></i>
+                    <h5>教育培訓小組</h5>
+                    <p>負責課程架構規劃、教材編寫與種子師資認證。</p>
+                </div>
+                <div class="ipe-org-dept">
+                    <i class="fas fa-handshake"></i>
+                    <h5>產業發展委員會</h5>
+                    <p>負責產學資源對接與機構合作媒合。</p>
+                </div>
+                <div class="ipe-org-dept">
+                    <i class="fas fa-globe-americas"></i>
+                    <h5>國際交流小組</h5>
+                    <p>推動跨國職能標準合作與國際論壇舉辦。</p>
+                </div>
+                <div class="ipe-org-dept">
+                    <i class="fas fa-user-shield"></i>
+                    <h5>會員權益小組</h5>
+                    <p>負責會員服務、會籍管理與申訴糾紛處理。</p>
+                </div>
+                <div class="ipe-org-dept">
+                    <i class="fas fa-balance-scale"></i>
+                    <h5>法務行政組</h5>
+                    <p>處理會務行政、財務報表與法規遵循審查。</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+</main>
+
+<aside class="ipe-side-console">
+    <span class="ipe-side-label">News</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">最新消息</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/news">公告總覽</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Certification</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">檢定與證照</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-system">檢定體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-item">檢定項目</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-reg">證照報名</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-result">成績查詢</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Faculty</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">講師與教育</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/faculty">講師團隊</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/edu-system">講師體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/trainer">評審體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/apply-teacher">講師申請</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Corporate</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">關於 IPE</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/about">協會介紹</a></li>
+        <li class="ipe-nav-item ipe-active-page"><a href="https://ipe.1shop-app.com/organization">組織架構</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/board">理監事</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/contact">聯絡我們</a></li>
+    </ul>
+
+</aside>
+
+</div>

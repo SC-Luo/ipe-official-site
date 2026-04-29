@@ -1,0 +1,353 @@
+<!-- ★★★ IPE 模擬試題：皮膚管理 L1 ★★★ -->
+
+<div class="ipe-quiz-wrap">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* =========================================
+   線上模擬測驗專屬樣式 (防阻擋安全版)
+   ========================================= */
+.ipe-quiz-wrap {
+    --ipe-gold: #C6A96B;
+    --ipe-navy: #2C3E50;
+    --ipe-bg: #F6F8FB;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    max-width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    overflow: hidden;
+    color: #333;
+}
+
+.quiz-header {
+    background: var(--ipe-navy);
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+    border-bottom: 5px solid var(--ipe-gold);
+}
+.quiz-header h2 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 32px; /* 稍微放大一點 */
+    font-weight: 900 !important; /* 強制使用最粗的字體 */
+    color: #ffffff;
+    margin: 0 0 10px 0;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* 加上陰影讓字體更銳利清晰 */
+}
+.quiz-header p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.8);
+    margin: 0;
+}
+
+#quiz-intro { padding: 50px 40px; text-align: center; }
+.intro-rules {
+    background: var(--ipe-bg);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: left;
+    margin: 30px auto;
+    max-width: 500px;
+    font-size: 15px;
+    line-height: 1.8;
+}
+.intro-rules li { margin-bottom: 10px; }
+
+#quiz-content { padding: 40px; display: none; }
+.question-box {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px dashed #E6EAF0;
+}
+.question-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ipe-navy);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+.question-title span {
+    color: var(--ipe-gold);
+    margin-right: 10px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 20px;
+}
+
+.option-label {
+    display: block;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    background: #fff;
+    border: 2px solid #E6EAF0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 15px;
+    color: #555;
+    position: relative;
+}
+.option-label:hover { background: var(--ipe-bg); border-color: #CBD5E0; }
+.option-label input[type="radio"] { display: none; }
+.option-label.selected {
+    border-color: var(--ipe-gold);
+    background: rgba(198, 169, 107, 0.05);
+    color: var(--ipe-navy);
+    font-weight: 700;
+}
+.option-label.correct {
+    border-color: #27ae60;
+    background: rgba(39, 174, 96, 0.1);
+    color: #27ae60;
+    font-weight: 700;
+}
+.option-label.correct::after {
+    content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+    position: absolute; right: 20px; color: #27ae60;
+}
+.option-label.wrong {
+    border-color: #e74c3c;
+    background: rgba(231, 76, 60, 0.05);
+    color: #e74c3c;
+}
+.option-label.wrong::after {
+    content: '\f00d'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+    position: absolute; right: 20px; color: #e74c3c;
+}
+
+.btn-gold {
+    display: inline-block;
+    background: var(--ipe-gold);
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.btn-gold:hover { background: #B89A5F; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(198, 169, 107, 0.4); }
+.submit-area { text-align: center; margin-top: 30px; }
+
+#quiz-result { text-align: center; padding: 50px 40px; display: none; }
+.score-circle {
+    width: 150px;
+    height: 150px;
+    border: 8px solid var(--ipe-gold);
+    border-radius: 50%;
+    margin: 0 auto 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--ipe-navy);
+    font-family: 'Noto Serif TC', serif;
+}
+.result-msg { font-size: 20px; font-weight: 700; margin-bottom: 30px; }
+.pass-msg { color: #27ae60; }
+.fail-msg { color: #e74c3c; }
+
+@media (max-width: 600px) {
+    #quiz-content { padding: 25px 20px; }
+    .option-label { padding: 12px 15px; font-size: 14px; }
+}
+</style>
+
+    <div class="quiz-header">
+        <h2>L1 皮膚管理學科模擬測驗</h2>
+        <p>IPE 國際職能檢定考前精華抽測</p>
+    </div>
+
+    <div id="quiz-intro">
+        <i class="fas fa-laptop-code" style="font-size: 60px; color: var(--ipe-gold); margin-bottom: 20px;"></i>
+        <h3 style="font-size: 22px; color: var(--ipe-navy); margin-bottom: 10px;">準備好測試您的專業實力了嗎？</h3>
+        <p style="color: #666;">本測驗系統將從 IPE 官方總題庫中，為您隨機抽取 10 道精華試題。</p>
+        
+        <ul class="intro-rules">
+            <li><i class="fas fa-check-circle" style="color:var(--ipe-gold);"></i> <strong>測驗題數：</strong>每次隨機抽取 10 題 (滿分 100 分)。</li>
+            <li><i class="fas fa-check-circle" style="color:var(--ipe-gold);"></i> <strong>及格標準：</strong>得分達 60 分 (含) 以上。</li>
+            <li><i class="fas fa-check-circle" style="color:var(--ipe-gold);"></i> <strong>即時解析：</strong>交卷後系統將自動批改並顯示正確解答。</li>
+        </ul>
+        
+        <button id="ipe-start-btn" class="btn-gold">開始測驗 <i class="fas fa-arrow-right"></i></button>
+    </div>
+
+    <div id="quiz-content">
+        <div id="questions-container"></div>
+        <div class="submit-area">
+            <button id="ipe-submit-btn" class="btn-gold">交卷並查看成績</button>
+        </div>
+    </div>
+
+    <div id="quiz-result">
+        <h3 style="font-size: 24px; color: var(--ipe-navy); margin-bottom: 20px;">測驗完成！</h3>
+        <div class="score-circle" id="final-score">0</div>
+        <div class="result-msg" id="result-text"></div>
+        <p style="color: #666; margin-bottom: 40px;">您可以在下方查看批改結果，或重新抽取全新題目進行測驗。</p>
+        
+        <button id="ipe-retry-btn" class="btn-gold" style="background: var(--ipe-navy);">再測一次 <i class="fas fa-redo"></i></button>
+    </div>
+
+</div>
+
+<script>
+// =========================================================================
+// ★ 題庫資料區 (可自行擴充) ★
+// =========================================================================
+const fullQuestionBank = [
+    { question: "皮膚的三大構造是？", options: ["A. 表皮、真皮、皮下組織", "B. 角質層、基底層、皮脂腺", "C. 表皮、汗腺、血管", "D. 真皮、毛囊、神經"], answer: 0 },
+    { question: "角質層的主要功能是？", options: ["A. 製造黑色素", "B. 保護皮膚、防止水分流失", "C. 分泌皮脂", "D. 感覺冷熱"], answer: 1 },
+    { question: "皮脂腺分泌過多最容易形成？", options: ["A. 乾燥", "B. 斑點", "C. 粉刺", "D. 細紋"], answer: 2 },
+    { question: "油性肌膚的特徵是？", options: ["A. 毛孔細小、易脫皮", "B. 出油多、毛孔粗大", "C. 容易泛紅", "D. 缺乏彈性"], answer: 1 },
+    { question: "敏感性肌膚保養的原則為？", options: ["A. 使用強效去角質", "B. 常更換產品", "C. 成分單純、溫和", "D. 多使用酒精產品"], answer: 2 },
+    { question: "正確的臉部保養順序是？", options: ["A. 化妝水→洗臉→乳液", "B. 洗臉→化妝水→乳液", "C. 乳液→洗臉→化妝水", "D. 洗臉乳液→化妝水"], answer: 1 },
+    { question: "去角質的主要目的為？", options: ["A. 增加油脂", "B. 去除老廢角質", "C. 讓皮膚變白", "D. 刺激皮膚發炎"], answer: 1 },
+    { question: "操作美容前，最重要的衛生步驟是？", options: ["A. 化妝", "B. 戴飾品", "C. 洗手消毒", "D. 開冷氣"], answer: 2 },
+    { question: "痘痘肌若同時有敏感現象，應？", options: ["A. 使用高濃度酸類", "B. 加強清潔", "C. 優先修護皮膚屏障", "D. 完全不保養"], answer: 2 },
+    { question: "痘痘肌管理中，皮膚管理師的角色為？", options: ["A. 快速擠痘", "B. 提供正確保養建議", "C. 強力操作", "D. 推銷產品"], answer: 1 },
+    { question: "痘痘肌發炎改善後，下一步重點為？", options: ["A. 忽略保養", "B. 美白與修護", "C. 再次擠壓", "D. 停止防曬"], answer: 1 },
+    { question: "痘痘肌是否一定會留下疤痕？", options: ["A. 不一定，視處理方式", "B. 一定會", "C. 永遠不會", "D. 與保養無關"], answer: 0 },
+    { question: "工具未消毒可能造成交叉感染？", options: ["A. 是", "B. 否", "C. 不確定", "D. 無關"], answer: 0 },
+    { question: "消毒美容工具的主要目的為？", options: ["A. 去除灰塵", "B. 殺死或抑制病原微生物", "C. 增加香味", "D. 改變顏色"], answer: 1 },
+    { question: "下列何者屬於物理消毒法？", options: ["A. 酒精", "B. 紫外線", "C. 漂白水", "D. 碘酒"], answer: 1 }
+];
+
+let currentQuiz = [];
+
+// 等待網頁載入完成後，掛上監聽器 (避開 1shop 阻擋)
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // 綁定「開始測驗」按鈕
+    let startBtn = document.getElementById("ipe-start-btn");
+    if(startBtn) {
+        startBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            startQuiz();
+        });
+    }
+
+    // 綁定「交卷」按鈕
+    let submitBtn = document.getElementById("ipe-submit-btn");
+    if(submitBtn) {
+        submitBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            submitQuiz();
+        });
+    }
+
+    // 綁定「再測一次」按鈕
+    let retryBtn = document.getElementById("ipe-retry-btn");
+    if(retryBtn) {
+        retryBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            location.reload();
+        });
+    }
+
+    // 監聽答題選項的點擊 (事件代理寫法，最安全)
+    let container = document.getElementById("questions-container");
+    if(container) {
+        container.addEventListener("change", function(e) {
+            if(e.target && e.target.type === "radio") {
+                let qIndex = e.target.name.replace('q', '');
+                let optIndex = e.target.value;
+                selectOption(qIndex, optIndex);
+            }
+        });
+    }
+});
+
+// 開始測驗
+function startQuiz() {
+    document.getElementById('quiz-intro').style.display = 'none';
+    document.getElementById('quiz-content').style.display = 'block';
+    
+    let shuffled = [...fullQuestionBank].sort(() => 0.5 - Math.random());
+    currentQuiz = shuffled.slice(0, 10); 
+    renderQuestions();
+}
+
+// 渲染題目
+function renderQuestions() {
+    const container = document.getElementById('questions-container');
+    container.innerHTML = '';
+    
+    currentQuiz.forEach((q, index) => {
+        let optionsHtml = '';
+        q.options.forEach((opt, optIndex) => {
+            optionsHtml += `
+                <label class="option-label" id="lbl-q${index}-opt${optIndex}">
+                    <input type="radio" name="q${index}" value="${optIndex}">
+                    ${opt}
+                </label>
+            `;
+        });
+        
+        let questionHtml = `
+            <div class="question-box" id="qbox-${index}">
+                <div class="question-title"><span>Q${index + 1}.</span> ${q.question}</div>
+                <div class="options-group">
+                    ${optionsHtml}
+                </div>
+            </div>
+        `;
+        container.innerHTML += questionHtml;
+    });
+}
+
+// 選取特效
+function selectOption(qIndex, optIndex) {
+    for(let i=0; i<4; i++) {
+        let lbl = document.getElementById(`lbl-q${qIndex}-opt${i}`);
+        if(lbl) lbl.classList.remove('selected');
+    }
+    let selectedLbl = document.getElementById(`lbl-q${qIndex}-opt${optIndex}`);
+    if(selectedLbl) selectedLbl.classList.add('selected');
+}
+
+// 交卷批改
+function submitQuiz() {
+    let score = 0;
+    
+    currentQuiz.forEach((q, index) => {
+        let selected = document.querySelector(`input[name="q${index}"]:checked`);
+        let correctOptIndex = q.answer;
+        
+        let correctLabel = document.getElementById(`lbl-q${index}-opt${correctOptIndex}`);
+        if(correctLabel) correctLabel.classList.add('correct');
+        
+        if (selected) {
+            let userAns = parseInt(selected.value);
+            if (userAns === correctOptIndex) {
+                score += 10; 
+            } else {
+                let wrongLabel = document.getElementById(`lbl-q${index}-opt${userAns}`);
+                if(wrongLabel) wrongLabel.classList.add('wrong');
+            }
+        }
+        
+        let radios = document.querySelectorAll(`input[name="q${index}"]`);
+        radios.forEach(r => r.disabled = true);
+    });
+
+    document.querySelector('.submit-area').style.display = 'none';
+    document.getElementById('quiz-result').style.display = 'block';
+    
+    document.getElementById('final-score').innerText = score;
+    let msgBox = document.getElementById('result-text');
+    if(score >= 60) {
+        msgBox.innerHTML = `<span class="pass-msg"><i class="fas fa-glass-cheers"></i> 恭喜及格！您具備極佳的基礎認知！</span>`;
+    } else {
+        msgBox.innerHTML = `<span class="fail-msg"><i class="fas fa-book-reader"></i> 未達及格標準，請再多加複習喔！</span>`;
+    }
+    
+    document.getElementById('quiz-result').scrollIntoView({ behavior: 'smooth' });
+}
+</script>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPE 熱蠟除毛初級評分標準對照手冊 (L1)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ipe-navy: #2C3E50;
+            --ipe-gold: #C6A96B;
+            --ipe-red: #e74c3c;
+            --ipe-gray-bg: #f8f9fa;
+            --ipe-border: #dcdde1;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: #2f3640;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            background-color: #f1f2f6;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        .container {
+            max-width: 1350px; 
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* 標題與裝飾 */
+        .header { text-align: center; border-bottom: 4px solid var(--ipe-navy); margin-bottom: 30px; padding-bottom: 15px; }
+        .header h1 { font-family: 'Noto Serif TC', serif; font-size: 32px; color: var(--ipe-navy); margin: 0; letter-spacing: 2px; }
+        .header .subtitle { font-size: 16px; color: var(--ipe-gold); font-weight: bold; margin-top: 8px; letter-spacing: 1px; }
+
+        /* 表格共用樣式 */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 40px; table-layout: fixed; }
+        th, td { border: 1px solid var(--ipe-border); padding: 14px 12px; vertical-align: middle; }
+        th { background: var(--ipe-navy); color: #fff; font-weight: 700; text-align: center; font-size: 15px; }
+        .section-header { background: var(--ipe-gray-bg); color: var(--ipe-navy); font-weight: 900; font-size: 18px; border-left: 8px solid var(--ipe-navy); text-align: left; padding: 12px 20px; }
+
+        /* 分工標籤樣式 */
+        .badge-district { background-color: #e8f4f8; color: #2980b9; border: 1px solid #b3d4fc; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13.5px; white-space: nowrap; }
+        .badge-co { background-color: #fce4ec; color: #c2185b; border: 1px solid #f8bbd0; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13.5px; white-space: nowrap; }
+
+        /* 給分梯度的 Flexbox 標籤設計 */
+        .gradient-list { margin: 0; padding: 0; list-style: none; }
+        .gradient-list li { display: flex; align-items: center; margin-bottom: 8px; }
+        .gradient-list li:last-child { margin-bottom: 0; }
+        .score-badge { flex: 0 0 70px; background: #ecf0f1; color: var(--ipe-navy); font-weight: 900; font-size: 13.5px; text-align: center; padding: 4px 6px; border-radius: 4px; margin-right: 15px; border: 1px solid #bdc3c7; }
+        .score-text { flex: 1; font-size: 14.5px; color: #333; }
+
+        /* 扣分區的斑馬線與重點 Highlight */
+        .penalty-header { background: var(--ipe-red); color: #fff; border-left: 8px solid #c0392b; }
+        .penalty-sub-category { background: #fffafa; font-weight: bold; color: #c0392b; font-size: 15px; text-align: center; letter-spacing: 1px; }
+        .penalty-row:nth-child(even) { background-color: #fafbfc; }
+        .penalty-row:hover { background-color: #f1f2f6; }
+        .penalty-desc { font-size: 15px; color: #333; }
+        
+        /* 雙重保險重點劃線法 */
+        .hl { 
+            font-weight: 900; 
+            color: var(--ipe-navy); 
+            background-color: #ffeaa7 !important; 
+            border-bottom: 3px solid #ffcd02 !important; 
+            padding: 2px 4px; 
+            border-radius: 2px;
+        }
+        
+        .penalty-score-badge { display: inline-block; background: #ffe3e3; color: #c0392b; font-weight: 900; font-size: 15px; padding: 4px 15px; border-radius: 20px; border: 1px solid #ffbaba; }
+        .footer-note { text-align: center; font-size: 12px; color: #95a5a6; margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px; }
+
+        /* ==============================================================
+           列印專屬終極優化 (消除最後 2% 溢出的毫米級微調)
+           ============================================================== */
+        @media print {
+            @page { 
+                size: A4 landscape; 
+                margin: 4mm; 
+            }
+            body { padding: 0; background: #fff; } 
+            .container { max-width: none; padding: 0; box-shadow: none; width: 100%; }
+            
+            .page-break-wrapper { page-break-before: always; break-before: page; }
+
+            .header { margin-bottom: 4px; padding-bottom: 2px; border-bottom: 2px solid var(--ipe-navy); }
+            .header h1 { font-size: 18px; }
+            .header .subtitle { font-size: 11px; margin-top: 1px; }
+            table { margin-bottom: 0px !important; }
+            
+            th, td { 
+                padding: 2px 5px !important; 
+                line-height: 1.1 !important;  
+            }
+            th { font-size: 11.5px !important; padding: 3px !important; }
+            .section-header { font-size: 12.5px !important; padding: 3px 8px !important; }
+            
+            td b { font-size: 11.5px !important; }
+            .score-text, .penalty-desc { font-size: 10.5px !important; }
+            
+            .badge-district, .badge-co { font-size: 11px !important; padding: 1px 4px !important; }
+
+            .gradient-list li { margin-bottom: 1.5px !important; }
+            .score-badge { 
+                font-size: 10.5px !important; 
+                padding: 1px 2px !important; 
+                margin-right: 4px !important; 
+                flex: 0 0 46px !important; 
+            }
+            .penalty-sub-category { font-size: 11.5px !important; padding: 2px !important; }
+            .penalty-score-badge { font-size: 11.5px !important; padding: 1px 6px !important; }
+            .footer-note { margin-top: 2px; padding-top: 2px; font-size: 9px; }
+            
+            .hl { border-bottom: 2px solid #e67e22 !important; padding: 0 1px !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>IPE 熱蠟除毛技能初級檢定 (L1)</h1>
+        <div class="subtitle">評審評分標準對照手冊 (V5.0 規範版)</div>
+    </div>
+
+    <table>
+        <colgroup>
+            <col style="width: 15%;">
+            <col style="width: 7%;">
+            <col style="width: 22%;">
+            <col style="width: 48%;">
+            <col style="width: 8%;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th colspan="5" class="section-header">壹、術科技術考核標準 (滿分 100 / 及格 60)</th>
+            </tr>
+            <tr>
+                <th>考核項目</th>
+                <th>分工</th>
+                <th>評分核心重點</th>
+                <th>給分梯度詳細對照 (評分細項基準)</th>
+                <th>配分</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td align="center"><b>1. 毛流上蠟方向正確</b></td>
+                <td align="center"><span class="badge-district">分區</span></td>
+                <td>方向正確且連貫一致</td>
+                <td>
+                    <ul class="gradient-list">
+                        <li><div class="score-badge">18–20 分</div><div class="score-text">大部分正確</div></li>
+                        <li><div class="score-badge" style="background:#fff;">15–17 分</div><div class="score-text">2–3 次未正確</div></li>
+                        <li><div class="score-badge" style="background:#fff;">14分以下</div><div class="score-text">4 次以上未正確</div></li>
+                    </ul>
+                </td>
+                <td align="center"><b>20</b></td>
+            </tr>
+            <tr>
+                <td align="center"><b>2. 撕蠟方向正確</b></td>
+                <td align="center"><span class="badge-district">分區</span></td>
+                <td>逆毛撕除、俐落不重覆</td>
+                <td>
+                    <ul class="gradient-list">
+                        <li><div class="score-badge">18–20 分</div><div class="score-text">大部分符合</div></li>
+                        <li><div class="score-badge" style="background:#fff;">15–17 分</div><div class="score-text">2–3 次未正確</div></li>
+                        <li><div class="score-badge" style="background:#fff;">14分以下</div><div class="score-text">4 次以上未正確</div></li>
+                    </ul>
+                </td>
+                <td align="center"><b>20</b></td>
+            </tr>
+            <tr>
+                <td align="center"><b>3. 拉皮動作確實</b></td>
+                <td align="center"><span class="badge-district">分區</span></td>
+                <td>操作時保持皮膚緊繃</td>
+                <td>
+                    <ul class="gradient-list">
+                        <li><div class="score-badge">18–20 分</div><div class="score-text">大部分撐緊</div></li>
+                        <li><div class="score-badge" style="background:#fff;">15–17 分</div><div class="score-text">2–3 次未撐緊</div></li>
+                        <li><div class="score-badge" style="background:#fff;">14分以下</div><div class="score-text">4 次以上未撐緊</div></li>
+                    </ul>
+                </td>
+                <td align="center"><b>20</b></td>
+            </tr>
+            <tr>
+                <td align="center"><b>4. 安撫速度及流暢度</b></td>
+                <td align="center"><span class="badge-co">共評</span></td>
+                <td>柔和安撫、節奏穩定</td>
+                <td>
+                    <ul class="gradient-list">
+                        <li><div class="score-badge">9–10 分</div><div class="score-text">大部分正確</div></li>
+                        <li><div class="score-badge" style="background:#fff;">7–8 分</div><div class="score-text">2–3 次未安撫</div></li>
+                        <li><div class="score-badge" style="background:#fff;">6分以下</div><div class="score-text">4 次以上未安撫</div></li>
+                    </ul>
+                </td>
+                <td align="center"><b>10</b></td>
+            </tr>
+            <tr>
+                <td align="center"><b>5. 刮棒不回沾</b></td>
+                <td align="center"><span class="badge-district">分區</span></td>
+                <td>全程衛生規範符合，刮棒嚴禁重複沾取</td>
+                <td>
+                    <ul class="gradient-list">
+                        <li><div class="score-badge">9–10 分</div><div class="score-text">大部分正確</div></li>
+                        <li><div class="score-badge" style="background:#fff;">7–8 分</div><div class="score-text">2–3 次未符合</div></li>
+                        <li><div class="score-badge" style="background:#fff;">6分以下</div><div class="score-text">重複回刮 3 次以上</div></li>
+                    </ul>
+                </td>
+                <td align="center"><b>10</b></td>
+            </tr>
+            <tr>
+                <td align="center"><b>6. 上蠟均勻無缺角</b></td>
+                <td align="center"><span class="badge-district">分區</span></td>
+                <td>厚薄一致，無破洞或缺角</td>
+                <td>
+                    <ul class="gradient-list">
+                        <li><div class="score-badge">5 分</div><div class="score-text">均勻</div></li>
+                        <li><div class="score-badge" style="background:#fff;">4 分</div><div class="score-text">尚可</div></li>
+                        <li><div class="score-badge" style="background:#fff;">3分以下</div><div class="score-text">不均勻</div></li>
+                    </ul>
+                </td>
+                <td align="center"><b>5</b></td>
+            </tr>
+            <tr>
+                <td align="center"><b>7. 試溫及控蠟動作</b></td>
+                <td align="center"><span class="badge-district">分區</span></td>
+                <td>距離適當、滴蠟控制</td>
+                <td>
+                    <ul class="gradient-list">
+                        <li><div class="score-badge">5 分</div><div class="score-text">確實試溫且無滴蠟</div></li>
+                        <li><div class="score-badge" style="background:#fff;">扣 2 分</div><div class="score-text">未試溫 扣 2 分</div></li>
+                        <li><div class="score-badge" style="background:#fff;">扣 2 分</div><div class="score-text">滴蠟 扣 2 分</div></li>
+                    </ul>
+                </td>
+                <td align="center"><b>5</b></td>
+            </tr>
+            <tr>
+                <td align="center"><b>8. 取蠟及轉蠟技巧</b></td>
+                <td align="center"><span class="badge-district">分區</span></td>
+                <td>動作俐落無滴蠟，能精確掌握轉蠟時機</td>
+                <td>
+                    <ul class="gradient-list">
+                        <li><div class="score-badge">5 分</div><div class="score-text">大部分正確</div></li>
+                        <li><div class="score-badge" style="background:#fff;">4 分</div><div class="score-text">2–3 次未正確</div></li>
+                        <li><div class="score-badge" style="background:#fff;">3分以下</div><div class="score-text">4 次以上未正確</div></li>
+                    </ul>
+                </td>
+                <td align="center"><b>5</b></td>
+            </tr>
+            <tr>
+                <td align="center"><b>9. 操作前後擦拭<br>及保養處理</b></td>
+                <td align="center"><span class="badge-co">共評</span></td>
+                <td>清潔完整、保養適當，維持肌膚舒緩</td>
+                <td>
+                    <ul class="gradient-list">
+                        <li><div class="score-badge">5 分</div><div class="score-text">清潔完整且保養確實</div></li>
+                        <li><div class="score-badge" style="background:#fff;">扣 2 分</div><div class="score-text">未清潔乾淨 扣 2 分</div></li>
+                        <li><div class="score-badge" style="background:#fff;">扣 2 分</div><div class="score-text">未擦保養品 扣 2 分 (若皆無則扣 5 分)</div></li>
+                    </ul>
+                </td>
+                <td align="center"><b>5</b></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break-wrapper">
+        <table>
+            <colgroup>
+                <col style="width: 14%;">
+                <col style="width: 78%;">
+                <col style="width: 8%;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="3" class="section-header penalty-header">貳、扣分判定標準對照</th>
+                </tr>
+                <tr>
+                    <th>違規類別</th>
+                    <th>判定標準與違規情節說明</th>
+                    <th>扣分</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="3" class="penalty-sub-category">● 綜合扣分標準 (共 15 項)</td></tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>重大違規 (手機)</b></td>
+                    <td class="penalty-desc">應考期間 <span class="hl">手機響起</span>（含震動）</td>
+                    <td align="center"><span class="penalty-score-badge">-100</span></td>
+                </tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>重大失誤 (漏毛)</b></td>
+                    <td class="penalty-desc">除毛部位 <span class="hl">漏毛 15 根以上</span>（視同未完成）</td>
+                    <td align="center"><span class="penalty-score-badge">-100</span></td>
+                </tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>重大違規 (燙傷)</b></td>
+                    <td class="penalty-desc">操作不當導致 <span class="hl">燙傷</span> 模特兒應考部位</td>
+                    <td align="center"><span class="penalty-score-badge">-100</span></td>
+                </tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>禁用產品 (滾輪)</b></td>
+                    <td class="penalty-desc">使用 <span class="hl">滾輪產品</span> 應檢（成績以零分計）</td>
+                    <td align="center"><span class="penalty-score-badge">-100</span></td>
+                </tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>安全違規 (打翻)</b></td>
+                    <td class="penalty-desc">操作不慎導致 <span class="hl">鍋爐打翻</span></td>
+                    <td align="center"><span class="penalty-score-badge">-30</span></td>
+                </tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>技術失誤 (漏毛)</b></td>
+                    <td class="penalty-desc">漏毛 <span class="hl">14 根以內</span>（每根扣 2 分，最高扣 28 分）</td>
+                    <td align="center"><span class="penalty-score-badge">上限 -28</span></td>
+                </tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>指甲違規</b></td>
+                    <td class="penalty-desc">考生指甲有 <span class="hl">立體造型/貼鑽</span>，或長度長於指肉 <span class="hl">0.2 公分</span></td>
+                    <td align="center"><span class="penalty-score-badge">-20</span></td>
+                </tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>毛量不足</b></td>
+                    <td class="penalty-desc">模特兒應考部位 <span class="hl">未達最少毛量</span> 要求（不得應考，扣 20 分）</td>
+                    <td align="center"><span class="penalty-score-badge">-20</span></td>
+                </tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>飾品違規</b></td>
+                    <td class="penalty-desc">應考人與模特兒除毛部位 <span class="hl">配戴任何物品</span> (戒指、手錶等)</td>
+                    <td align="center"><span class="penalty-score-badge">-10</span></td>
+                </tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>衛生流程缺失</b></td>
+                    <td class="penalty-desc">衛生安全未落實（<span class="hl">未更換剪刀/夾子/手套/口罩/桌床巾</span> 或 頭髮散落）</td>
+                    <td align="center"><span class="penalty-score-badge">上限 -10</span></td>
+                </tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>產品規範</b></td>
+                    <td class="penalty-desc">任一產品 <span class="hl">無完整中文標示、過期、無法辨識</span>（任一項扣 10 分）</td>
+                    <td align="center"><span class="penalty-score-badge">上限 -10</span></td>
+                </tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>內鍋蠟量違規</b></td>
+                    <td class="penalty-desc">內鍋蠟量控制不當，<span class="hl">超過木棒 3 公分高</span></td>
+                    <td align="center"><span class="penalty-score-badge">-10</span></td>
+                </tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>善後不周 (餘蠟)</b></td>
+                    <td class="penalty-desc">模特兒應考部位有 <span class="hl">殘留餘蠟</span>（每處扣 2 分）</td>
+                    <td align="center"><span class="penalty-score-badge">上限 -5</span></td>
+                </tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>服儀規定</b></td>
+                    <td class="penalty-desc">儀容缺失（<span class="hl">未穿工作服/模特未穿合適衣物/服裝有 LOGO</span>）</td>
+                    <td align="center"><span class="penalty-score-badge">上限 -5</span></td>
+                </tr>
+                <tr class="penalty-row">
+                    <td align="center"><b>考場整理</b></td>
+                    <td class="penalty-desc"><span class="hl">無準備 或 放置錯誤</span> 垃圾袋 / 待消毒袋（每項扣 1 分）</td>
+                    <td align="center"><span class="penalty-score-badge">上限 -2</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer-note">
+            本手冊依據 IPE 熱蠟除毛技能技術檢定簡章 v5.0 製作 | 僅供內部評審委員執行考核時對照參考使用
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!-- ★★★ IPE 網站功能頁：個人檢定歷程查詢 ★★★ -->
+<div class="ipe-wrap">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* =========================================
+   1. 基礎變數與佈局 (IPE 官方標準架構)
+   ========================================= */
+.ipe-wrap {
+    --ipe-gold: #C6A96B; --ipe-gold-light: #D8BE8A; --ipe-gold-dark: #B89A5F;
+    --ipe-navy: #1B2836; --ipe-navy-light: #2C3E50; --ipe-bg: #F6F8FB; --ipe-gray: #5F6B7A;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: var(--ipe-gray); max-width: 1200px; margin: 0 auto; display: flex;
+    flex-direction: row; background: #fff; box-shadow: 0 10px 40px rgba(0,0,0,0.05); box-sizing: border-box;
+}
+.ipe-wrap * { box-sizing: border-box; }
+
+.ipe-main-content { flex: 1; min-width: 320px; padding: 70px 50px; text-align: left; }
+
+.ipe-wrap h2, .ipe-wrap h3, .ipe-wrap h4 { font-family: 'Noto Serif TC', serif !important; font-weight: 900 !important; letter-spacing: 0.05em; }
+.section-label { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 13px; letter-spacing: 3px; color: var(--ipe-gold); text-transform: uppercase; margin-bottom: 20px; display: block; border-bottom: 1px solid #E6EAF0; padding-bottom: 10px; }
+.ipe-chapter-title { font-size: 34px; color: #111111; margin: 0 0 15px 0; line-height: 1.4; }
+.chapter-subtitle { font-size: 16px; color: var(--ipe-gray); margin-bottom: 40px; line-height: 1.6;}
+
+/* =========================================
+   2. 查詢區塊佈局 (雙欄)
+   ========================================= */
+.query-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 50px; }
+
+.info-panel { background: #FAFBFE; border: 1px solid #E6EAF0; border-left: 5px solid var(--ipe-gold); padding: 30px; border-radius: 0 12px 12px 0; }
+.info-panel h4 { color: var(--ipe-navy-light); font-size: 19px; margin: 0 0 20px 0; }
+.info-icon { color: var(--ipe-gold); margin-right: 5px; }
+.info-list { list-style: none; padding: 0; margin: 0; }
+.info-list li { margin-bottom: 15px; font-size: 15px; line-height: 1.6; color: #444; }
+.info-list li strong { display: block; color: var(--ipe-navy-light); margin-bottom: 5px; }
+.info-list li i { color: var(--ipe-gold); width: 20px; text-align: center; margin-right: 5px;}
+
+/* 表單區塊 (尊榮藍金) */
+.query-form-card {
+    background: var(--ipe-navy); padding: 40px; border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(44, 62, 80, 0.15); position: relative; overflow: hidden; height: 100%;
+}
+.query-form-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(to right, var(--ipe-gold-dark), var(--ipe-gold-light));
+}
+
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; color: var(--ipe-gold-light); font-size: 14px; margin-bottom: 8px; font-weight: 700; letter-spacing: 1px; }
+.form-control {
+    background-color: rgba(44, 62, 80, 0.5) !important; color: #ffffff !important; border: 1px solid rgba(198, 169, 107, 0.3) !important; 
+    padding: 15px 20px; border-radius: 8px; font-size: 16px; font-family: inherit; transition: all 0.3s ease; width: 100%; height: auto !important; line-height: 1.5 !important;
+}
+.form-control::placeholder { color: rgba(255, 255, 255, 0.5) !important; }
+.form-control:focus { outline: none !important; background-color: rgba(44, 62, 80, 0.8) !important; border-color: var(--ipe-gold) !important; box-shadow: 0 0 0 3px rgba(198, 169, 107, 0.2) !important; }
+
+/* 修正 Autofill 背景 */
+.form-control:-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px #2C3E50 inset !important; -webkit-text-fill-color: #ffffff !important; transition: background-color 5000s ease-in-out 0s; }
+
+.submit-btn {
+    background: linear-gradient(135deg, var(--ipe-gold-dark) 0%, var(--ipe-gold) 50%, var(--ipe-gold-light) 100%);
+    color: #fff !important; border: none; padding: 15px 30px; width: 100%; border-radius: 50px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; letter-spacing: 1px; box-shadow: 0 8px 20px rgba(198, 169, 107, 0.3);
+}
+.submit-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(198, 169, 107, 0.5); }
+.status-msg { display: none; margin-top: 15px; text-align: center; font-size: 14px; color: #fff; }
+
+/* =========================================
+   3. 查詢結果區塊 (預設隱藏，待輸入正確後可由 JS 開啟)
+   ========================================= */
+#result-container { display: none; }
+.profile-header { display: flex; justify-content: space-between; align-items: center; background: #FAFAFA; border: 1px solid #E6EAF0; padding: 20px 30px; border-radius: 12px; margin-bottom: 25px; }
+.profile-info h3 { margin: 0 0 5px 0; color: var(--ipe-navy); font-size: 22px; }
+.profile-info p { margin: 0; font-size: 14px; color: var(--ipe-gray); }
+.profile-stats { text-align: center; }
+.stats-num { font-size: 28px; font-weight: 900; color: var(--ipe-gold-dark); font-family: 'Noto Serif TC', serif; line-height: 1;}
+.stats-label { font-size: 12px; color: var(--ipe-gray); letter-spacing: 1px; }
+
+/* 手機版 RWD */
+@media (max-width: 992px) {
+    .ipe-wrap { flex-direction: column; width: 100%; }
+    .ipe-main-content { padding: 40px 20px; }
+    .query-layout { grid-template-columns: 1fr; gap: 20px; }
+    .profile-header { flex-direction: column; text-align: center; gap: 15px; }
+}
+</style>
+
+<main class="ipe-main-content">
+    <span class="section-label">Learning Portfolio</span>
+    <h2 class="ipe-chapter-title">個人檢定歷程查詢</h2>
+    <p class="chapter-subtitle">請輸入您的驗證資訊，系統將為您調閱所有的檢定歷史紀錄。</p>
+
+    <div class="query-layout">
+        <div class="info-panel">
+            <h4><i class="fas fa-info-circle info-icon"></i> 考生查詢須知</h4>
+            <ul class="info-list">
+                <li><strong><i class="far fa-calendar-alt"></i> 查詢開放時間</strong>各科成績將於測驗結束後 <b>14 個工作天</b> 統一開放查詢。</li>
+                <li><strong><i class="fas fa-certificate"></i> 證書寄發作業</strong>成績判定為「合格」者，實體證書將於成績公告後 <b>30 日內</b>以掛號郵寄。</li>
+                <li><strong><i class="fas fa-search-plus"></i> 成績複查申請</strong>若對未達標準之結果有疑慮，可點擊該紀錄下方之「申請成績複查」進入專案流程。</li>
+            </ul>
+        </div>
+        <div>
+            <div class="query-form-card">
+                <form id="scoreQueryForm">
+                    <div class="form-group">
+                        <label>身分證字號後 4 碼</label>
+                        <input type="text" name="id_last4" class="form-control" placeholder="例如：5678" maxlength="4" pattern="\d{4}" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 25px;">
+                        <label>報名填寫之聯絡電話</label>
+                        <input type="tel" name="phone" class="form-control" placeholder="例如：0912345678" required>
+                    </div>
+                    <button type="submit" id="queryBtn" class="submit-btn">
+                        <i class="fas fa-search"></i> 調閱檢定歷程
+                    </button>
+                    <div id="statusMsg" class="status-msg"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="result-container">
+        <div class="profile-header">
+            <div class="profile-info">
+                <h3><i class="fas fa-user-graduate" style="margin-right: 10px;"></i><span id="res-name">考生姓名</span></h3>
+                <p>IPE 官方檢定歷程檔案</p>
+            </div>
+            <div class="profile-stats">
+                <div class="stats-num" id="res-count">0</div>
+                <div class="stats-label">累計報考次數</div>
+            </div>
+        </div>
+        <div class="record-list" id="records-wrapper">
+            </div>
+    </div>
+</main>
+
+<script>
+document.getElementById('scoreQueryForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = document.getElementById('queryBtn');
+    const statusMsg = document.getElementById('statusMsg');
+    const originalText = submitBtn.innerHTML;
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 查詢中...';
+    statusMsg.style.display = 'none';
+
+    fetch('https://script.google.com/macros/s/AKfycbyZlhfc4mYFLYCrhYy2NxBxooNxKLQ5iIWfXNFd_Y09lizI0tCYfxlCSjhYlUaWVOx3Tg/exec', {
+        method: 'POST',
+        body: new FormData(form)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'success') {
+            document.getElementById('res-name').innerText = data.name;
+            document.getElementById('res-count').innerText = data.records.length;
+            const rw = document.getElementById('records-wrapper');
+            rw.innerHTML = '';
+            data.records.forEach((r, i) => {
+                let dStr = r.date;
+                if(!isNaN(new Date(r.date).getTime())) {
+                    const d = new Date(r.date); 
+                    dStr = `${d.getFullYear()}/${('0'+(d.getMonth()+1)).slice(-2)}/${('0'+d.getDate()).slice(-2)}`;
+                }
+                const isPass = r.result === '合格';
+                const reviewBtn = isPass ? '' : `<a href="https://ipe.1shop-app.com/score-review?subject=${encodeURIComponent(r.examItem)}&date=${encodeURIComponent(dStr)}" style="display:inline-block; margin-top:10px; padding:6px 15px; background:#e74c3c; color:#fff; border-radius:50px; text-decoration:none; font-size:13px; font-weight:bold;"><i class="fas fa-question-circle"></i> 申請成績複查</a>`;
+                
+                rw.innerHTML += `
+                <div style="background:#FAFAFA; border:1px solid #E6EAF0; padding:20px; border-radius:12px; margin-bottom:15px; border-left:5px solid ${isPass ? '#27ae60' : '#e74c3c'};">
+                    <div style="margin-bottom:8px; color:#5F6B7A; font-size:14px;"><i class="far fa-calendar-alt"></i> 測驗日期：${dStr}</div>
+                    <div style="font-size:18px; color:#2C3E50; font-weight:900; margin-bottom:8px; font-family:'Noto Serif TC', serif;">${r.examItem} <span style="font-size:13px; background:#E6EAF0; color:#5F6B7A; padding:3px 10px; border-radius:12px; margin-left:10px; vertical-align:middle; font-family:sans-serif;">${r.level}</span></div>
+                    <div style="color:${isPass ? '#27ae60' : '#e74c3c'}; font-weight:bold; font-size:15px;"><i class="fas fa-${isPass ? 'check-circle' : 'times-circle'}"></i> ${r.result}</div>
+                    ${reviewBtn}
+                </div>`;
+            });
+            document.getElementById('result-container').style.display = 'block';
+        } else {
+            statusMsg.innerHTML = '<i class="fas fa-exclamation-triangle"></i> 查無此人資料，請確認驗證資訊是否正確。';
+            statusMsg.style.display = 'block';
+            statusMsg.style.color = '#e74c3c';
+        }
+    })
+    .catch(() => {
+        statusMsg.innerHTML = '<i class="fas fa-exclamation-triangle"></i> 網路連線異常，請稍後再試。';
+        statusMsg.style.display = 'block';
+        statusMsg.style.color = '#e74c3c';
+    })
+    .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+    });
+});
+</script>
+</div>

@@ -1,0 +1,295 @@
+<!-- ★★★ IPE 網站內容頁：講師團隊 (動態載入) ★★★ -->
+
+<div class="ipe-wrap">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* =========================================
+   1. 基礎變數與佈局
+   ========================================= */
+.ipe-wrap {
+    --ipe-gold: #C6A96B;
+    --ipe-gold-light: #D8BE8A;
+    --ipe-gold-dark: #B89A5F;
+    --ipe-navy: #2C3E50;
+    --ipe-gray: #5F6B7A;
+    --ipe-bg: #F6F8FB;
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: var(--ipe-gray);
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; 
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    box-sizing: border-box;
+}
+.ipe-wrap * { box-sizing: border-box; }
+
+.ipe-main-content { flex: 1; min-width: 320px; padding: 80px 60px; order: 1; text-align: left; }
+.ipe-side-console { flex: 0 0 300px; background: var(--ipe-bg); padding: 60px 25px; border-left: 1px solid #E6EAF0; order: 2; text-align: center; }
+
+/* =========================================
+   2. 共用明體標題與側邊欄細節
+   ========================================= */
+.ipe-wrap h1, .ipe-wrap .ipe-chapter-title {
+    font-family: 'Noto Serif TC', serif !important; font-weight: 900 !important; letter-spacing: 0.05em;
+}
+.section-label { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 13px; letter-spacing: 3px; color: var(--ipe-gold); text-transform: uppercase; margin-bottom: 30px; display: block; border-bottom: 1px solid #E6EAF0; padding-bottom: 10px; }
+.ipe-chapter-title { font-size: 36px; color: #111111; margin: 15px 0 20px 0; }
+
+.ipe-side-label { font-size: 11px; color: #CBD5E0; letter-spacing: 4px; display: block; margin-top: 35px; }
+.ipe-sub-nav-list { list-style: none; padding: 0; margin: 0; }
+.ipe-nav-item a { display: block; padding: 10px 0; color: var(--ipe-gray); text-decoration: none; font-size: 16px; transition: all 0.3s; }
+.ipe-nav-item a:hover, .ipe-active-page a { color: var(--ipe-gold); font-weight: 600; }
+
+/* =========================================
+   3. 講師名片專屬樣式 (國際精品滿版對齊版)
+   ========================================= */
+.faculty-intro {
+    font-size: 16px; color: #555; line-height: 1.8; margin-bottom: 50px;
+    background: #FAFAFA; border-left: 4px solid var(--ipe-gold); padding: 25px 30px; border-radius: 0 12px 12px 0;
+}
+
+.loading-status { text-align: center; padding: 50px 0; color: var(--ipe-gray); font-size: 18px; width: 100%; }
+
+/* 名片網格 */
+.faculty-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    align-items: stretch; /* 強制同行卡片等高 */
+}
+
+/* ★ 精品獨立名片卡 ★ */
+.faculty-card {
+    background: #fff;
+    border: 1px solid #E6EAF0;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    overflow: hidden; /* 讓內部色塊貼合圓角 */
+    position: relative;
+}
+.faculty-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    border-color: var(--ipe-gold-light);
+}
+.faculty-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(to right, var(--ipe-gold-dark), var(--ipe-gold-light));
+    z-index: 2;
+}
+
+/* 卡片上半部 (頭像與姓名) */
+.faculty-top {
+    padding: 35px 20px 25px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+}
+
+/* 照片區塊 */
+.faculty-avatar {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px auto;
+    border-radius: 50%;
+    background-color: var(--ipe-bg);
+    border: 3px solid #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.faculty-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.faculty-avatar-fallback { font-size: 50px; color: var(--ipe-gold-light); }
+
+/* 職稱與姓名 */
+.faculty-level {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ipe-gold-dark);
+    background: rgba(198, 169, 107, 0.1);
+    padding: 5px 16px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+.faculty-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 24px;
+    color: var(--ipe-navy);
+    margin: 0;
+    font-weight: 900;
+}
+
+/* ★ 卡片下半部 (經歷區塊，自動無縫填滿底部) ★ */
+.faculty-bottom {
+    background: #FAFAFA; /* 淺灰底色區分區塊 */
+    border-top: 1px solid #E6EAF0; /* 乾淨的實線 */
+    padding: 25px;
+    flex-grow: 1; /* 神奇指令：讓所有淺灰區塊向下拉伸到底，實現完美對齊 */
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* 條列之間的間距 */
+}
+
+/* 條列式經歷樣式 */
+.spec-line {
+    display: flex;
+    align-items: flex-start;
+    font-size: 13.5px;
+    color: #444;
+    line-height: 1.6;
+    text-align: left;
+}
+.spec-line i {
+    color: var(--ipe-gold);
+    margin-top: 5px;
+    margin-right: 10px;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+/* =========================================
+   4. RWD 手機版
+   ========================================= */
+@media (max-width: 992px) {
+    .ipe-wrap { flex-direction: column; width: 100%; }
+    .ipe-main-content { order: 1; width: 100%; padding: 50px 20px; }
+    .ipe-side-console { order: 2; flex: none; width: 100%; border-left: none; border-top: 1px solid #E6EAF0; padding: 50px 20px; }
+    .ipe-chapter-title { font-size: 32px; text-align: center; }
+    .faculty-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+}
+@media (max-width: 600px) {
+    .faculty-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<main class="ipe-main-content">
+    <section>
+        <span class="section-label">Faculty Team</span>
+        <h2 class="ipe-chapter-title">專業講師團隊</h2>
+        
+        <div class="faculty-intro">
+            <p style="margin:0;">IPE 匯聚產業頂尖師資，每一位講師皆具備豐富的實務經驗與嚴格的教學認證。我們透過系統化的教案與卓越的授課技巧，致力於為學員提供最高品質的職能培訓。</p>
+        </div>
+
+        <div id="dynamic-faculty-grid" class="faculty-grid">
+            <div class="loading-status">
+                <i class="fas fa-spinner fa-spin"></i> 正在載入講師資料...
+            </div>
+        </div>
+
+    </section>
+</main>
+
+<aside class="ipe-side-console">
+    <span class="ipe-side-label">News</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">最新消息</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/news">公告總覽</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Certification</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">檢定與證照</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-system">檢定體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-item">檢定項目</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-reg">證照報名</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-result">成績查詢</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Faculty</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">講師與教育</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item ipe-active-page"><a href="https://ipe.1shop-app.com/faculty">講師團隊</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/edu-system">講師體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/trainer">評審體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/apply-teacher">講師申請</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Corporate</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">關於 IPE</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/about">協會介紹</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/organization">組織架構</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/board">理監事</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/contact">聯絡我們</a></li>
+    </ul>
+
+</aside>
+
+<script>
+// =========================================================================
+// ★ 執行抓取 API (含自動轉為金勾勾清單功能) ★
+// =========================================================================
+const API_URL = 'https://script.google.com/macros/s/AKfycbyjVBdE5mSRKTnQWgfjaclZkua9lvyqXFYSAGrpsDTsJQ76DuN-41-rtftHXu0oZyTZ/exec'; 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('dynamic-faculty-grid');
+
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+            if (!data || data.length === 0) {
+                container.innerHTML = '<div class="loading-status">目前尚無講師資料。</div>';
+                return;
+            }
+
+            container.innerHTML = ''; 
+
+            data.forEach(item => {
+                // 處理照片
+                const avatarHtml = (item.photoUrl && item.photoUrl.trim() !== '') 
+                    ? `<img src="${item.photoUrl}" alt="${item.name}">` 
+                    : `<div class="faculty-avatar-fallback"><i class="fas fa-chalkboard-teacher"></i></div>`;
+
+                // ★ 將經歷轉換為帶有 icon 的條列式清單 ★
+                let specialtyHtml = '';
+                if (item.specialty) {
+                    const lines = item.specialty.split('\n');
+                    lines.forEach(line => {
+                        if(line.trim() !== '') {
+                            specialtyHtml += `<div class="spec-line"><i class="fas fa-check-circle"></i><span>${line}</span></div>`;
+                        }
+                    });
+                } else {
+                    specialtyHtml = `<div class="spec-line"><i class="fas fa-check-circle"></i><span>專業領域講師</span></div>`;
+                }
+
+                const cardHtml = `
+                    <div class="faculty-card">
+                        <div class="faculty-top">
+                            <div class="faculty-avatar">
+                                ${avatarHtml}
+                            </div>
+                            <span class="faculty-level">${item.level || '專業講師'}</span>
+                            <h3 class="faculty-name">${item.name}</h3>
+                        </div>
+                        <div class="faculty-bottom">
+                            ${specialtyHtml}
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching faculty members:', error);
+            container.innerHTML = '<div class="loading-status" style="color:#e74c3c;"><i class="fas fa-exclamation-triangle"></i> 無法載入資料，請稍後再確認您的試算表與 API 設定。</div>';
+        });
+});
+</script>
+
+</div>
