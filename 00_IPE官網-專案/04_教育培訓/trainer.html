@@ -3,9 +3,26 @@
 <div class="ipe-wrap">
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
+/* =========================================
+   防護牆與 SVG 優化 (1shop 專用)
+   ========================================= */
+[class^="fa-"], [class*=" fa-"], .fa, .fas, .far, .fab {
+    font-family: "FontAwesome", sans-serif !important; 
+}
+.shopping-cart, .member-link, .cart-icon, #cart {
+    font-family: sans-serif !important; 
+}
+.hero-icon svg { width: 45px; height: 45px; fill: #D8BE8A; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+.core-icon svg { width: 32px; height: 32px; fill: #B89A5F; transition: fill 0.4s ease; }
+.core-card:hover .core-icon svg { fill: #fff; }
+.action-icon svg { width: 36px; height: 36px; fill: #2C3E50; }
+.action-arrow svg { width: 18px; height: 18px; fill: #C6A96B; transition: transform 0.3s ease; }
+.action-box:hover .action-arrow svg { transform: translateX(5px); }
+.step-icon-wrapper svg { width: 1em; height: 1em; fill: currentColor; }
+.trust-icon svg { width: 1em; height: 1em; fill: currentColor; }
+
 /* =========================================
    1. 基礎變數與佈局
    ========================================= */
@@ -132,7 +149,7 @@
         </div>
 
         <div class="roadmap-step">
-            <div class="step-icon-wrapper"><i class="fas fa-medal"></i></div>
+            <div class="step-icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M72.3 36.6C44.4 25.4 12.3 39.8 1.1 67.7S-4.4 127.6 23.5 138.8L160 198.8v73.2c0 13.3 10.7 24 24 24s24-10.7 24-24V198.8l136.5-60C372.4 127.6 386.8 95.5 375.6 67.7S333.3 25.4 305.4 36.6L160 100.2 72.3 36.6zM416 256c-70.7 0-128 57.3-128 128s57.3 128 128 128 128-57.3 128-128-57.3-128-128-128zm-48 112c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s-7.2 16-16 16h-64c-8.8 0-16-7.2-16-16zm16 48h64c8.8 0 16 7.2 16 16s-7.2 16-16 16h-64c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg></div>
             <div class="step-content">
                 <h5>STEP 1. 技術標竿</h5>
                 <p>取得 <strong>IPE L3 證照</strong>，奠定頂尖實務技術基石。</p>
@@ -140,7 +157,7 @@
         </div>
 
         <div class="roadmap-step">
-            <div class="step-icon-wrapper"><i class="fas fa-chalkboard-teacher"></i></div>
+            <div class="step-icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="1em" height="1em"><path fill="currentColor" d="M160 64c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64V320c0 35.3-28.7 64-64 64H512v32h64c17.7 0 32 14.3 32 32s-14.3 32-32 32H320c-17.7 0-32-14.3-32-32s14.3-32 32-32h64V384H224c-35.3 0-64-28.7-64-64V64zM384 96a48 48 0 1 0 0 96 48 48 0 1 0 0-96zM128 256v64c0 35.3-28.7 64-64 64H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H200c-6.8-15.5-10.8-32.8-11.8-51.2H128V256zM80 208a48 48 0 1 1 0-96 48 48 0 1 1 0 96z"/></svg></div>
             <div class="step-content">
                 <h5>STEP 2. 教學賦能</h5>
                 <p>完成「講師訓練」，掌握標準化教學，精準傳承技術。</p>
@@ -148,7 +165,7 @@
         </div>
 
         <div class="roadmap-step">
-            <div class="step-icon-wrapper"><i class="fas fa-store"></i></div>
+            <div class="step-icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="1em" height="1em"><path fill="currentColor" d="M547.6 103.8L490.3 13.1C485.2 5 475.3 0 464 0H112C100.7 0 90.8 5 85.7 13.1L28.3 103.8c-29.6 46.8-3.4 111.9 51.9 119.4c4 .5 8.1 .8 12.1 .8c26.1 0 49.3-11.4 65.2-29c15.9 17.6 39.1 29 65.2 29c26.1 0 49.3-11.4 65.2-29c15.9 17.6 39.1 29 65.2 29c26.2 0 49.3-11.4 65.2-29c16 17.6 39.1 29 65.2 29c4.1 0 8.1-.3 12.1-.8c55.5-7.4 81.8-72.5 52.1-119.4zM499.7 254.9l-.1 0c-5.3 .7-10.7 1.1-16.2 1.1c-12.4 0-24.3-1.9-35.4-5.3V384H128V250.6c-11.2 3.5-23.2 5.4-35.6 5.4c-5.5 0-11-.4-16.3-1.1l-.1 0c-4.1-.6-8.1-1.3-12-2.3V384v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V384 252.6c-4 1-8 1.8-12.3 2.3z"/></svg></div>
             <div class="step-content">
                 <h5>STEP 3. 官方授權</h5>
                 <p>獲頒講師證，取得招生授權，升級為「認證基地」。</p>
@@ -156,7 +173,7 @@
         </div>
 
         <div class="roadmap-step">
-            <div class="step-icon-wrapper"><i class="fas fa-gavel"></i></div>
+            <div class="step-icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M504.3 273.6l-22.6-22.6c-10.1-10.1-26.4-10.1-36.5 0L387.3 308.9 203.1 124.7l57.9-57.9c10.1-10.1 10.1-26.4 0-36.5L238.4 7.7c-10.1-10.1-26.4-10.1-36.5 0l-57.9 57.9-20.7-20.7c-21.9-21.9-57.3-21.9-79.2 0l-31 31c-21.9 21.9-21.9 57.3 0 79.2l20.7 20.7-57.9 57.9c-10.1 10.1-10.1 26.4 0 36.5l22.6 22.6c10.1 10.1 26.4 10.1 36.5 0l57.9-57.9L308.9 387.3l-57.9 57.9c-10.1 10.1-10.1 26.4 0 36.5l22.6 22.6c10.1 10.1 26.4 10.1 36.5 0l57.9-57.9 20.7 20.7c21.9 21.9 57.3 21.9 79.2 0l31-31c21.9-21.9 21.9-57.3 0-79.2l-20.7-20.7 57.9-57.9c10.2-10.1 10.2-26.4 .1-36.5zM99.5 206.8c-10.5 10.5-27.5 10.5-38 0-10.5-10.5-10.5-27.5 0-38 10.5-10.5 27.5-10.5 38 0 10.5 10.5 10.5 27.5 0 38zm178.4 4.5L133.2 66.6l22.6-22.6 144.7 144.7-22.6 22.6zm63.4 162.3L318.7 396.2 174 251.5l22.6-22.6 144.7 144.7zm109.1-32.9c-10.5 10.5-27.5 10.5-38 0-10.5-10.5-10.5-27.5 0-38 10.5-10.5 27.5-10.5 38 0 10.5 10.5 10.5 27.5 0 38z"/></svg></div>
             <div class="step-content">
                 <h5>STEP 4. 權威把關</h5>
                 <p>通過 <strong>100分制評核</strong>，正式受聘為監評委員，執行檢定任務。</p>
@@ -169,17 +186,17 @@
 
     <div class="trust-grid">
         <div class="trust-card">
-            <div class="trust-icon"><i class="fas fa-clipboard-list"></i></div>
+            <div class="trust-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="1em" height="1em"><path fill="currentColor" d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM73 227c-5.8 5.8-15.2 5.8-21 0s-5.8-15.2 0-21l34.5-34.5c5.8-5.8 15.2-5.8 21 0s5.8 15.2 0 21L73 227zm0 64c-5.8 5.8-15.2 5.8-21 0s-5.8-15.2 0-21l34.5-34.5c5.8-5.8 15.2-5.8 21 0s5.8 15.2 0 21L73 291zm0 64c-5.8 5.8-15.2 5.8-21 0s-5.8-15.2 0-21l34.5-34.5c5.8-5.8 15.2-5.8 21 0s5.8 15.2 0 21L73 355zM160 192h128c8.8 0 16 7.2 16 16s-7.2 16-16 16H160c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64h128c8.8 0 16 7.2 16 16s-7.2 16-16 16H160c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64h128c8.8 0 16 7.2 16 16s-7.2 16-16 16H160c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg></div>
             <h4>嚴格考核制</h4>
             <p>候選人須通過 100 分制複審，確保對標準的理解零誤差。</p>
         </div>
         <div class="trust-card">
-            <div class="trust-icon"><i class="fas fa-balance-scale"></i></div>
+            <div class="trust-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M256 0c13.3 0 24 10.7 24 24V92.1c25 15.6 44 38.6 53.6 66.8L355 186.2l34.8-14c12.3-4.9 26.3 1 31.3 13.3s-1 26.3-13.3 31.3L275.6 270c-12.3 4.9-26.3-1-31.3-13.3s1-26.3 13.3-31.3l26.4-10.6-21.4-27.3C253.9 175.7 240 160 224 160s-29.9 15.7-38.6 27.5l-21.4 27.3 26.4 10.6c12.3 4.9 18.2 19 13.3 31.3s-19 18.2-31.3 13.3L40.2 216.8c-12.3-4.9-18.2-19-13.3-31.3s19-18.2 31.3-13.3l34.8 14 21.4-27.3c9.6-28.2 28.6-51.2 53.6-66.8V24c0-13.3 10.7-24 24-24zm0 288c44.2 0 80 35.8 80 80v32h64c17.7 0 32 14.3 32 32s-14.3 32-32 32H112c-17.7 0-32-14.3-32-32s14.3-32 32-32h64V368c0-44.2 35.8-80 80-80z"/></svg></div>
             <h4>科學化評分</h4>
             <p>落實標準化規準與利益迴避，確保考生獲公正公平對待。</p>
         </div>
         <div class="trust-card">
-            <div class="trust-icon"><i class="fas fa-sync-alt"></i></div>
+            <div class="trust-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M142.9 142.9c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5c0 0 0 0 0 0H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5c7.7-21.8 20.2-42.3 37.8-59.8zM16 312v7.6 .7V440c0 9.7 5.8 18.5 14.8 22.2s19.3 1.7 26.2-5.2l41.6-41.6c87.6 86.5 228.7 86.2 315.8-1c24.4-24.4 42-53.1 52.8-83.8c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.2 62.2-162.7 62.5-225.3 1L185 329c6.9-6.9 8.9-17.2 5.2-26.2s-12.5-14.8-22.2-14.8H48.4h-.7H40c-13.3 0-24 10.7-24 24z"/></svg></div>
             <h4>全國齊一校準</h4>
             <p>定期參與「校準講習」，維持全國各區評分標竿一致。</p>
         </div>
@@ -191,7 +208,7 @@
             <p>若您堅信專業不容妥協，歡迎加入 IPE 團隊。</p>
         </div>
         <a href="https://ipe.1shop-app.com/apply-teacher" class="cta-btn">
-            <i class="fas fa-file-signature" style="margin-right: 8px;"></i> 了解申請與審查流程
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="1em" height="1em" style="margin-right: 8px; vertical-align: -0.125em;"><path fill="currentColor" d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V288H216c-13.3 0-24 10.7-24 24s10.7 24 24 24H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM384 336V288H494.1l-39-39c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l80 80c9.4 9.4 9.4 24.6 0 33.9l-80 80c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l39-39H384zm0-208H256V0L384 128zM245.8 459.7l30.9-18.5c1.4-.8 2.6-1.9 3.6-3.2l76-101.4c6.6-8.8 2.9-21.7-7-25c-8.9-3-18.7-.3-24 7.2l-64.8 92.4c-4.4 6.3-12.1 9-19.5 6.9l-22.6-6.4c-8-2.3-16.7 .3-22.3 6.6c-4.7 5.4-6.3 12.9-4.2 19.8l10.4 34.6c1.3 4.2 4 7.8 7.7 10l35.8 21.5c7.9 4.7 17.8 3.5 24.2-2.9s6.6-16 .3-22.6l-14.8-15.5c-4.5-4.7-11.8-6-17.8-3.1L245.8 459.7z"/></svg> 了解申請與審查流程
         </a>
     </div>
 

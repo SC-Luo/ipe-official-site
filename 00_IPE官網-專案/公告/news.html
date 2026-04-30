@@ -3,9 +3,32 @@
 <div class="ipe-wrap">
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
+/* =========================================
+   防護牆與 SVG 優化 (1shop 專用)
+   ========================================= */
+[class^="fa-"], [class*=" fa-"], .fa, .fas, .far, .fab {
+    font-family: "FontAwesome", sans-serif !important; 
+}
+.shopping-cart, .member-link, .cart-icon, #cart {
+    font-family: sans-serif !important; 
+}
+.hero-icon svg { width: 45px; height: 45px; fill: #D8BE8A; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+.core-icon svg { width: 32px; height: 32px; fill: #B89A5F; transition: fill 0.4s ease; }
+.core-card:hover .core-icon svg { fill: #fff; }
+.action-icon svg { width: 36px; height: 36px; fill: #2C3E50; }
+.action-arrow svg { width: 18px; height: 18px; fill: #C6A96B; transition: transform 0.3s ease; }
+.action-box:hover .action-arrow svg { transform: translateX(5px); }
+
+@keyframes ipe-spinner-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.ipe-spinner svg {
+  width: 1.2em; height: 1.2em; animation: ipe-spinner-spin 1s linear infinite; vertical-align: -0.2em; margin-right: 8px; fill: currentColor;
+}
+
 /* =========================================
    1. 基礎變數與佈局 (最高標準版)
    ========================================= */
@@ -212,7 +235,7 @@
     color: #fff;
     box-shadow: 0 5px 15px rgba(44, 62, 80, 0.2);
 }
-.news-link-btn i { margin-left: 8px; }
+.news-link-btn svg { margin-left: 8px; vertical-align: -0.125em; }
 
 /* =========================================
    4. RWD 手機版
@@ -254,7 +277,7 @@
 
         <div id="dynamic-news-list" class="news-list">
             <div class="loading-status">
-                <i class="fas fa-spinner fa-spin"></i> 正在載入最新公告...
+                <span class="ipe-spinner"><svg class="ipe-spinner-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M222.7 32.1c5 16.9-4.6 34.8-21.5 39.8C121.8 95.6 64 169.1 64 256c0 106 86 192 192 192s192-86 192-192c0-86.9-57.8-160.4-137.2-184.1c-16.9-5-26.5-22.9-21.5-39.8s22.9-26.5 39.8-21.5C434.9 42.1 512 140 512 256c0 141.4-114.6 256-256 256S0 397.4 0 256C0 140 77.1 42.1 182.9 10.6c16.9-5 34.8 4.6 39.8 21.5z"/></svg></span> 正在載入最新公告...
             </div>
         </div>
 
@@ -302,6 +325,9 @@
 // ★ 載入試算表資料 API ★
 // =========================================================================
 const API_URL = 'https://script.google.com/macros/s/AKfycby4EKQYiPt4P7iacGEsB5Wmft29-wdkOgapynz_Swcw-7Axb4AKzcs2tZW_HD0Pt4HX/exec'; 
+const svgExternalLink = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v112c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16h112c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg>';
+const svgChevronDown = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>';
+const svgExclamationTriangle = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="1em" height="1em"><path fill="currentColor" d="M569.5 448H6.5C-2.2 448-5.8 439.8.9 432.5l280-416c4.5-6.7 14.5-6.7 19.1 0l280 416c6.7 7.3 3.1 15.5-5.6 15.5zM288 384c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm-16-96c0-8.8 7.2-16 16-16h0c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16h0c-8.8 0-16-7.2-16-16v-64z"/></svg>';
 
 // 輔助函數：將 YYYY-MM-DD 轉換為月份縮寫與日期
 function formatDate(dateString) {
@@ -345,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // 處理外部連結按鈕
                 const linkUrl = (item.link && item.link.trim() !== '') ? item.link.trim() : '';
-                const btnHtml = linkUrl ? `<a href="${linkUrl}" target="_blank" class="news-link-btn">查看相關連結 <i class="fas fa-external-link-alt"></i></a>` : '';
+                const btnHtml = linkUrl ? `<a href="${linkUrl}" target="_blank" class="news-link-btn">查看相關連結 ${svgExternalLink}</a>` : '';
 
                 // ★ 改為 div 結構，並加上隱藏的 news-full-content 區塊 ★
                 const articleHtml = `
@@ -359,7 +385,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 ${tagHtml}
                                 <h3 class="news-title">${item.title}</h3>
                             </div>
-                            <div class="news-arrow"><i class="fas fa-chevron-down"></i></div>
+                            <div class="news-arrow">${svgChevronDown}</div>
                         </div>
                         
                         <div class="news-full-content">
@@ -373,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Error fetching news:', error);
-            container.innerHTML = '<div class="loading-status" style="color:#e74c3c;"><i class="fas fa-exclamation-triangle"></i> 無法載入公告，請稍後再試。</div>';
+            container.innerHTML = `<div class="loading-status" style="color:#e74c3c;">${svgExclamationTriangle} 無法載入公告，請稍後再試。</div>`;
         });
 
     // =========================================================================

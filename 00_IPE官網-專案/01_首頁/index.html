@@ -24,7 +24,6 @@
 /* 基礎樣式微調 */
 .slide-v1-1shop-container { width: 100%; overflow: hidden; margin-bottom: 20px; }
 .slide-v1-1shop-main img { border: none; }
-/* 分頁圓點樣式優化 */
 .slide-v1-1shop-main .slick-dots { bottom: 15px; }
 .slide-v1-1shop-main .slick-dots li button:before { font-size: 12px; color: #fff; opacity: 0.5; }
 .slide-v1-1shop-main .slick-dots li.slick-active button:before { color: #fff; opacity: 1; }
@@ -33,43 +32,20 @@
 <script>
 (function() {
   var retryCount = 0;
-  var maxRetries = 50; // 最多等待 5 秒
-
+  var maxRetries = 50;
   function initSlickV1() {
-    // 防呆檢查：確保 jQuery 與 Slick 插件皆已載入
     if (window.jQuery && jQuery.fn.slick) {
       var $target = jQuery('.slide-v1-1shop-main');
-      
-      // 避免重複初始化
       if ($target.hasClass('slick-initialized')) return;
-
       $target.slick({
-        dots: true,
-        arrows: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        pauseOnHover: false, // 強制不因滑鼠停滯
-        pauseOnFocus: false,
-        adaptiveHeight: true
+        dots: true, arrows: false, infinite: true, speed: 500, slidesToShow: 1,
+        autoplay: true, autoplaySpeed: 3000, pauseOnHover: false, pauseOnFocus: false, adaptiveHeight: true
       });
-
-      // 保險機制：初始化後強制啟動播放
-      setTimeout(function() {
-        $target.slick('slickPlay');
-      }, 500);
-
+      setTimeout(function() { $target.slick('slickPlay'); }, 500);
     } else {
-      if (retryCount < maxRetries) {
-        retryCount++;
-        setTimeout(initSlickV1, 100); // 每 0.1 秒重試一次
-      }
+      if (retryCount < maxRetries) { retryCount++; setTimeout(initSlickV1, 100); }
     }
   }
-
-  // 1shop 環境建議：不只依賴 DOMContentLoaded，直接啟動監測流程
   initSlickV1();
 })();
 </script>
@@ -77,9 +53,18 @@
 <div class="ipe-wrap">
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
+/* =========================================
+   防護牆：確保 1shop 原生系統圖示不受影響
+   ========================================= */
+[class^="fa-"], [class*=" fa-"], .fa, .fas, .far, .fab {
+    font-family: "FontAwesome", sans-serif !important; 
+}
+.shopping-cart, .member-link, .cart-icon, #cart {
+    font-family: sans-serif !important; 
+}
+
 /* =========================================
    1. 基礎變數與佈局
    ========================================= */
@@ -119,7 +104,6 @@
 /* =========================================
    3. 首頁專屬樣式 (Portal Design)
    ========================================= */
-/* 尊榮迎賓橫幅 (Hero Banner) */
 .home-hero {
     background: linear-gradient(135deg, var(--ipe-navy) 0%, #1a252f 100%);
     color: #fff;
@@ -135,140 +119,53 @@
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
     background: linear-gradient(to right, var(--ipe-gold-dark), var(--ipe-gold-light));
 }
-.hero-icon {
-    font-size: 45px;
-    color: var(--ipe-gold-light);
-    margin-bottom: 20px;
-}
-.hero-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 36px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    margin: 0 0 10px 0;
-    color: #fff;
-}
-.hero-subtitle {
-    font-size: 14px;
-    color: var(--ipe-gold-light);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 25px;
-}
-.hero-desc {
-    font-size: 16px;
-    color: rgba(255,255,255,0.8);
-    line-height: 1.8;
-    max-width: 700px;
-    margin: 0 auto;
-}
+.hero-icon { margin-bottom: 20px; display: flex; justify-content: center; }
+.hero-title { font-family: 'Noto Serif TC', serif; font-size: 36px; font-weight: 900; letter-spacing: 2px; margin: 0 0 10px 0; color: #fff; }
+.hero-subtitle { font-size: 14px; color: var(--ipe-gold-light); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 25px; }
+.hero-desc { font-size: 16px; color: rgba(255,255,255,0.8); line-height: 1.8; max-width: 700px; margin: 0 auto; }
 
-/* 核心業務導航網格 (Quick Links) */
-.home-section-title {
-    text-align: center;
-    font-family: 'Noto Serif TC', serif;
-    font-size: 28px;
-    color: var(--ipe-navy);
-    margin: 0 0 40px 0;
-    position: relative;
-}
-.home-section-title::after {
-    content: ''; display: block; width: 60px; height: 3px;
-    background: var(--ipe-gold); margin: 15px auto 0 auto;
-}
-
-.core-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    margin-bottom: 60px;
-}
+/* 核心業務導航網格 */
+.home-section-title { text-align: center; font-family: 'Noto Serif TC', serif; font-size: 28px; color: var(--ipe-navy); margin: 0 0 40px 0; position: relative; }
+.home-section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--ipe-gold); margin: 15px auto 0 auto; }
+.core-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 60px; }
 .core-card {
-    display: block;
-    text-decoration: none;
-    background: #fff;
-    border: 1px solid #E6EAF0;
-    border-radius: 12px;
-    padding: 40px 25px;
-    text-align: center;
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
+    display: block; text-decoration: none; background: #fff; border: 1px solid #E6EAF0;
+    border-radius: 12px; padding: 40px 25px; text-align: center; transition: all 0.4s ease;
+    position: relative; overflow: hidden;
 }
-.core-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--ipe-gold);
-    box-shadow: 0 15px 30px rgba(198, 169, 107, 0.15);
-}
-.core-card::before {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
-    background: #E6EAF0; transition: all 0.4s ease;
-}
-.core-card:hover::before {
-    background: var(--ipe-gold);
-}
+.core-card:hover { transform: translateY(-8px); border-color: var(--ipe-gold); box-shadow: 0 15px 30px rgba(198, 169, 107, 0.15); }
+.core-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: #E6EAF0; transition: all 0.4s ease; }
+.core-card:hover::before { background: var(--ipe-gold); }
 .core-icon {
-    width: 80px; height: 80px;
-    background: rgba(198, 169, 107, 0.1);
-    border-radius: 50%;
-    display: flex; justify-content: center; align-items: center;
-    margin: 0 auto 20px auto;
-    font-size: 32px;
-    color: var(--ipe-gold-dark);
+    width: 80px; height: 80px; background: rgba(198, 169, 107, 0.1); border-radius: 50%;
+    display: flex; justify-content: center; align-items: center; margin: 0 auto 20px auto;
     transition: all 0.4s ease;
 }
-.core-card:hover .core-icon {
-    background: var(--ipe-gold);
-    color: #fff;
-}
-.core-card h3 {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 22px;
-    color: var(--ipe-navy);
-    margin: 0 0 10px 0;
-}
-.core-card p {
-    font-size: 14px; color: #666; margin: 0; line-height: 1.6;
-}
+.core-card:hover .core-icon { background: var(--ipe-gold); }
+.core-card h3 { font-family: 'Noto Serif TC', serif; font-size: 22px; color: var(--ipe-navy); margin: 0 0 10px 0; }
+.core-card p { font-size: 14px; color: #666; margin: 0; line-height: 1.6; }
 
-/* 快速查詢區塊 (公告 & 成績) */
-.action-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-}
+/* 快速查詢區塊 */
+.action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
 .action-box {
-    background: #FAFAFA;
-    border: 1px dashed #CBD5E0;
-    border-radius: 12px;
-    padding: 30px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    transition: all 0.3s ease;
-    text-decoration: none;
+    background: #FAFAFA; border: 1px dashed #CBD5E0; border-radius: 12px; padding: 30px;
+    display: flex; align-items: center; gap: 20px; transition: all 0.3s ease; text-decoration: none;
 }
-.action-box:hover {
-    border-color: var(--ipe-gold-light);
-    background: #fff;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-}
-.action-icon {
-    font-size: 36px;
-    color: var(--ipe-navy);
-}
-.action-text h4 {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 18px; color: var(--ipe-navy); margin: 0 0 5px 0;
-}
-.action-text p {
-    font-size: 13px; color: #666; margin: 0;
-}
-.action-arrow {
-    margin-left: auto;
-    color: var(--ipe-gold);
-    font-size: 18px;
-}
+.action-box:hover { border-color: var(--ipe-gold-light); background: #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.04); }
+.action-icon { display: flex; align-items: center; }
+.action-text h4 { font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--ipe-navy); margin: 0 0 5px 0; }
+.action-text p { font-size: 13px; color: #666; margin: 0; }
+.action-arrow { margin-left: auto; display: flex; align-items: center; }
+
+/* =========================================
+   SVG 圖示專屬優化樣式
+   ========================================= */
+.hero-icon svg { width: 45px; height: 45px; fill: var(--ipe-gold-light); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+.core-icon svg { width: 32px; height: 32px; fill: var(--ipe-gold-dark); transition: fill 0.4s ease; }
+.core-card:hover .core-icon svg { fill: #fff; }
+.action-icon svg { width: 36px; height: 36px; fill: var(--ipe-navy); }
+.action-arrow svg { width: 18px; height: 18px; fill: var(--ipe-gold); transition: transform 0.3s ease; }
+.action-box:hover .action-arrow svg { transform: translateX(5px); }
 
 /* =========================================
    4. RWD 手機版
@@ -277,7 +174,6 @@
     .ipe-wrap { flex-direction: column; width: 100%; }
     .ipe-main-content { order: 1; width: 100%; padding: 40px 20px; }
     .ipe-side-console { order: 2; flex: none; width: 100%; border-left: none; border-top: 1px solid #E6EAF0; padding: 40px 20px; }
-    
     .hero-title { font-size: 28px; }
     .core-grid { grid-template-columns: 1fr; gap: 20px; }
     .action-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -287,7 +183,9 @@
 <main class="ipe-main-content">
     
     <div class="home-hero">
-        <div class="hero-icon"><i class="fas fa-crown"></i></div>
+        <div class="hero-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M528 448H112c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h416c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm64-320c-26.5 0-48 21.5-48 48 0 7.1 1.6 13.7 4.4 19.8L476 239.2c-15.4 9.2-35.3 4-44.2-11.6L350.3 85C361 76.2 368 63 368 48c0-26.5-21.5-48-48-48s-48 21.5-48 48c0 15 7 28.2 17.7 37l-81.5 142.6c-8.9 15.6-28.9 20.8-44.2 11.6l-72.3-43.4c2.7-6 4.4-12.7 4.4-19.8 0-26.5-21.5-48-48-48S0 149.5 0 176s21.5 48 48 48c2.6 0 5.2-.2 7.6-.6l52.2 209.2c1.9 7.6 8.7 13.4 16.5 13.4h391.3c7.8 0 14.6-5.8 16.5-13.4l52.2-209.2c2.4.4 5 .6 7.6 .6 26.5 0 48-21.5 48-48s-21.5-48-48-48z"/></svg>
+        </div>
         <h2 class="hero-title">中華國際職能檢定與教育發展協會</h2>
         <div class="hero-subtitle">International Professional Certification & Education</div>
         <p class="hero-desc">引領亞太職能標準，培育頂尖專業人才。本會致力於建立高階專業檢定體系、推動職能教育發展，並透過系統化認證，協助美容與技術服務產業成功接軌國際舞台。</p>
@@ -296,44 +194,55 @@
     <h3 class="home-section-title">協會核心服務</h3>
     <div class="core-grid">
         <a href="/about" class="core-card">
-            <div class="core-icon"><i class="fas fa-university"></i></div>
+            <div class="core-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M240.1 4.2c9.8-5.6 21.9-5.6 31.8 0l224 128c8.9 5.1 14.4 14.4 14.1 24.6s-6.8 19-16 23.5L464 194V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V207.7l-160 74.7V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V292.8l-160 74.7V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V207.7L34.1 180.3c-9.2-4.5-15.7-13.3-16-23.5s5.2-19.5 14.1-24.6l224-128zM312 284V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V284c10.4-3.5 21.6-3.5 32 0zm-144 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V284c10.4-3.5 21.6-3.5 32 0zM48 464c0-26.5 21.5-48 48-48h320c26.5 0 48 21.5 48 48v48H48v-48z"/></svg>
+            </div>
             <h3>關於 IPE 協會</h3>
             <p>了解本會宗旨、願景與理監事團隊，以及我們為產業發展所建立的權威架構。</p>
         </a>
 
         <a href="/edu-system" class="core-card">
-            <div class="core-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+            <div class="core-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M160 64c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64V320c0 35.3-28.7 64-64 64H512v32h64c17.7 0 32 14.3 32 32s-14.3 32-32 32H320c-17.7 0-32-14.3-32-32s14.3-32 32-32h64V384H224c-35.3 0-64-28.7-64-64V64zM384 96a48 48 0 1 0 0 96 48 48 0 1 0 0-96zM128 256v64c0 35.3-28.7 64-64 64H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H200c-6.8-15.5-10.8-32.8-11.8-51.2H128V256zM80 208a48 48 0 1 1 0-96 48 48 0 1 1 0 96z"/></svg>
+            </div>
             <h3>職能教育與培訓</h3>
             <p>系統化培訓地圖，由頂尖名師親自授課，打造業界高階管理與技術人才。</p>
         </a>
 
-
         <a href="/cert-system" class="core-card">
-            <div class="core-icon"><i class="fas fa-medal"></i></div>
+            <div class="core-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M72.3 36.6C44.4 25.4 12.3 39.8 1.1 67.7S-4.4 127.6 23.5 138.8L160 198.8v73.2c0 13.3 10.7 24 24 24s24-10.7 24-24V198.8l136.5-60C372.4 127.6 386.8 95.5 375.6 67.7S333.3 25.4 305.4 36.6L160 100.2 72.3 36.6zM416 256c-70.7 0-128 57.3-128 128s57.3 128 128 128 128-57.3 128-128-57.3-128-128-128zm-48 112c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s-7.2 16-16 16h-64c-8.8 0-16-7.2-16-16zm16 48h64c8.8 0 16 7.2 16 16s-7.2 16-16 16h-64c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
+            </div>
             <h3>專業檢定與證照</h3>
             <p>客觀嚴謹的技能評量制度，提供具公信力之能力證明，接軌國際標準。</p>
         </a>
-
-    
     </div>
 
     <div class="action-grid">
         <a href="https://ipe.1shop-app.com/news" class="action-box">
-            <div class="action-icon"><i class="fas fa-bullhorn"></i></div>
+            <div class="action-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M480 32c0-12.9-7.8-24.6-19.8-29.6s-25.7-2.2-34.9 6.9L381.7 53c-48 48-113.1 75-181 75H192 160 64c-35.3 0-64 28.7-64 64v96c0 35.3 28.7 64 64 64h96 32 8.7c67.9 0 133 27 181 75l43.6 43.6c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V300.4c18.6-8.8 32-32.5 32-60.4s-13.4-51.6-32-60.4V32zm-64 76.7V240 272v131.3l-20.3-20.3c-54.1-54.1-127.5-84.5-204-84.5H192v-85.4h-.3c76.5 0 149.9-30.4 204-84.5L416 108.7zM64 256v-64h96v128H64c-17.7 0-32-14.3-32-32v-32z"/></svg>
+            </div>
             <div class="action-text">
                 <h4>最新會務公告</h4>
                 <p>檢視最新梯次檢定日期與培訓課程資訊</p>
             </div>
-            <div class="action-arrow"><i class="fas fa-chevron-right"></i></div>
+            <div class="action-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            </div>
         </a>
 
         <a href="https://ipe.1shop-app.com/exam-result" class="action-box">
-            <div class="action-icon"><i class="fas fa-search"></i></div>
+            <div class="action-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+            </div>
             <div class="action-text">
                 <h4>檢定成績查詢</h4>
                 <p>輸入證號，快速查詢您的專屬檢定結果</p>
             </div>
-            <div class="action-arrow"><i class="fas fa-chevron-right"></i></div>
+            <div class="action-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            </div>
         </a>
     </div>
 

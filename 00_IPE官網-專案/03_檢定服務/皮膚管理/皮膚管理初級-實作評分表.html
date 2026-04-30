@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPE 皮膚管理初級檢定 (L1) - 完整實作評分表 (6人版)</title>
+    <title>IPE 皮膚管理初級檢定 (L1) - 單頁綜合實作評分表</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -16,9 +16,9 @@
         body {
             font-family: 'Noto Sans TC', sans-serif;
             color: #2f3640;
-            line-height: 1.4;
+            line-height: 1.2;
             margin: 0;
-            padding: 20px;
+            padding: 10px 20px;
             background-color: #e0e5ec;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
@@ -28,71 +28,86 @@
             max-width: 950px; 
             margin: 0 auto;
             background: #fff;
-            padding: 30px 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 20px 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
-        /* 標題與裝飾 */
-        .header { text-align: center; border-bottom: 3px solid var(--ipe-navy); margin-bottom: 12px; padding-bottom: 8px; }
-        .header h1 { font-family: 'Noto Serif TC', serif; font-size: 24px; color: var(--ipe-navy); margin: 0; letter-spacing: 2px; }
-        .header .subtitle { font-size: 14px; color: var(--ipe-gold); font-weight: bold; margin-top: 5px; }
+        /* 標題與裝飾 - 極度壓縮 */
+        .header { text-align: center; border-bottom: 2px solid var(--ipe-navy); margin-bottom: 8px; padding-bottom: 4px; }
+        .header h1 { font-family: 'Noto Serif TC', serif; font-size: 22px; color: var(--ipe-navy); margin: 0; letter-spacing: 1px; }
+        .header .subtitle { font-size: 13px; color: var(--ipe-gold); font-weight: bold; margin-top: 2px; }
 
-        /* 考場資訊列 */
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 10px;
-            font-size: 14px;
-            font-weight: bold;
-            color: var(--ipe-navy);
-        }
+        .info-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 6px; font-size: 13px; font-weight: bold; color: var(--ipe-navy); }
         .info-row .line { display: inline-block; border-bottom: 1px solid #333; margin-left: 5px; }
 
         /* 表格共用樣式 */
-        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; table-layout: fixed; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 6px; table-layout: fixed; }
         th, td { border: 1px solid var(--ipe-navy); vertical-align: middle; }
         
-        th { background: var(--ipe-navy); color: #fff; font-weight: 700; text-align: center; font-size: 12px; padding: 6px 2px; }
-        td { padding: 4px 4px; height: 36px; } 
+        /* 區塊標題列 */
+        .section-header th { background-color: var(--ipe-navy); color: #fff; font-size: 14px; padding: 4px; letter-spacing: 1px; text-align: left; padding-left: 10px; }
+        .section-header.co-op th { background-color: #c2185b; }
+        .section-header.penalty th { background-color: #34495e; }
+
+        /* 一般深藍色表頭 */
+        th { background: #e8ecf1; color: var(--ipe-navy); font-weight: 700; text-align: center; font-size: 12px; padding: 3px 2px; }
+        td { padding: 2px 4px; height: 26px; } 
         
-        .item-col { font-weight: bold; font-size: 13px; color: #333; }
-        .desc-text { font-size: 11px; color: #555; font-weight: normal; display: block; margin-top: 1px; }
-        .center-col { text-align: center; font-size: 13px; }
-        .candidate-input { font-size: 10px; font-weight: normal; color: #eaf2f8; margin-top: 2px; }
-        .write-area { background-color: #fff; text-align: center; font-weight: bold; font-size: 16px; color: var(--ipe-navy); }
+        /* 重新設計的純白高對比表頭 */
+        .candidate-th { 
+            background-color: #fff !important; 
+            border-top: 2px solid var(--ipe-navy) !important; 
+            border-bottom: 2px solid var(--ipe-navy) !important; 
+            vertical-align: top; 
+            padding: 2px !important; 
+            height: 35px;
+        }
+        .candidate-label { font-size: 11px; font-weight: 900; color: #555; display: block; text-align: center; }
+        .candidate-label-mini { font-size: 9px; font-weight: 900; color: #555; display: block; text-align: center; letter-spacing: -0.5px; }
+
+        .item-col { font-weight: bold; font-size: 12px; color: #333; }
+        .item-col-mini { font-weight: bold; font-size: 11px; color: #333; }
+        .desc-text { font-size: 10px; color: #666; font-weight: normal; display: block; letter-spacing: -0.3px; line-height: 1.1; }
+        .desc-inline { font-size: 10px; color: #666; font-weight: normal; margin-left: 4px; }
+        .center-col { text-align: center; font-size: 12px; }
+        
+        .write-area { background-color: #fff; text-align: center; font-weight: bold; font-size: 14px; color: var(--ipe-navy); }
 
         /* 分工標籤樣式 */
-        .badge-district { background-color: #e8f4f8; color: #2980b9; padding: 2px 4px; border-radius: 4px; font-weight: bold; font-size: 11px; }
-        .badge-co { background-color: #fce4ec; color: #c2185b; padding: 2px 4px; border-radius: 4px; font-weight: bold; font-size: 11px; }
+        .badge-district { background-color: #e8f4f8; color: #2980b9; padding: 1px 3px; border-radius: 3px; font-weight: bold; font-size: 10px; white-space: nowrap;}
+        .badge-co { background-color: #fce4ec; color: #c2185b; padding: 1px 3px; border-radius: 3px; font-weight: bold; font-size: 10px; white-space: nowrap;}
 
-        /* 特殊列樣式 */
-        .section-title td { background-color: var(--ipe-gray-bg); font-weight: 900; font-size: 14px; color: var(--ipe-navy); text-align: left; padding-left: 10px; height: auto; }
-        .total-row td { background-color: #e8f4f8; font-weight: bold; font-size: 14px; color: var(--ipe-navy); }
-        .final-row td { background-color: #fef9e7; height: 45px; }
-        
-        .penalty-text { color: var(--ipe-red); font-weight: bold; font-size: 12px; }
-
-        /* 換頁設定 */
-        .page-break { page-break-before: always; }
+        .total-row td { background-color: #e8f4f8; font-weight: bold; font-size: 12px; color: var(--ipe-navy); height: 20px;}
+        .final-row td { background-color: #fef9e7; height: 30px; }
+        .penalty-text { color: var(--ipe-red); font-weight: bold; font-size: 11px; }
 
         /* ==============================================================
-           列印專屬優化 (A4 直式設計 - 2頁極限壓縮排版)
+           列印專屬優化 (極限單頁 A4 直式壓縮)
            ============================================================== */
         @media print {
-            @page { size: A4 portrait; margin: 8mm; }
+            @page { size: A4 portrait; margin: 6mm; }
             body { padding: 0; background: #fff; } 
             .container { max-width: none; padding: 0; box-shadow: none; width: 100%; }
             
-            /* 極限壓縮行高以確保能塞進單頁 A4 */
-            td { height: 26px !important; padding: 2px 4px !important; }
-            .section-title td { height: 20px !important; padding: 2px 4px !important; font-size: 13px !important; }
-            .final-row td { height: 35px !important; }
-            th { -webkit-print-color-adjust: exact; background-color: var(--ipe-navy) !important; color: white !important; font-size: 11px !important;}
-            .item-col { font-size: 12px !important; }
-            .desc-text { font-size: 9px !important; letter-spacing: -0.2px; }
-            .candidate-input { color: #dcdde1 !important; }
-            .penalty-text { font-size: 11px !important; }
+            /* 極度壓縮高度 */
+            td { height: 19px !important; padding: 1px 3px !important; }
+            .candidate-th { height: 26px !important; }
+            .total-row td { height: 16px !important; }
+            .final-row td { height: 26px !important; }
+            
+            /* 字體微縮 */
+            th { font-size: 10px !important; padding: 1px !important; }
+            .section-header th { font-size: 12px !important; padding: 2px 8px !important; }
+            .item-col { font-size: 11px !important; letter-spacing: -0.2px; }
+            .item-col-mini { font-size: 10px !important; letter-spacing: -0.5px; }
+            .desc-text { font-size: 8px !important; line-height: 1; }
+            .desc-inline { font-size: 8px !important; }
+            .penalty-text { font-size: 10px !important; }
+            .write-area { font-size: 12px !important; }
+            
+            /* 移除多餘邊距確保不換頁 */
+            table { margin-bottom: 3px !important; }
+            .header { margin-bottom: 4px !important; padding-bottom: 2px !important; }
         }
     </style>
 </head>
@@ -101,7 +116,7 @@
 <div class="container">
     <div class="header">
         <h1>IPE 皮膚管理初級檢定 (L1)</h1>
-        <div class="subtitle">術科實作評分表 (第 1 頁 / 共 2 頁)</div>
+        <div class="subtitle">術科綜合實作評分表 (含分區/共評/違規)</div>
     </div>
 
     <div class="info-row">
@@ -109,269 +124,179 @@
         <div>監評人員簽名：<span class="line" style="width: 150px;"></span></div>
     </div>
 
+    <!-- ============================================== -->
+    <!-- 區塊一：分區評分區 (6 人)                        -->
+    <!-- ============================================== -->
     <table>
         <colgroup>
-            <col style="width: 5%;">  <col style="width: 25%;"> <col style="width: 6%;">  <col style="width: 4%;">  <col style="width: 10%;"> <col style="width: 10%;"> <col style="width: 10%;"> <col style="width: 10%;"> <col style="width: 10%;"> <col style="width: 10%;"> </colgroup>
+            <col style="width: 5%;">  <col style="width: 28%;"> <col style="width: 5%;">  <col style="width: 4%;">  
+            <col style="width: 9.6%;"><col style="width: 9.6%;"><col style="width: 9.6%;"><col style="width: 9.6%;"><col style="width: 9.6%;"><col style="width: 9.6%;">
+        </colgroup>
         <thead>
+            <tr class="section-header">
+                <th colspan="10">▶ 第一部分：分區技術評分 (負責 6 名考生)</th>
+            </tr>
             <tr>
-                <th>序號</th>
+                <th>編號</th>
                 <th>考核項目 (給分)</th>
                 <th>分工</th>
                 <th>配分</th>
-                <th>考生 1<div class="candidate-input">編號:______</div></th>
-                <th>考生 2<div class="candidate-input">編號:______</div></th>
-                <th>考生 3<div class="candidate-input">編號:______</div></th>
-                <th>考生 4<div class="candidate-input">編號:______</div></th>
-                <th>考生 5<div class="candidate-input">編號:______</div></th>
-                <th>考生 6<div class="candidate-input">編號:______</div></th>
+                <th class="candidate-th"><span class="candidate-label">考生 1</span></th>
+                <th class="candidate-th"><span class="candidate-label">考生 2</span></th>
+                <th class="candidate-th"><span class="candidate-label">考生 3</span></th>
+                <th class="candidate-th"><span class="candidate-label">考生 4</span></th>
+                <th class="candidate-th"><span class="candidate-label">考生 5</span></th>
+                <th class="candidate-th"><span class="candidate-label">考生 6</span></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="center-col">1</td>
-                <td class="item-col">填寫顧客資料卡<span class="desc-text">全欄位必填、職業採勾選</span></td>
-                <td class="center-col"><span class="badge-district">分區</span></td>
-                <td class="center-col">5</td>
+                <td class="center-col">A01</td><td class="item-col">填寫顧客資料卡</td><td class="center-col"><span class="badge-district">分區</span></td><td class="center-col">5</td>
                 <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
             </tr>
             <tr>
-                <td class="center-col">2</td>
-                <td class="item-col">卸妝、洗臉<span class="desc-text">眼唇全臉乾淨、動作確實不滴水</span></td>
-                <td class="center-col"><span class="badge-district">分區</span></td>
-                <td class="center-col">10</td>
+                <td class="center-col">A02</td><td class="item-col">卸妝、洗臉</td><td class="center-col"><span class="badge-district">分區</span></td><td class="center-col">10</td>
                 <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
             </tr>
             <tr>
-                <td class="center-col">3</td>
-                <td class="item-col">去角質<span class="desc-text">溫和不拉扯，擦拭乾淨無殘留</span></td>
-                <td class="center-col"><span class="badge-district">分區</span></td>
-                <td class="center-col">10</td>
+                <td class="center-col">A03</td><td class="item-col">去角質</td><td class="center-col"><span class="badge-district">分區</span></td><td class="center-col">10</td>
                 <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
             </tr>
             <tr>
-                <td class="center-col">4</td>
-                <td class="item-col">臉部勻油／按摩技能<span class="desc-text">涵蓋臉、肩頸前胸等完整區域</span></td>
-                <td class="center-col"><span class="badge-district">分區</span></td>
-                <td class="center-col">10</td>
+                <td class="center-col">A04</td><td class="item-col">臉部勻油／按摩技能</td><td class="center-col"><span class="badge-district">分區</span></td><td class="center-col">10</td>
                 <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
             </tr>
             <tr>
-                <td class="center-col">5</td>
-                <td class="item-col">臉部按摩技能<span class="desc-text">手技服貼柔軟，順暢有韻律</span></td>
-                <td class="center-col"><span class="badge-co">共評</span></td>
-                <td class="center-col">10</td>
+                <td class="center-col">A07</td><td class="item-col">清粉刺前置工作</td><td class="center-col"><span class="badge-district">分區</span></td><td class="center-col">5</td>
                 <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
             </tr>
             <tr>
-                <td class="center-col">6</td>
-                <td class="item-col">前胸肩頸按摩技能<span class="desc-text">雙手不隨意離開身體</span></td>
-                <td class="center-col"><span class="badge-co">共評</span></td>
-                <td class="center-col">10</td>
+                <td class="center-col">A08</td><td class="item-col">清粉刺技能<span class="desc-inline">(硬擠發炎痘直扣至5分以下)</span></td><td class="center-col"><span class="badge-district">分區</span></td><td class="center-col">10</td>
                 <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
             </tr>
             <tr>
-                <td class="center-col">7</td>
-                <td class="item-col">清粉刺前置工作<span class="desc-text">敷粉刺水、熱毛巾、酒精消毒</span></td>
-                <td class="center-col"><span class="badge-district">分區</span></td>
-                <td class="center-col">5</td>
+                <td class="center-col">A09</td><td class="item-col">敷臉面膜流程與技能</td><td class="center-col"><span class="badge-district">分區</span></td><td class="center-col">10</td>
                 <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
             </tr>
             <tr>
-                <td class="center-col">8</td>
-                <td class="item-col">清粉刺技能<span class="desc-text">備2種工具，精準無硬擠發炎痘</span></td>
-                <td class="center-col"><span class="badge-district">分區</span></td>
-                <td class="center-col">10</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="center-col">9</td>
-                <td class="item-col">敷臉面膜流程與技能<span class="desc-text">不可透膚，必須敷至下顎</span></td>
-                <td class="center-col"><span class="badge-district">分區</span></td>
-                <td class="center-col">10</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="center-col">10</td>
-                <td class="item-col">面膜後清潔與善後<span class="desc-text">卸除乾淨，保養防曬步驟完整</span></td>
-                <td class="center-col"><span class="badge-district">分區</span></td>
-                <td class="center-col">10</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="center-col">11</td>
-                <td class="item-col">全程操作技術熟練度<span class="desc-text">姿勢、桌面整潔、從容親切</span></td>
-                <td class="center-col"><span class="badge-co">共評</span></td>
-                <td class="center-col">10</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr class="total-row">
-                <td colspan="3" style="text-align: right;">(A) 技術考核小計 (滿分 100)</td>
-                <td class="center-col">100</td>
+                <td class="center-col">A10</td><td class="item-col">面膜後清潔與善後<span class="desc-inline">(殘留或遺漏直扣至5分以下)</span></td><td class="center-col"><span class="badge-district">分區</span></td><td class="center-col">10</td>
                 <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
             </tr>
         </tbody>
     </table>
-    <div style="text-align: right; font-size: 13px; color: #7f8c8d; margin-top: 20px;">請翻至次頁填寫扣分項目 ➡</div>
-    
-    <div class="page-break"></div>
 
-    <div class="header" style="margin-top: 0px;">
-        <h1>IPE 皮膚管理初級檢定 (L1)</h1>
-        <div class="subtitle">違規扣分表 (第 2 頁 / 共 2 頁)</div>
-    </div>
-
+    <!-- ============================================== -->
+    <!-- 區塊二：共評評分區 (12 人)                       -->
+    <!-- ============================================== -->
     <table>
         <colgroup>
-            <col style="width: 30%;"> <col style="width: 10%;"> <col style="width: 10%;"> <col style="width: 10%;"> <col style="width: 10%;"> <col style="width: 10%;"> <col style="width: 10%;"> <col style="width: 10%;"> </colgroup>
+            <col style="width: 5%;">  <col style="width: 17%;"> <col style="width: 5%;">  <col style="width: 4%;">  
+            <col style="width: 5.7%;"><col style="width: 5.7%;"><col style="width: 5.7%;"><col style="width: 5.7%;"><col style="width: 5.7%;"><col style="width: 5.7%;">
+            <col style="width: 5.7%;"><col style="width: 5.7%;"><col style="width: 5.7%;"><col style="width: 5.7%;"><col style="width: 5.7%;"><col style="width: 5.7%;">
+        </colgroup>
         <thead>
+            <tr class="section-header co-op">
+                <th colspan="16">▶ 第二部分：共評技術評分 (負責 12 名考生)</th>
+            </tr>
             <tr>
-                <th>違規與扣分項目明細</th>
-                <th>扣分額度</th>
-                <th>考生 1</th>
-                <th>考生 2</th>
-                <th>考生 3</th>
-                <th>考生 4</th>
-                <th>考生 5</th>
-                <th>考生 6</th>
+                <th>編號</th>
+                <th>考核項目 (給分)</th>
+                <th>分工</th>
+                <th>配分</th>
+                <th class="candidate-th"><span class="candidate-label-mini">考 1</span></th>
+                <th class="candidate-th"><span class="candidate-label-mini">考 2</span></th>
+                <th class="candidate-th"><span class="candidate-label-mini">考 3</span></th>
+                <th class="candidate-th"><span class="candidate-label-mini">考 4</span></th>
+                <th class="candidate-th"><span class="candidate-label-mini">考 5</span></th>
+                <th class="candidate-th"><span class="candidate-label-mini">考 6</span></th>
+                <th class="candidate-th"><span class="candidate-label-mini">考 7</span></th>
+                <th class="candidate-th"><span class="candidate-label-mini">考 8</span></th>
+                <th class="candidate-th"><span class="candidate-label-mini">考 9</span></th>
+                <th class="candidate-th"><span class="candidate-label-mini">考 10</span></th>
+                <th class="candidate-th"><span class="candidate-label-mini">考 11</span></th>
+                <th class="candidate-th"><span class="candidate-label-mini">考 12</span></th>
             </tr>
         </thead>
         <tbody>
-            <tr class="section-title"><td colspan="8">● 明確扣分標準 (共 15 項違規，發生即扣分)</td></tr>
             <tr>
-                <td class="item-col">1. 應考期間手機鬧鈴響起</td>
-                <td class="center-col penalty-text">-100</td>
+                <td class="center-col">A05</td><td class="item-col-mini">臉部按摩技能</td><td class="center-col"><span class="badge-co">共評</span></td><td class="center-col">10</td>
                 <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
+                <td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td>
             </tr>
             <tr>
-                <td class="item-col">2. 造成顧客受傷</td>
-                <td class="center-col penalty-text">-30</td>
+                <td class="center-col">A06</td><td class="item-col-mini">前胸肩頸按摩技能</td><td class="center-col"><span class="badge-co">共評</span></td><td class="center-col">10</td>
                 <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
+                <td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td>
             </tr>
             <tr>
-                <td class="item-col">3. 指甲違規<span class="desc-text">立體造型/貼鑽，或長於指肉0.2cm</span></td>
-                <td class="center-col penalty-text">-20</td>
+                <td class="center-col">A11</td><td class="item-col-mini">全程技術熟練度</td><td class="center-col"><span class="badge-co">共評</span></td><td class="center-col">10</td>
                 <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
+                <td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td><td class="write-area" style="background:#f9fbfc;"></td>
             </tr>
-            <tr>
-                <td class="item-col">4. 毛巾違規<span class="desc-text">全部毛巾非單一素色(奶茶色)</span></td>
-                <td class="center-col penalty-text">-10</td>
+            <tr class="total-row">
+                <td colspan="3" style="text-align: right;">(A) 技術小計 (滿分 100)</td><td class="center-col">100</td>
                 <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
+                <td class="write-area" style="background:#e8f4f8;"></td><td class="write-area" style="background:#e8f4f8;"></td><td class="write-area" style="background:#e8f4f8;"></td><td class="write-area" style="background:#e8f4f8;"></td><td class="write-area" style="background:#e8f4f8;"></td><td class="write-area" style="background:#e8f4f8;"></td>
             </tr>
-            <tr>
-                <td class="item-col">5. 飾品違規<span class="desc-text">配戴飾品、手錶、項鍊、戒指</span></td>
-                <td class="center-col penalty-text">-10</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="item-col">6. 面膜違規<span class="desc-text">顏色透明可見膚色，或未敷至下顎</span></td>
-                <td class="center-col penalty-text">-10</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="item-col">7. 隱私曝光違規<span class="desc-text">使模特兒胸前美容衣曝光</span></td>
-                <td class="center-col penalty-text">-10</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="item-col">8. 按摩手技方向錯誤<span class="desc-text">畫圈方向錯誤或過度拉扯</span></td>
-                <td class="center-col penalty-text">-10</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="item-col">9. 產品標示違規<span class="desc-text">中文標不完整或過期(最多扣10)</span></td>
-                <td class="center-col penalty-text">-2/項</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="item-col">10. 服儀違規（考生）<span class="desc-text">未穿規定工作服</span></td>
-                <td class="center-col penalty-text">-5</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="item-col">11. 服儀違規（模特兒）<span class="desc-text">未穿素色美容衣或不符規定</span></td>
-                <td class="center-col penalty-text">-5</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="item-col">12. 包頭違規<span class="desc-text">操作時頭髮未用毛巾包好</span></td>
-                <td class="center-col penalty-text">-5</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="item-col">13. 衛生違規<span class="desc-text">手未消毒、未戴口罩、頭髮未紮</span></td>
-                <td class="center-col penalty-text">-5</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="item-col">14. 垃圾袋/消毒袋違規<span class="desc-text">未準備或未標示</span></td>
-                <td class="center-col penalty-text">-5</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="item-col">15. 桌面整潔違規<span class="desc-text">工具使用未清潔擺放整齊</span></td>
-                <td class="center-col penalty-text">-5</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
+        </tbody>
+    </table>
 
-            <tr class="section-title"><td colspan="8">● 技術性細部扣分項目 (共 6 項，視情況累計)</td></tr>
-            <tr>
-                <td class="item-col">16. 硬擠發炎痘痘</td>
-                <td class="center-col penalty-text">-3/處</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
+    <!-- ============================================== -->
+    <!-- 區塊三：違規扣分區 (6 人) + 總分核算               -->
+    <!-- 對齊區塊一的欄寬比例，視覺絕對整齊                 -->
+    <!-- ============================================== -->
+    <table>
+        <colgroup>
+            <!-- 佔比: 33% + 9.4% = 42.4% -->
+            <col style="width: 33%;"> <col style="width: 9.4%;"> 
+            <col style="width: 9.6%;"><col style="width: 9.6%;"><col style="width: 9.6%;"><col style="width: 9.6%;"><col style="width: 9.6%;"><col style="width: 9.6%;">
+        </colgroup>
+        <thead>
+            <tr class="section-header penalty">
+                <th colspan="8">▶ 第三部分：明確違規扣分紀錄 (發生即扣分，僅針對 1~6 號考生)</th>
             </tr>
             <tr>
-                <td class="item-col">17. 面膜殘留未清除</td>
-                <td class="center-col penalty-text">-2/處</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
+                <th>違規與扣分項目明細</th>
+                <th>額度</th>
+                <th class="candidate-th" style="height: 20px;"><span class="candidate-label">考 1</span></th>
+                <th class="candidate-th" style="height: 20px;"><span class="candidate-label">考 2</span></th>
+                <th class="candidate-th" style="height: 20px;"><span class="candidate-label">考 3</span></th>
+                <th class="candidate-th" style="height: 20px;"><span class="candidate-label">考 4</span></th>
+                <th class="candidate-th" style="height: 20px;"><span class="candidate-label">考 5</span></th>
+                <th class="candidate-th" style="height: 20px;"><span class="candidate-label">考 6</span></th>
             </tr>
-            <tr>
-                <td class="item-col">18. 去角質殘留敏感部位</td>
-                <td class="center-col penalty-text">-5</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="item-col">19. 按摩力道過重</td>
-                <td class="center-col penalty-text">-5</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="item-col">20. 粉刺工具未消毒即使用</td>
-                <td class="center-col penalty-text">-2/次</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
-            <tr>
-                <td class="item-col">21. 善後保養步驟不完整</td>
-                <td class="center-col penalty-text">-2/項</td>
-                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
-            </tr>
+        </thead>
+        <tbody>
+            <tr><td class="item-col">[B01] 手機鬧鈴響起</td><td class="center-col penalty-text">-100</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
+            <tr><td class="item-col">[B02] 造成顧客受傷</td><td class="center-col penalty-text">-30</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
+            <tr><td class="item-col">[B03] 指甲違規 <span class="desc-inline">(造型貼鑽/過長)</span></td><td class="center-col penalty-text">-20</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
+            <tr><td class="item-col">[B04] 毛巾違規 <span class="desc-inline">(非奶茶色)</span></td><td class="center-col penalty-text">-10</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
+            <tr><td class="item-col">[B05] 飾品違規 <span class="desc-inline">(配戴飾品/手錶等)</span></td><td class="center-col penalty-text">-10</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
+            <tr><td class="item-col">[B06] 面膜違規 <span class="desc-inline">(透膚/未至下顎)</span></td><td class="center-col penalty-text">-10</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
+            <tr><td class="item-col">[B07] 隱私曝光違規</td><td class="center-col penalty-text">-10</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
+            <tr><td class="item-col">[B08] 按摩手技方向錯誤</td><td class="center-col penalty-text">-10</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
+            <tr><td class="item-col">[B09] 產品標示違規/過期</td><td class="center-col penalty-text">-2/項</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
+            <tr><td class="item-col">[B10] 服儀違規（考生）</td><td class="center-col penalty-text">-5</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
+            <tr><td class="item-col">[B11] 服儀違規（模特兒）</td><td class="center-col penalty-text">-5</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
+            <tr><td class="item-col">[B12] 包頭違規</td><td class="center-col penalty-text">-5</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
+            <tr><td class="item-col">[B13] 衛生違規 <span class="desc-inline">(手未消毒/沒口罩)</span></td><td class="center-col penalty-text">-5</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
+            <tr><td class="item-col">[B14] 垃圾袋/消毒袋違規</td><td class="center-col penalty-text">-5</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
+            <tr><td class="item-col">[B15] 桌面整潔違規</td><td class="center-col penalty-text">-5</td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td></tr>
             
             <tr class="total-row" style="background-color: #ffe3e3;">
-                <td colspan="2" style="text-align: right; color: var(--ipe-red);">
-                    (B) 違規扣分總計 <span style="font-size: 11px; font-weight: normal;">(請將上述扣分加總)</span>
-                </td>
-                <td class="write-area penalty-text">-</td>
-                <td class="write-area penalty-text">-</td>
-                <td class="write-area penalty-text">-</td>
-                <td class="write-area penalty-text">-</td>
-                <td class="write-area penalty-text">-</td>
-                <td class="write-area penalty-text">-</td>
+                <td colspan="2" style="text-align: right; color: var(--ipe-red);">(B) 違規扣分總計</td>
+                <td class="write-area penalty-text">-</td><td class="write-area penalty-text">-</td><td class="write-area penalty-text">-</td><td class="write-area penalty-text">-</td><td class="write-area penalty-text">-</td><td class="write-area penalty-text">-</td>
             </tr>
 
             <tr class="final-row">
                 <td colspan="2" style="text-align: right;">
-                    <strong style="font-size: 16px; color: var(--ipe-navy);">實得分數 (A - B)</strong><br>
-                    <span style="font-size: 11px; color: #7f8c8d;">※ 滿分 100，及格 60</span>
+                    <strong style="font-size: 15px; color: var(--ipe-navy);">最終實得分數 (A - B)</strong>
                 </td>
-                <td class="write-area"></td>
-                <td class="write-area"></td>
-                <td class="write-area"></td>
-                <td class="write-area"></td>
-                <td class="write-area"></td>
-                <td class="write-area"></td>
+                <td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td><td class="write-area"></td>
             </tr>
         </tbody>
     </table>
-
+    <div style="text-align: right; font-size: 11px; color: #7f8c8d; margin-top: 2px;">※ 及格標準：60分。由秘書處負責核算 7~12 號考生成績。</div>
 </div>
 
 </body>

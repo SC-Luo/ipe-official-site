@@ -3,9 +3,33 @@
 <div class="ipe-wrap">
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
+/* =========================================
+   防護牆與 SVG 優化 (1shop 專用)
+   ========================================= */
+[class^="fa-"], [class*=" fa-"], .fa, .fas, .far, .fab {
+    font-family: "FontAwesome", sans-serif !important; 
+}
+.shopping-cart, .member-link, .cart-icon, #cart {
+    font-family: sans-serif !important; 
+}
+.hero-icon svg { width: 45px; height: 45px; fill: #D8BE8A; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+.core-icon svg { width: 32px; height: 32px; fill: #B89A5F; transition: fill 0.4s ease; }
+.core-card:hover .core-icon svg { fill: #fff; }
+.action-icon svg { width: 36px; height: 36px; fill: #2C3E50; }
+.action-arrow svg { width: 18px; height: 18px; fill: #C6A96B; transition: transform 0.3s ease; }
+.action-box:hover .action-arrow svg { transform: translateX(5px); }
+
+@keyframes ipe-spinner-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.ipe-spinner svg {
+  width: 1.2em; height: 1.2em; animation: ipe-spinner-spin 1s linear infinite; vertical-align: -0.2em; margin-right: 8px; fill: currentColor;
+}
+.faculty-avatar-fallback svg { width: 40%; height: 40%; fill: #b0b8c2; }
+
 /* =========================================
    1. 基礎變數與佈局
    ========================================= */
@@ -153,8 +177,8 @@
     line-height: 1.6;
     text-align: left;
 }
-.spec-line i {
-    color: var(--ipe-gold);
+.spec-line svg {
+    color: var(--ipe-gold); fill: currentColor;
     margin-top: 5px;
     margin-right: 10px;
     font-size: 12px;
@@ -187,7 +211,7 @@
 
         <div id="dynamic-faculty-grid" class="faculty-grid">
             <div class="loading-status">
-                <i class="fas fa-spinner fa-spin"></i> 正在載入講師資料...
+                <span class="ipe-spinner"><svg class="ipe-spinner-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M222.7 32.1c5 16.9-4.6 34.8-21.5 39.8C121.8 95.6 64 169.1 64 256c0 106 86 192 192 192s192-86 192-192c0-86.9-57.8-160.4-137.2-184.1c-16.9-5-26.5-22.9-21.5-39.8s22.9-26.5 39.8-21.5C434.9 42.1 512 140 512 256c0 141.4-114.6 256-256 256S0 397.4 0 256C0 140 77.1 42.1 182.9 10.6c16.9-5 34.8 4.6 39.8 21.5z"/></svg></span> 正在載入講師資料...
             </div>
         </div>
 
@@ -235,6 +259,9 @@
 // ★ 執行抓取 API (含自動轉為金勾勾清單功能) ★
 // =========================================================================
 const API_URL = 'https://script.google.com/macros/s/AKfycbyjVBdE5mSRKTnQWgfjaclZkua9lvyqXFYSAGrpsDTsJQ76DuN-41-rtftHXu0oZyTZ/exec'; 
+const svgChalkboardTeacher = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="1em" height="1em"><path fill="currentColor" d="M160 64c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64V320c0 35.3-28.7 64-64 64H512v32h64c17.7 0 32 14.3 32 32s-14.3 32-32 32H320c-17.7 0-32-14.3-32-32s14.3-32 32-32h64V384H224c-35.3 0-64-28.7-64-64V64zM384 96a48 48 0 1 0 0 96 48 48 0 1 0 0-96zM128 256v64c0 35.3-28.7 64-64 64H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H200c-6.8-15.5-10.8-32.8-11.8-51.2H128V256zM80 208a48 48 0 1 1 0-96 48 48 0 1 1 0 96z"/></svg>';
+const svgCheckCircle = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>';
+const svgExclamationTriangle = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="1em" height="1em"><path fill="currentColor" d="M569.5 448H6.5C-2.2 448-5.8 439.8.9 432.5l280-416c4.5-6.7 14.5-6.7 19.1 0l280 416c6.7 7.3 3.1 15.5-5.6 15.5zM288 384c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm-16-96c0-8.8 7.2-16 16-16h0c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16h0c-8.8 0-16-7.2-16-16v-64z"/></svg>';
 
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('dynamic-faculty-grid');
@@ -253,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 處理照片
                 const avatarHtml = (item.photoUrl && item.photoUrl.trim() !== '') 
                     ? `<img src="${item.photoUrl}" alt="${item.name}">` 
-                    : `<div class="faculty-avatar-fallback"><i class="fas fa-chalkboard-teacher"></i></div>`;
+                    : `<div class="faculty-avatar-fallback">${svgChalkboardTeacher}</div>`;
 
                 // ★ 將經歷轉換為帶有 icon 的條列式清單 ★
                 let specialtyHtml = '';
@@ -261,11 +288,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     const lines = item.specialty.split('\n');
                     lines.forEach(line => {
                         if(line.trim() !== '') {
-                            specialtyHtml += `<div class="spec-line"><i class="fas fa-check-circle"></i><span>${line}</span></div>`;
+                            specialtyHtml += `<div class="spec-line">${svgCheckCircle}<span>${line}</span></div>`;
                         }
                     });
                 } else {
-                    specialtyHtml = `<div class="spec-line"><i class="fas fa-check-circle"></i><span>專業領域講師</span></div>`;
+                    specialtyHtml = `<div class="spec-line">${svgCheckCircle}<span>專業領域講師</span></div>`;
                 }
 
                 const cardHtml = `
@@ -287,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Error fetching faculty members:', error);
-            container.innerHTML = '<div class="loading-status" style="color:#e74c3c;"><i class="fas fa-exclamation-triangle"></i> 無法載入資料，請稍後再確認您的試算表與 API 設定。</div>';
+            container.innerHTML = `<div class="loading-status" style="color:#e74c3c;">${svgExclamationTriangle} 無法載入資料，請稍後再確認您的試算表與 API 設定。</div>`;
         });
 });
 </script>

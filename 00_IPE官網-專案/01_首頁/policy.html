@@ -3,9 +3,24 @@
 <div class="ipe-wrap">
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
+/* =========================================
+   防護牆與 SVG 優化 (1shop 專用)
+   ========================================= */
+[class^="fa-"], [class*=" fa-"], .fa, .fas, .far, .fab {
+    font-family: "FontAwesome", sans-serif !important; 
+}
+.shopping-cart, .member-link, .cart-icon, #cart {
+    font-family: sans-serif !important; 
+}
+.hero-icon svg { width: 45px; height: 45px; fill: #D8BE8A; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+.core-icon svg { width: 32px; height: 32px; fill: #B89A5F; transition: fill 0.4s ease; }
+.core-card:hover .core-icon svg { fill: #fff; }
+.action-icon svg { width: 36px; height: 36px; fill: #2C3E50; }
+.action-arrow svg { width: 18px; height: 18px; fill: #C6A96B; transition: transform 0.3s ease; }
+.action-box:hover .action-arrow svg { transform: translateX(5px); }
+
 /* =========================================
    1. 基礎變數與佈局
    ========================================= */
