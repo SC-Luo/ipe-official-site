@@ -2,7 +2,6 @@
 <div class="ipe-wrap">
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 /* =========================================
@@ -17,12 +16,18 @@
 }
 .ipe-wrap * { box-sizing: border-box; }
 
-.ipe-main-content { flex: 1; min-width: 320px; padding: 70px 50px; text-align: left; }
+.ipe-main-content { flex: 1; min-width: 320px; padding: 70px 50px; order: 1; text-align: left; }
+.ipe-side-console { flex: 0 0 300px; background: var(--ipe-bg); padding: 60px 25px; border-left: 1px solid #E6EAF0; order: 2; text-align: center; }
 
 .ipe-wrap h2, .ipe-wrap h3, .ipe-wrap h4 { font-family: 'Noto Serif TC', serif !important; font-weight: 900 !important; letter-spacing: 0.05em; }
 .section-label { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 13px; letter-spacing: 3px; color: var(--ipe-gold); text-transform: uppercase; margin-bottom: 20px; display: block; border-bottom: 1px solid #E6EAF0; padding-bottom: 10px; }
 .ipe-chapter-title { font-size: 34px; color: #111111; margin: 0 0 15px 0; line-height: 1.4; }
 .chapter-subtitle { font-size: 16px; color: var(--ipe-gray); margin-bottom: 40px; line-height: 1.6;}
+
+.ipe-side-label { font-size: 11px; color: #CBD5E0; letter-spacing: 4px; display: block; margin-top: 35px; }
+.ipe-sub-nav-list { list-style: none; padding: 0; margin: 0; }
+.ipe-nav-item a { display: block; padding: 10px 0; color: var(--ipe-gray); text-decoration: none; font-size: 16px; transition: all 0.3s; }
+.ipe-nav-item a:hover, .ipe-active-page a { color: var(--ipe-gold); font-weight: 600; }
 
 /* =========================================
    2. 查詢區塊佈局 (雙欄)
@@ -80,7 +85,11 @@
 /* 手機版 RWD */
 @media (max-width: 992px) {
     .ipe-wrap { flex-direction: column; width: 100%; }
-    .ipe-main-content { padding: 40px 20px; }
+    .ipe-main-content { order: 1; width: 100%; padding: 50px 20px; box-sizing: border-box; }
+    .ipe-side-console { 
+        order: 2; flex: none; width: 100%; max-width: 100%; box-sizing: border-box;
+        border-left: none; border-top: 1px solid #E6EAF0; padding: 50px 20px; 
+    }
     .query-layout { grid-template-columns: 1fr; gap: 20px; }
     .profile-header { flex-direction: column; text-align: center; gap: 15px; }
 }
@@ -135,6 +144,43 @@
             </div>
     </div>
 </main>
+
+<aside class="ipe-side-console">
+    <span class="ipe-side-label">News</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">最新消息</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/news">公告總覽</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Certification</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">檢定與證照</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-system">檢定體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/cert-item">檢定項目</a></li>
+        <li class="ipe-nav-item ipe-active-page"><a href="https://ipe.1shop-app.com/exam-reg">證照報名</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/exam-result">成績查詢</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Faculty</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">講師與教育</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/faculty">講師團隊</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/edu-system">講師體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/trainer">評審體系</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/apply-teacher">講師申請</a></li>
+    </ul>
+
+    <span class="ipe-side-label">Corporate</span>
+    <div class="ipe-chapter-title" style="font-size: 20px; margin: 15px 0;">關於 IPE</div>
+    <ul class="ipe-sub-nav-list">
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/about">協會介紹</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/organization">組織架構</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/board">理監事</a></li>
+        <li class="ipe-nav-item"><a href="https://ipe.1shop-app.com/contact">聯絡我們</a></li>
+    </ul>
+
+</aside>
+
 
 <script>
 document.getElementById('scoreQueryForm').addEventListener('submit', function(e) {

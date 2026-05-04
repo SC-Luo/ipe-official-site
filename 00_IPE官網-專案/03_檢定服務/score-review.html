@@ -3,7 +3,6 @@
 <div class="ipe-wrap">
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 .ipe-wrap {
@@ -284,46 +283,4 @@ window.onload = function() {
     if(subject) document.getElementById('auto_subject').value = subject;
     if(date) document.getElementById('auto_date').value = date;
 };
-
-document.getElementById('reviewForm').addEventListener('submit', function(e) {
-    e.preventDefault(); 
-    
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbx_fFPiCCBCtbAGwzpGdHQiMz_iRlO4_0oT-UVbMZIo6lRWbWlXav5OT50HncctqPut/exec'; 
-    
-    const form = document.getElementById('reviewForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const btnText = document.getElementById('btn-text');
-    const statusDiv = document.getElementById('form-status');
-
-    if(scriptURL === '請貼上你的_Google_Apps_Script_網址'){
-        alert('請先在程式碼最下方填入您的 Google Apps Script 網址！'); return;
-    }
-
-    submitBtn.disabled = true; 
-    btnText.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i> 資料加密傳送中...';
-    statusDiv.style.display = 'none';
-
-    const formData = new FormData(form);
-
-    fetch(scriptURL, { method: 'POST', body: formData })
-        .then(() => {
-            statusDiv.style.display = 'block';
-            statusDiv.style.backgroundColor = 'rgba(39, 174, 96, 0.15)';
-            statusDiv.style.color = '#2ecc71';
-            statusDiv.style.border = '1px solid #2ecc71';
-            statusDiv.innerHTML = '<i class="fas fa-check-circle" style="margin-right: 5px;"></i> 複查申請已成功送出！行政人員對帳無誤後將進入作業流程。';
-            form.reset(); 
-        })
-        .catch(error => {
-            statusDiv.style.display = 'block';
-            statusDiv.style.backgroundColor = 'rgba(231, 76, 60, 0.15)';
-            statusDiv.style.color = '#e74c3c';
-            statusDiv.style.border = '1px solid #e74c3c';
-            statusDiv.innerHTML = '<i class="fas fa-exclamation-triangle" style="margin-right: 5px;"></i> 傳送失敗，請稍後再試或透過官方 LINE 聯繫我們。';
-        })
-        .finally(() => {
-            submitBtn.disabled = false; 
-            btnText.innerHTML = '<i class="fas fa-paper-plane" style="margin-right: 8px;"></i> 確認送出並同意規範';
-        });
-});
 </script>

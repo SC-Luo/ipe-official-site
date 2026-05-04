@@ -1,9 +1,14 @@
 <div class="ipe-print-wrap">
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
+/* =========================================
+   防護牆與 SVG 優化 (1shop 專用)
+   ========================================= */
+[class^="fa-"], [class*=" fa-"], .fa, .fas, .far, .fab {
+    font-family: "FontAwesome", sans-serif !important; 
+}
 /* =========================================
    A4 列印友善版面設定
    ========================================= */
@@ -18,6 +23,10 @@
     background: #fff;
     padding: 40px;
     box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+.ipe-btn-print svg {
+    width: 1.1em; height: 1.1em;
+    fill: currentColor;
 }
 
 /* =========================================
@@ -80,8 +89,9 @@
     display: flex;
     align-items: center;
 }
-.tool-category h3 i {
-    color: var(--ipe-gold);
+.tool-category h3 svg {
+    fill: var(--ipe-gold);
+    width: 1em; height: 1em;
     margin-right: 10px;
 }
 
@@ -169,7 +179,7 @@
 </style>
 
     <button class="ipe-btn-print" onclick="window.print()">
-        <i class="fas fa-print"></i> 列印本頁
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V73.4c0-17-6.7-33.3-18.7-45.3L400 6.3C388-5.7 371.7-12.4 354.7-12.4H128zM512 288c0-61.9-50.1-112-112-112H112C50.1 176 0 226.1 0 288v144h64v-64h384v64h64V288zM432 272c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16-7.2 16-16 16zM384 416H128v96h256v-96z"/></svg> 列印本頁
     </button>
 
     <div class="print-header">
@@ -178,7 +188,7 @@
     </div>
 
     <div class="tool-category">
-        <h3><i class="fas fa-user-shield"></i> 服裝與防護類</h3>
+        <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H322.8c-3.1-8.8-3.7-18.4-1.4-27.8l15-60.1c2.8-11.3 8.6-21.5 16.8-29.7l40.3-40.3c-32.1-31-75.7-50.1-123.9-50.1H178.3zm435.5-68.3c-15.6-5-31.8-8.2-48.4-9.6L542.4 171c-4.7-23.6-25-41.2-49.2-41.2c-15.1 0-29.2 6.7-38.6 18.2l-21.5 25.8c-3.5 4.2-8.5 6.8-13.9 7.2l-33.3 2.5c-20.9 1.6-38.3 17.5-41.3 38.2L340.5 254c-1.5 10.7 1.8 21.6 8.9 29.8l20.4 23.5c6.3 7.3 15.5 11.2 25.2 10.9l32.1-1c10.4-.3 20.3 3.6 27.6 10.9L491 364.5c10.8 10.8 13.9 27.2 7.7 41.3l-10.7 24.1c-4.8 10.8-2.6 23.5 5.5 32c12.3 12.9 31.9 14.1 46.2 3.3l11.1-8.4c17.5-13.3 28.5-33.8 30.1-55.8L590.2 278c1.3-15.6-7-30.6-21.3-37.3l-45.1-20.7z"/></svg> 服裝與防護類</h3>
         <div class="checklist-grid">
             <div class="check-item"><div class="check-box"></div><span class="item-name">工作服 (白色)</span><span class="item-qty">1 件</span></div>
             <div class="check-item"><div class="check-box"></div><span class="item-name">平口美容衣</span><span class="item-qty">1 件</span></div>
@@ -189,7 +199,7 @@
     </div>
 
     <div class="tool-category">
-        <h3><i class="fas fa-scroll"></i>布巾與耗材類</h3>
+        <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M0 64C0 28.7 28.7 0 64 0h96V416H64c-35.3 0-64-28.7-64-64V64zM224 416V0H384c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H224zm224 64H160c-17.7 0-32-14.3-32-32s14.3-32 32-32H448c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg> 布巾與耗材類</h3>
         <div class="checklist-grid">
             <div class="check-item"><div class="check-box"></div><span class="item-name">鋪床巾 <span class="highlight">(奶茶色)</span></span><span class="item-qty">2 條</span></div>
             <div class="check-item"><div class="check-box"></div><span class="item-name">小毛巾 <span class="highlight">(奶茶色)</span></span><span class="item-qty">6 條</span></div>
@@ -201,7 +211,7 @@
     </div>
 
     <div class="tool-category">
-        <h3><i class="fas fa-toolbox"></i>專業工具與設備類</h3>
+        <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M160 64c0-17.7 14.3-32 32-32h128c17.7 0 32 14.3 32 32v32h-192V64zm-64 32v-32C96 28.7 124.7 0 160 0h192c35.3 0 64 28.7 64 64v32h80c17.7 0 32 14.3 32 32v128H0V128c0-17.7 14.3-32 32-32h64zM0 320h512v128c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320zM256 160c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32h96c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32h-96z"/></svg> 專業工具與設備類</h3>
         <div class="checklist-grid">
             <div class="check-item"><div class="check-box"></div><span class="item-name">檯燈 </span><span class="item-qty">1 座</span></div>
             
@@ -221,7 +231,7 @@
     </div>
 
     <div class="tool-category">
-        <h3><i class="fas fa-pump-soap"></i> 保養品類 (須為合格產品)</h3>
+        <h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 64H112c-17.7 0-32-14.3-32-32s14.3-32 32-32h144c53 0 96 43 96 96v83.5c0 12.2-6.5 23.3-17.1 29.3L304 226V160c0-17.7-14.3-32-32-32zM128 224h256c35.3 0 64 28.7 64 64v160c0 35.3-28.7 64-64 64H128c-35.3 0-64-28.7-64-64V288c0-35.3 28.7-64 64-64zm128 160a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg> 保養品類 (須為合格產品)</h3>
         <div class="checklist-grid">
             <div class="check-item"><div class="check-box"></div><span class="item-name">卸眼唇液</span><span class="item-qty">1 瓶</span></div>
             <div class="check-item"><div class="check-box"></div><span class="item-name">卸妝乳</span><span class="item-qty">1 瓶</span></div>
