@@ -4,17 +4,17 @@
   <div class="slide-v1-1shop-main">
     <div>
       <a href="https://ipe.1shop-app.com/products/ipe-skincare-level">
-        <img src="https://img.1shop.tw/k3xVqyrnXN2J741NBZKbomdG/5yxD7ZmWlk16k8rbYXgBqvRQ/original.png" alt="皮膚管理檢" style="width:100%; display:block;">
+        <img src="https://img.1shop.tw/k3xVqyrnXN2J741NBZKbomdG/o4a0bwXWNWb4A2KGlGgE1yzv/original.png" alt="皮膚管理檢" style="width:100%; display:block;">
       </a>
     </div>
     <div>
       <a href="https://ipe.1shop-app.com/products/ipe-beautybody-level">
-        <img src="https://img.1shop.tw/k3xVqyrnXN2J741NBZKbomdG/Xno5Qb1D3MVgyPoGl67ZWPv9/original.png" alt="芳香美體檢定" style="width:100%; display:block;">
+        <img src="https://img.1shop.tw/k3xVqyrnXN2J741NBZKbomdG/wx1WRpGD38JoLknWNJnad4eb/original.png" alt="芳香美體檢定" style="width:100%; display:block;">
       </a>
     </div>
     <div>
       <a href="https://ipe.1shop-app.com/products/ipe-waxing-level">
-        <img src="https://img.1shop.tw/k3xVqyrnXN2J741NBZKbomdG/g9M05D783DyAPR9RlRoA6Z1W/original.png" alt="熱蠟美肌檢定" style="width:100%; display:block;">
+        <img src="https://img.1shop.tw/k3xVqyrnXN2J741NBZKbomdG/ZOaL8DPWY6LRWkQVl92ExyG0/original.png" alt="熱蠟美肌檢定" style="width:100%; display:block;">
       </a>
     </div>
   </div>
@@ -56,7 +56,7 @@
 
 <style>
 /* =========================================
-   1. 基礎變數與佈局 (極致無邊界融合)
+   1. 基礎變數與佈局 (無邊界融合 - 完全透明化)
    ========================================= */
 .ipe-wrap {
     --ipe-gold: #C6A96B;
@@ -64,32 +64,40 @@
     --ipe-gold-dark: #B89A5F;
     --ipe-navy: #2C3E50;
     --ipe-gray: #5F6B7A;
-    --ipe-text-main: #334155; /* 更具質感的深石板灰 */
     
     font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-    color: var(--ipe-text-main);
+    color: var(--ipe-gray);
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     flex-direction: row; 
+    
+    /* 關鍵修改：將外框背景完全透明化，移除所有陰影與邊界，直接融入 1shop 底色 */
     background: transparent; 
     box-shadow: none;
     border: none;
     box-sizing: border-box;
-    -webkit-font-smoothing: antialiased; /* 讓字體邊緣更平滑銳利 */
 }
 .ipe-wrap * { box-sizing: border-box; }
 
+/* 調整內距，讓內容與側邊欄有適當呼吸空間 */
 .ipe-main-content { 
     flex: 1; 
     min-width: 320px; 
-    padding: 10px 50px 60px 0; 
+    padding: 20px 40px 60px 0; /* 右側留白，與側邊欄拉開距離 */
     order: 1; 
     text-align: left; 
 }
 
-.ipe-side-console { flex: 0 0 300px; background: var(--ipe-bg); padding: 60px 25px; border-left: 1px solid #E6EAF0; order: 2; text-align: center; }
-
+/* 側邊欄透明化，文字直接浮在 1shop 底色上 */
+.ipe-side-console { 
+    flex: 0 0 260px; 
+    padding: 20px 20px 60px 20px; 
+    order: 2; 
+    text-align: center; 
+    background: transparent; /* 完全透明 */
+    border-left: none; /* 移除生硬的分隔線 */
+}
 
 /* =========================================
    2. 共用明體標題與側邊欄細節
@@ -97,106 +105,108 @@
 .ipe-wrap h1, .ipe-wrap .ipe-chapter-title {
     font-family: 'Noto Serif TC', serif !important; font-weight: 900 !important; letter-spacing: 0.05em;
 }
-.ipe-side-label { font-size: 11px; color: #CBD5E0; letter-spacing: 4px; display: block; margin-top: 35px; }
+.ipe-side-label { font-size: 11px; color: #A0AEC0; letter-spacing: 4px; display: block; margin-top: 35px; }
 .ipe-sub-nav-list { list-style: none; padding: 0; margin: 0; }
-.ipe-nav-item a { display: block; padding: 10px 0; color: var(--ipe-gray); text-decoration: none; font-size: 16px; transition: all 0.3s; }
-.ipe-nav-item a:hover, .ipe-active-page a { color: var(--ipe-gold); font-weight: 600; }
+.ipe-nav-item a { 
+    display: block; 
+    padding: 10px 0; 
+    color: var(--ipe-gray); 
+    text-decoration: none; 
+    font-size: 16px; 
+    transition: all 0.3s ease; 
+    border-radius: 8px;
+}
+.ipe-nav-item a:hover { 
+    color: var(--ipe-gold); 
+    background: rgba(255,255,255,0.7); /* 輕微的白底反饋，營造高級感 */
+    font-weight: 600; 
+    transform: translateX(5px); 
+}
 
 /* =========================================
-   3. 首頁專屬樣式 (質感提升)
+   3. 首頁專屬樣式 (Portal Design)
    ========================================= */
-/* Hero 區塊：加入深邃放射光源 */
+/* Hero 區塊 (維持深藍質感，作為視覺重心) */
 .home-hero {
-    background: radial-gradient(circle at 70% 30%, #3a5068 0%, #1a252f 70%, #111820 100%);
+    background: linear-gradient(135deg, rgba(44, 62, 80, 0.98) 0%, rgba(26, 37, 47, 1) 100%);
     color: #fff;
-    padding: 80px 50px;
-    border-radius: 24px;
+    padding: 70px 40px;
+    border-radius: 20px;
     text-align: center;
-    margin-bottom: 70px;
+    margin-bottom: 60px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(17, 24, 32, 0.15); 
-    border: 1px solid rgba(255, 255, 255, 0.05); /* 極細微的高光邊 */
+    box-shadow: 0 15px 35px rgba(44, 62, 80, 0.15); /* 柔和陰影 */
 }
 .home-hero::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-    background: linear-gradient(90deg, var(--ipe-gold-light) 0%, var(--ipe-gold-dark) 50%, var(--ipe-gold-light) 100%);
+    background: linear-gradient(to right, var(--ipe-gold-dark), var(--ipe-gold-light));
 }
-.hero-icon { margin-bottom: 25px; display: flex; justify-content: center; position: relative; z-index: 1;}
-.hero-icon::after {
-    /* 圖示背後的微弱金光 */
-    content: ''; position: absolute; width: 60px; height: 60px; 
-    background: var(--ipe-gold); filter: blur(30px); opacity: 0.2; z-index: -1;
-}
-.hero-title { font-family: 'Noto Serif TC', serif; font-size: 38px; font-weight: 900; letter-spacing: 0.08em; margin: 0 0 12px 0; color: #fff; text-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-.hero-subtitle { font-size: 13px; color: var(--ipe-gold-light); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 30px; opacity: 0.9;}
-.hero-desc { font-size: 16px; color: rgba(255,255,255,0.75); line-height: 1.9; max-width: 680px; margin: 0 auto; letter-spacing: 0.03em;}
+.hero-icon { margin-bottom: 20px; display: flex; justify-content: center; }
+.hero-title { font-family: 'Noto Serif TC', serif; font-size: 36px; font-weight: 900; letter-spacing: 2px; margin: 0 0 10px 0; color: #fff; }
+.hero-subtitle { font-size: 14px; color: var(--ipe-gold-light); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 25px; }
+.hero-desc { font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.8; max-width: 700px; margin: 0 auto; }
 
 /* 核心業務導航網格 */
-.home-section-title { text-align: center; font-family: 'Noto Serif TC', serif; font-size: 26px; color: var(--ipe-navy); margin: 0 0 50px 0; letter-spacing: 0.05em;}
-.home-section-title::after { content: ''; display: block; width: 40px; height: 2px; background: var(--ipe-gold); margin: 20px auto 0 auto; border-radius: 2px;}
-.core-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 70px; }
+.home-section-title { text-align: center; font-family: 'Noto Serif TC', serif; font-size: 28px; color: var(--ipe-navy); margin: 0 0 40px 0; position: relative; }
+.home-section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--ipe-gold); margin: 15px auto 0 auto; border-radius: 2px;}
+.core-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 60px; }
 
-/* 核心卡片：立體感與微懸浮 */
+/* 核心服務卡片 - 純白底色，靠陰影與 1shop 灰底區分 */
 .core-card {
-    display: block; text-decoration: none; text-align: center; 
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative; overflow: hidden; padding: 45px 30px;
-    background: #ffffff; 
-    border: 1px solid rgba(0,0,0,0.03); /* 確保在任何底色上都有乾淨的收邊 */
-    border-radius: 20px;
-    box-shadow: 0 8px 24px rgba(149, 157, 165, 0.08); /* 乾淨、擴散的現代陰影 */
+    display: block; text-decoration: none; text-align: center; transition: all 0.4s ease;
+    position: relative; overflow: hidden; padding: 40px 25px;
+    background: #ffffff; /* 純白背景 */
+    border: none; /* 移除邊框 */
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03); /* 極淡的瀰散陰影 */
 }
 .core-card:hover { 
-    transform: translateY(-6px) scale(1.02); /* 向上浮起並微距放大 */
-    box-shadow: 0 20px 40px rgba(198, 169, 107, 0.1); 
-    border-color: rgba(198, 169, 107, 0.3);
+    transform: translateY(-8px); 
+    box-shadow: 0 15px 35px rgba(198, 169, 107, 0.12); /* hover 時帶出一點金色光暈 */
 }
-.core-card::before { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background: var(--ipe-gold); transition: all 0.4s ease; }
-.core-card:hover::before { width: 100%; }
+.core-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: transparent; transition: all 0.4s ease; }
+.core-card:hover::before { background: var(--ipe-gold); }
 
 .core-icon {
-    width: 70px; height: 70px; background: rgba(198, 169, 107, 0.06); border-radius: 18px; /* 圓角矩形比正圓形更有現代科技感 */
-    display: flex; justify-content: center; align-items: center; margin: 0 auto 25px auto;
+    width: 80px; height: 80px; background: rgba(198, 169, 107, 0.05); border-radius: 50%;
+    display: flex; justify-content: center; align-items: center; margin: 0 auto 20px auto;
     transition: all 0.4s ease;
 }
-.core-card:hover .core-icon { background: var(--ipe-gold); transform: rotate(-5deg); } /* 加入極輕微的傾斜，增加活力 */
-.core-card h3 { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ipe-navy); margin: 0 0 12px 0; }
-.core-card p { font-size: 14px; color: #64748B; margin: 0; line-height: 1.7; }
+.core-card:hover .core-icon { background: var(--ipe-gold); }
+.core-card h3 { font-family: 'Noto Serif TC', serif; font-size: 22px; color: var(--ipe-navy); margin: 0 0 10px 0; }
+.core-card p { font-size: 14px; color: #666; margin: 0; line-height: 1.6; }
 
 /* 快速查詢區塊 */
-.action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
 
 /* 快速查詢卡片 */
 .action-box {
-    display: flex; align-items: center; gap: 24px; text-decoration: none; padding: 35px;
+    display: flex; align-items: center; gap: 20px; transition: all 0.3s ease; text-decoration: none; padding: 30px;
     background: #ffffff; 
-    border: 1px solid rgba(226, 232, 240, 0.8); 
-    border-radius: 20px; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(203, 213, 224, 0.6); /* 保留一點點微弱邊框 */
+    border-radius: 16px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
 }
 .action-box:hover { 
     border-color: var(--ipe-gold-light); 
-    box-shadow: 0 15px 30px rgba(44, 62, 80, 0.06); 
-    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+    transform: translateY(-3px);
 }
 .action-icon { display: flex; align-items: center; }
-.action-text h4 { font-family: 'Noto Serif TC', serif; font-size: 19px; color: var(--ipe-navy); margin: 0 0 6px 0; transition: color 0.3s ease;}
-.action-box:hover .action-text h4 { color: var(--ipe-gold-dark); }
-.action-text p { font-size: 13px; color: #64748B; margin: 0; }
-.action-arrow { margin-left: auto; display: flex; align-items: center; width: 32px; height: 32px; border-radius: 50%; background: #F8FAFC; justify-content: center; transition: all 0.3s ease;}
-.action-box:hover .action-arrow { background: var(--ipe-gold); }
+.action-text h4 { font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--ipe-navy); margin: 0 0 5px 0; }
+.action-text p { font-size: 13px; color: #666; margin: 0; }
+.action-arrow { margin-left: auto; display: flex; align-items: center; }
 
 /* =========================================
    SVG 圖示專屬優化樣式
    ========================================= */
-.hero-icon svg { width: 42px; height: 42px; fill: var(--ipe-gold-light); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
-.core-icon svg { width: 30px; height: 30px; fill: var(--ipe-gold-dark); transition: all 0.4s ease; }
-.core-card:hover .core-icon svg { fill: #fff; transform: scale(1.1); }
-.action-icon svg { width: 34px; height: 34px; fill: var(--ipe-navy); }
-.action-arrow svg { width: 14px; height: 14px; fill: var(--ipe-gold); transition: all 0.3s ease; }
-.action-box:hover .action-arrow svg { fill: #fff; transform: translateX(2px); }
+.hero-icon svg { width: 45px; height: 45px; fill: var(--ipe-gold-light); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+.core-icon svg { width: 32px; height: 32px; fill: var(--ipe-gold-dark); transition: fill 0.4s ease; }
+.core-card:hover .core-icon svg { fill: #fff; }
+.action-icon svg { width: 36px; height: 36px; fill: var(--ipe-navy); }
+.action-arrow svg { width: 18px; height: 18px; fill: var(--ipe-gold); transition: transform 0.3s ease; }
+.action-box:hover .action-arrow svg { transform: translateX(5px); }
 
 /* =========================================
    4. RWD 手機版
@@ -205,15 +215,16 @@
     .ipe-wrap { flex-direction: column; width: 100%; }
     .ipe-main-content { order: 1; width: 100%; padding: 20px 20px 40px 20px; }
     .ipe-side-console { 
-        order: 2; flex: none; width: 100%; max-width: 100%; box-sizing: border-box;
-        border-left: none; border-top: 1px solid #E6EAF0; padding: 50px 20px; 
+        order: 2; flex: none; width: 100%; 
+        padding: 40px 20px; 
+        /* 手機版可以稍微給一點白底，區隔上下方塊 */
+        background: rgba(255,255,255,0.5);
     }
-    .hero-title { font-size: 26px; }
+    .hero-title { font-size: 28px; }
     .core-grid { grid-template-columns: 1fr; gap: 20px; }
     .action-grid { grid-template-columns: 1fr; gap: 20px; }
 }
-</style>
-<main class="ipe-main-content">
+</style><main class="ipe-main-content">
     
     <div class="home-hero">
         <div class="hero-icon">

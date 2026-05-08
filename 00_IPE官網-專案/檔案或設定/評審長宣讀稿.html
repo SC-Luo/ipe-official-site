@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPE 評審長宣讀稿 (通用公版)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F8F9FA;
+            --text-main: #2C3E50;
+            --text-light: #596A7A;
+            --ipe-navy: #1A252C;
+            --ipe-gold: #C6A96B;
+            --accent-red: #C0392B;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            padding: 40px 20px;
+            margin: 0;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            padding: 40px 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--ipe-navy);
+            font-family: 'Noto Serif TC', serif;
+            font-size: 28px;
+            letter-spacing: 2px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(198, 169, 107, 0.4);
+            position: relative;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--ipe-gold);
+        }
+
+        /* --- 視覺化流程圖樣式 --- */
+        .flowchart-container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            background: #FFFFFF;
+            padding: 30px 20px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            border: 1px solid #EEEEEE;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            position: relative;
+        }
+
+        /* 串連節點的暗金橫線 */
+        .flowchart-container::before {
+            content: "";
+            position: absolute;
+            top: 52px; /* 對齊圓形圖示的中心 */
+            left: 12%;
+            right: 12%;
+            height: 2px;
+            background-color: rgba(198, 169, 107, 0.3);
+            z-index: 1;
+        }
+
+        .flow-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            width: 25%;
+        }
+
+        .step-icon {
+            width: 46px;
+            height: 46px;
+            background-color: var(--ipe-navy);
+            border: 2px solid var(--ipe-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ipe-gold);
+            font-family: 'Noto Serif TC', serif;
+            font-weight: 900;
+            font-size: 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 0 0 6px #FFFFFF; /* 用白色外框切斷背後的橫線，營造通透感 */
+        }
+
+        .step-label {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--ipe-navy);
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .step-sub {
+            font-size: 12px;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+        /* -------------------------- */
+
+        .section {
+            margin-bottom: 35px;
+            padding: 25px 30px;
+            border: 1px solid #EEEEEE;
+            border-left: 4px solid var(--ipe-gold);
+            background-color: #FFFFFF;
+            border-radius: 0 6px 6px 0;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-color: #E0E0E0;
+        }
+
+        .section-title {
+            color: var(--ipe-navy);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 1px;
+        }
+
+        .section-title::before {
+            content: "◆";
+            color: var(--ipe-gold);
+            margin-right: 12px;
+            font-size: 16px;
+        }
+
+        .speech-text {
+            font-size: 18px;
+            color: var(--text-light);
+            text-align: justify;
+        }
+
+        .speech-text ol {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 25px;
+        }
+
+        .speech-text li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+
+        .bold-dark {
+            color: var(--ipe-navy);
+            font-weight: 700;
+        }
+
+        .note {
+            display: inline-block;
+            font-size: 14px;
+            color: #888888;
+            background: #F4F6F7;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border-left: 3px solid #D5DBDB;
+            margin-top: 15px;
+            font-style: normal;
+        }
+
+        @media print {
+            body { background-color: #FFF; padding: 0; }
+            .container { box-shadow: none; padding: 10px 20px; max-width: 100%; }
+            .flowchart-container { box-shadow: none; border: 1px solid #DDD; padding: 20px 10px; margin-bottom: 25px; }
+            .section { page-break-inside: avoid; border: 1px solid #DDD; }
+            .note { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>IPE ［檢定名稱］檢定考試 <br>評審長宣讀稿</h1>
+
+    <!-- 視覺化流程圖區塊 -->
+    <div class="flowchart-container">
+        <div class="flow-step">
+            <div class="step-icon">1</div>
+            <div class="step-label">開場宣導</div>
+            <div class="step-sub">關閉手機 / 紀律</div>
+        </div>
+        <div class="flow-step">
+            <div class="step-icon">2</div>
+            <div class="step-label">學科測驗</div>
+            <div class="step-sub">時間規範 / 筆試</div>
+        </div>
+        <div class="flow-step">
+            <div class="step-icon">3</div>
+            <div class="step-label">術科測驗</div>
+            <div class="step-sub">聽從指令 / 分段計時</div>
+        </div>
+        <div class="flow-step">
+            <div class="step-icon">4</div>
+            <div class="step-label">測驗結束</div>
+            <div class="step-sub">善後復原 / 離場</div>
+        </div>
+        
+    </div>
+    <!-- 視覺化流程圖區塊結束 -->
+
+    <!-- 第一階段 -->
+    <div class="section">
+        <div class="section-title">第一階段：開場與手機違規宣導</div>
+        <div class="speech-text">
+            「各位考生、模特兒您好，IPE 技能檢定即將開始。<br><br>
+            <span class="highlight">【重大違規提醒】</span> 請所有人現在將手機<span class="bold-dark">完全關機</span>。考場內全程嚴禁拍照錄影。考試進行中，若手機響起或發出震動，評審將立刻請您停止操作並離場，<span class="highlight">該項成績直接扣 100 分</span>。請務必再次確認。」
+        </div>
+    </div>
+
+    <!-- 第二階段 -->
+    <div class="section">
+        <div class="section-title">第二階段：學科測驗</div>
+        <div class="speech-text">
+            「現在進行學科測驗：
+            <ol>
+                <li>測驗開始 <span class="bold-dark">5 分鐘後禁止進場</span>，遲到視同缺考，學科以零分計。</li>
+                <li>試卷上嚴禁寫名字或做任何記號，違者零分。</li>
+                <li>限用<span class="bold-dark">不可擦拭的原子筆</span>作答，可使用修正帶。</li>
+                <li>嚴禁交談與作弊，違規者雙方學科均以零分計。</li>
+            </ol>
+            請將桌面淨空。學科測驗，開始！」
+        </div>
+    </div>
+
+    <!-- 第三階段 -->
+    <div class="section">
+        <div class="section-title">第三階段：術科測驗前</div>
+        <div class="speech-text">
+            「學科收卷完畢。接下來進行術科檢定，請注意以下大原則：
+            <ol>
+                <li><span class="bold-dark">遵守簡章規範：</span> 各項服裝儀容、衛生標準與違規扣分項目，皆已明定於檢定簡章中，請各位嚴格遵守。</li>
+                <li><span class="bold-dark">安全與衛生第一：</span> 本測驗純屬美容保養技術操作，請隨時注意模特兒的感受與安全，切勿執行任何超出規範之行為。若造成模特兒受傷將予以重扣。</li>
+                <li><span class="bold-dark">絕對服從指令：</span> 各階段流程（包含最後的善後工作）請務必聽從評審長的『開始』與『停手』指令操作。評審委員將在場內巡視評分，請保持平常心。</li>
+            </ol>
+            現在，術科『第一階段 <span style="font-size: 15px; color:#888;">(依現場科目代換)</span> 』，開始！」
+        </div>
+        <div class="note">※ 提示：後續各階段只需宣讀「下一階段為 OOO，開始！」與「時間到，請停手」即可。</div>
+    </div>
+
+    <!-- 第四階段 -->
+    <div class="section">
+        <div class="section-title">第四階段：測驗結束與離場</div>
+        <div class="speech-text">
+            「時間到，請全體立刻停手。<br><br>
+            本次 IPE 技能檢定所有測驗項目到此全部結束。請各位考生與模特兒確認隨身物品、個人證件是否帶齊。感謝各位今天的參與及配合，現在請安靜離開考場。祝各位考試順利通過！」
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
