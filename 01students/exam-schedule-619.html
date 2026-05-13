@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>IPE 6/19 個人考試流程</title>
+<meta name="description" content="IPE 檢定協會 6/19 第一場學生考試個人流程，依查詢結果顯示對應組別。"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="exam-619.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="ipe-exam-wrap">
+<header class="exam-hero">
+  <div class="hero-label"><i class="fas fa-calendar-check"></i> IPE Certification Exam</div>
+  <h1 class="exam-title">6/19 第一場學生考試<br/>個人流程</h1>
+  <p class="exam-subtitle" id="scheduleSubtitle">請先完成姓名查詢，再查看自己的考試流程。</p>
+</header>
+<main class="exam-content">
+  <div class="top-actions">
+    <a class="action-link" href="index.html"><i class="fas fa-home"></i>返回學生專區首頁</a>
+    <a class="action-link primary" href="exam-groups-619.html"><i class="fas fa-magnifying-glass"></i>重新查詢姓名</a>
+  </div>
+  <section id="needLookup" class="notice-card private-notice">
+    <strong>請先查詢姓名：</strong>為避免學員看到其他人的考試狀態，此流程頁需由姓名查詢結果進入。
+    <a class="schedule-jump inline-jump" href="exam-groups-619.html"><i class="fas fa-magnifying-glass"></i> 前往姓名查詢</a>
+  </section>
+  <section id="schedulePanel" class="group-section private-schedule" hidden>
+    <div class="group-header">
+      <h2 class="group-title" id="scheduleTitle"></h2>
+      <div class="group-track"><i class="fas fa-route" style="color: var(--ipe-gold); margin-top: 3px;"></i>僅顯示各科目開始與結束時間</div>
+    </div>
+    <div class="timeline simplified-timeline" id="timeline"></div>
+  </section>
+</main>
+<footer class="footer-note">IPE 檢定協會｜6/19 第一場學生考試資訊</footer>
+</div>
+<button class="back-to-top" id="backToTop" title="回到頂部"><i class="fas fa-arrow-up"></i></button>
+<script>
+const schedules = {"A": [{"start": "09:00", "end": "11:00", "subject": "熱蠟初級A4"}, {"start": "11:50", "end": "14:00", "subject": "美體初級A3"}, {"start": "14:20", "end": "16:10", "subject": "美容初級A2"}], "B": [{"start": "08:50", "end": "11:00", "subject": "美體初級A3"}, {"start": "11:50", "end": "13:40", "subject": "美容初級A2"}, {"start": "14:00", "end": "16:00", "subject": "熱蠟初級A4"}], "C": [{"start": "09:00", "end": "10:50", "subject": "美容初級A2"}, {"start": "11:40", "end": "13:40", "subject": "熱蠟初級A4"}, {"start": "14:00", "end": "16:10", "subject": "美體初級A3"}]};
+const params = new URLSearchParams(window.location.search);
+const group = (params.get('group') || '').replace('組','').toUpperCase();
+const name = params.get('name') || '';
+const needLookup = document.getElementById('needLookup');
+const panel = document.getElementById('schedulePanel');
+const title = document.getElementById('scheduleTitle');
+const subtitle = document.getElementById('scheduleSubtitle');
+const timeline = document.getElementById('timeline');
+if(schedules[group]) {
+  needLookup.hidden = true;
+  panel.hidden = false;
+  title.textContent = `${group}組考試流程`;
+  subtitle.textContent = name ? `${name}同學，以下為你所屬 ${group}組 的考試流程。` : `以下為 ${group}組 的考試流程。`;
+  timeline.innerHTML = schedules[group].map(item => `
+    <article class="timeline-card simplified-card">
+      <div class="time-box"><span class="start">${item.start}</span><span class="dash">至</span><span class="end">${item.end}</span></div>
+      <div class="event-body"><span class="subject-pill"><i class="fas fa-bookmark"></i>${item.subject}</span><h3 class="event-title">考試時段</h3></div>
+    </article>
+  `).join('');
+}
+const backToTopBtn=document.getElementById('backToTop');
+window.addEventListener('scroll',()=>{backToTopBtn.style.display=window.scrollY>300?'flex':'none';});
+backToTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

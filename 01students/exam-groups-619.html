@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>IPE 考試姓名查詢</title>
+<meta name="description" content="IPE 檢定協會 第一場學生考試姓名查詢，輸入姓名後查看個人組別並前往對應流程。"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="exam-619.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="ipe-exam-wrap">
+<header class="exam-hero">
+  <div class="hero-label"><i class="fas fa-id-card"></i> IPE Certification Exam</div>
+  <h1 class="exam-title">證照考試查詢</h1>
+  <p class="exam-subtitle">請輸入自己的姓名，查詢所屬組別後，再前往對應的考試流程。</p>
+</header>
+<main class="exam-content lookup-only">
+  <div class="top-actions single-action">
+    <a class="action-link" href="index.html"><i class="fas fa-home"></i>返回學生專區首頁</a>
+  </div>
+  <section class="search-panel lookup-panel">
+    <label class="search-label" for="studentSearch"><i class="fas fa-magnifying-glass" style="color: var(--ipe-gold); margin-right: 8px;"></i>輸入姓名查詢</label>
+    <div class="lookup-row">
+      <input class="search-input" id="studentSearch" placeholder="請輸入完整姓名" type="search" autocomplete="off"/>
+      <button class="lookup-btn" id="lookupBtn" type="button"><i class="fas fa-search"></i>查詢</button>
+    </div>
+    <p class="lookup-hint">為保護學員資訊，請盡量輸入完整姓名。查詢結果只會顯示符合姓名的學生。</p>
+    <div class="empty-result" id="emptyResult">查無符合資料，請確認姓名是否輸入正確。</div>
+    <div class="lookup-results" id="lookupResults"></div>
+  </section>
+  <div class="notice-card"><strong>提醒：</strong>查到自己的組別後，請點選「查看我的考試流程」。流程頁只會顯示該組開始與結束時間。</div>
+</main>
+<footer class="footer-note">IPE 檢定協會｜6/19 證照考試資訊</footer>
+</div>
+<script>
+const students = [{"name": "蔡佩珊", "group": "A", "groupText": "A組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "趙子心", "group": "A", "groupText": "A組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "蔡芸霏", "group": "A", "groupText": "A組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "郭思緯", "group": "A", "groupText": "A組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "陳祉綺", "group": "A", "groupText": "A組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "郭又瑄", "group": "A", "groupText": "A組", "subjects": ["皮膚", "美體"], "slot": "依流程表"}, {"name": "張玉玟", "group": "A", "groupText": "A組", "subjects": ["皮膚", "美體"], "slot": "依流程表"}, {"name": "蘇怡玲", "group": "A", "groupText": "A組", "subjects": ["熱蠟"], "slot": "依流程表"}, {"name": "施知言", "group": "A", "groupText": "A組", "subjects": ["皮膚"], "slot": "依流程表"}, {"name": "許品涵", "group": "B", "groupText": "B組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "陳怡因", "group": "B", "groupText": "B組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "陳欣怡", "group": "B", "groupText": "B組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "江翊菱", "group": "B", "groupText": "B組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "汪川惠", "group": "B", "groupText": "B組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "白宇茜", "group": "B", "groupText": "B組", "subjects": ["皮膚", "熱蠟"], "slot": "中午、下午 (連考無空窗)"}, {"name": "陳郁琳", "group": "B", "groupText": "B組", "subjects": ["皮膚", "熱蠟"], "slot": "中午、下午 (連考無空窗)"}, {"name": "葉宇婷", "group": "B", "groupText": "B組", "subjects": ["皮膚", "熱蠟"], "slot": "中午、下午 (連考無空窗)"}, {"name": "張氏秋翠", "group": "B", "groupText": "B組", "subjects": ["美體"], "slot": "早上 (僅此一場)"}, {"name": "黃婉真", "group": "B", "groupText": "B組", "subjects": ["美體"], "slot": "早上 (僅此一場)"}, {"name": "包姿亭", "group": "C", "groupText": "C組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "廖家儀", "group": "C", "groupText": "C組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "劉淑雅", "group": "C", "groupText": "C組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "莫英賢", "group": "C", "groupText": "C組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "施宜均", "group": "C", "groupText": "C組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "趙心慧", "group": "C", "groupText": "C組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "蔡佩芬", "group": "C", "groupText": "C組", "subjects": ["皮膚", "熱蠟"], "slot": "早上、中午 (連考無空窗)"}, {"name": "蔡靜雯", "group": "C", "groupText": "C組", "subjects": ["皮膚", "熱蠟"], "slot": "早上、中午 (連考無空窗)"}, {"name": "陳琬茹", "group": "C", "groupText": "C組", "subjects": ["皮膚"], "slot": "早上 (僅此一場)"}, {"name": "蔡沛珊", "group": "C", "groupText": "C組", "subjects": ["皮膚"], "slot": "早上 (僅此一場)"}];
+const input = document.getElementById('studentSearch');
+const btn = document.getElementById('lookupBtn');
+const results = document.getElementById('lookupResults');
+const empty = document.getElementById('emptyResult');
+function tagClass(subject) {
+  if(subject.includes('皮膚')) return 'skin';
+  if(subject.includes('美體')) return 'body';
+  if(subject.includes('熱蠟')) return 'wax';
+  return '';
+}
+function runLookup() {
+  const q = input.value.trim();
+  results.innerHTML = '';
+  empty.style.display = 'none';
+  if(!q) {
+    empty.textContent = '請先輸入姓名。';
+    empty.style.display = 'block';
+    return;
+  }
+  const exact = students.filter(s => s.name === q);
+  let matches = exact.length ? exact : (q.length >= 2 ? students.filter(s => s.name.includes(q)) : []);
+  if(!matches.length) {
+    empty.textContent = q.length < 2 ? '請至少輸入兩個字，或直接輸入完整姓名。' : '查無符合資料，請確認姓名是否輸入正確。';
+    empty.style.display = 'block';
+    return;
+  }
+  results.innerHTML = matches.map(s => `
+    <article class="student-card public-result-card">
+      <div class="student-head">
+        <h3 class="student-name">${s.name}</h3>
+        <span class="student-number">${s.groupText}</span>
+      </div>
+      <div class="tags">${s.subjects.map(sub => `<span class="tag ${tagClass(sub)}">${sub}</span>`).join('')}</div>
+      <a class="schedule-jump" href="exam-schedule-619.html?group=${encodeURIComponent(s.group)}&name=${encodeURIComponent(s.name)}"><i class="fas fa-calendar-alt"></i> 查看我的考試流程</a>
+    </article>
+  `).join('');
+}
+btn.addEventListener('click', runLookup);
+input.addEventListener('keydown', e => { if(e.key === 'Enter') runLookup(); });
+</script>
+</body>
+</html>

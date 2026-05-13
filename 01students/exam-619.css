@@ -1,0 +1,125 @@
+/* =========================================
+   IPE 6/19 考試資訊頁：流程與分組
+   Mobile-first / Responsive
+   ========================================= */
+:root {
+    --ipe-gold: #C6A96B; --ipe-gold-light: #D8BE8A; --ipe-gold-dark: #B89A5F;
+    --ipe-navy: #1B2836; --ipe-navy-light: #2C3E50; --ipe-bg: #F6F8FB;
+    --ipe-gray: #5F6B7A; --ipe-red: #D9534F; --ipe-green: #2F8F6B; --ipe-line: #E6EAF0;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif; background: var(--ipe-bg); color: var(--ipe-gray); }
+.ipe-exam-wrap { width: min(100%, 1080px); margin: 0 auto; background: #fff; min-height: 100vh; }
+.exam-hero { background: linear-gradient(135deg, var(--ipe-navy) 0%, #26394c 100%); color: #fff; padding: 34px 20px 28px; text-align: center; position: relative; overflow: hidden; }
+.exam-hero::after { content: ""; position: absolute; inset: auto -20% -80px -20%; height: 160px; background: radial-gradient(circle, rgba(198,169,107,.28) 0%, rgba(198,169,107,0) 65%); }
+.hero-label { display: inline-flex; align-items: center; gap: 8px; color: var(--ipe-gold-light); font-size: 13px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; position: relative; z-index: 1; }
+.exam-title { font-family: 'Noto Serif TC', serif; font-size: 28px; line-height: 1.35; margin: 0 0 10px; font-weight: 900; position: relative; z-index: 1; }
+.exam-subtitle { margin: 0 auto; max-width: 700px; font-size: 15px; line-height: 1.8; opacity: .92; position: relative; z-index: 1; }
+.exam-content { padding: 22px 16px 52px; }
+.top-actions { display: grid; grid-template-columns: 1fr; gap: 10px; margin: -2px 0 20px; }
+.action-link { display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; border-radius: 14px; padding: 14px 16px; font-weight: 900; color: var(--ipe-navy); background: #fff; border: 1px solid var(--ipe-line); box-shadow: 0 6px 18px rgba(27,40,54,.05); }
+.action-link.primary { background: linear-gradient(135deg, var(--ipe-gold-dark), var(--ipe-gold-light)); color: #fff; border-color: transparent; }
+.notice-card { background: #FFF9ED; border: 1px solid #F1DEB8; border-left: 5px solid var(--ipe-gold); border-radius: 14px; padding: 16px; margin-bottom: 20px; color: #5C4C2C; line-height: 1.75; font-size: 15px; }
+.notice-card strong { color: var(--ipe-navy); }
+.segment-tabs { position: sticky; top: 0; z-index: 10; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; background: rgba(246,248,251,.96); backdrop-filter: blur(10px); padding: 10px 0 12px; margin: 0 0 20px; }
+.segment-tabs a { border: none; text-decoration: none; text-align: center; background: #fff; color: var(--ipe-navy); border: 1px solid var(--ipe-line); border-radius: 999px; padding: 11px 6px; font-size: 14px; font-weight: 900; box-shadow: 0 4px 14px rgba(27,40,54,.04); }
+.segment-tabs a:hover { border-color: var(--ipe-gold); color: var(--ipe-gold-dark); }
+.group-section { margin: 0 0 34px; scroll-margin-top: 76px; }
+.group-header { display: flex; flex-direction: column; gap: 8px; padding: 18px 0 12px; border-bottom: 1px solid var(--ipe-line); margin-bottom: 14px; }
+.group-title { font-family: 'Noto Serif TC', serif; color: var(--ipe-navy); font-size: 24px; margin: 0; font-weight: 900; }
+.group-track { display: inline-flex; align-items: flex-start; gap: 8px; color: var(--ipe-gray); line-height: 1.55; font-size: 14px; }
+.timeline { display: grid; gap: 12px; }
+.timeline-card { display: grid; grid-template-columns: 74px 1fr; gap: 12px; background: #fff; border: 1px solid var(--ipe-line); border-radius: 16px; box-shadow: 0 6px 20px rgba(27,40,54,.045); overflow: hidden; }
+.time-box { background: var(--ipe-navy); color: #fff; padding: 14px 8px; text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 96px; }
+.time-box .start { font-size: 16px; font-weight: 900; }
+.time-box .dash { opacity: .55; font-size: 12px; margin: 2px 0; }
+.time-box .end { color: var(--ipe-gold-light); font-size: 15px; font-weight: 800; }
+.event-body { padding: 14px 14px 14px 0; min-width: 0; }
+.subject-pill { display: inline-flex; align-items: center; gap: 6px; background: #F7F1E3; color: #8B6F32; border: 1px solid #EADCB8; padding: 5px 10px; border-radius: 999px; font-size: 12px; font-weight: 900; margin-bottom: 8px; }
+.event-title { color: var(--ipe-navy); margin: 0 0 6px; font-size: 17px; line-height: 1.45; font-weight: 900; }
+.event-note { margin: 0; color: var(--ipe-gray); font-size: 14px; line-height: 1.65; white-space: pre-wrap; }
+.break-card { display: flex; align-items: center; justify-content: center; gap: 9px; border-radius: 14px; padding: 12px; background: #F7F8FA; color: var(--ipe-gray); border: 1px dashed #D8DEE7; font-weight: 900; }
+.search-panel { background: #fff; border: 1px solid var(--ipe-line); border-radius: 16px; padding: 14px; box-shadow: 0 6px 20px rgba(27,40,54,.045); margin-bottom: 20px; }
+.search-label { display: block; font-weight: 900; color: var(--ipe-navy); margin-bottom: 10px; }
+.search-input { width: 100%; border: 1px solid #DDE3EA; border-radius: 12px; padding: 14px; font-size: 16px; outline: none; }
+.search-input:focus { border-color: var(--ipe-gold); box-shadow: 0 0 0 3px rgba(198,169,107,.18); }
+.students-grid { display: grid; gap: 12px; }
+.student-card { background: #fff; border: 1px solid var(--ipe-line); border-radius: 16px; padding: 16px; box-shadow: 0 6px 20px rgba(27,40,54,.045); }
+.student-card.hidden { display: none; }
+.student-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.student-name { font-size: 20px; color: var(--ipe-navy); font-weight: 900; margin: 0; }
+.student-number { flex: 0 0 auto; background: var(--ipe-navy); color: var(--ipe-gold-light); border-radius: 999px; padding: 5px 10px; font-size: 12px; font-weight: 900; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.tag { display: inline-flex; align-items: center; gap: 5px; border-radius: 999px; padding: 6px 10px; font-size: 13px; font-weight: 900; background: #F1F4F8; color: var(--ipe-navy-light); }
+.tag.skin { background: #FDF1F4; color: #9A455A; }
+.tag.body { background: #EDF8F1; color: #2F7A58; }
+.tag.wax { background: #FFF1E8; color: #B55D2A; }
+.slot { display: flex; align-items: flex-start; gap: 8px; margin: 0; line-height: 1.6; color: var(--ipe-gray); font-size: 14px; }
+.empty-result { display: none; text-align: center; color: var(--ipe-gray); background: #fff; border: 1px dashed #D8DEE7; border-radius: 16px; padding: 24px 18px; margin-top: 12px; }
+.back-to-top { position: fixed; right: 18px; bottom: 18px; width: 46px; height: 46px; border: none; border-radius: 999px; background: var(--ipe-gold); color: #fff; box-shadow: 0 6px 18px rgba(198,169,107,.38); display: none; align-items: center; justify-content: center; z-index: 30; }
+.footer-note { text-align: center; color: #8A96A6; font-size: 13px; line-height: 1.6; padding: 20px 16px 28px; }
+@media (min-width: 760px) {
+    .exam-hero { padding: 50px 40px 40px; }
+    .exam-title { font-size: 40px; }
+    .exam-subtitle { font-size: 16px; }
+    .exam-content { padding: 34px 44px 60px; }
+    .top-actions { grid-template-columns: repeat(3, 1fr); }
+    .timeline-card { grid-template-columns: 112px 1fr; }
+    .time-box { min-height: 106px; }
+    .time-box .start { font-size: 20px; }
+    .time-box .end { font-size: 18px; }
+    .event-body { padding: 18px 20px 18px 0; }
+    .event-title { font-size: 19px; }
+    .students-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1040px) { .students-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* 6/19 學員公開版調整 */
+.schedule-jump {
+    margin-top: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 999px;
+    background: var(--ipe-navy);
+    color: #fff !important;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.schedule-jump:hover { background: var(--ipe-gold-dark); }
+.simplified-timeline { gap: 18px; }
+.simplified-card .event-title { color: var(--ipe-gray); font-size: 15px; margin-top: 8px; }
+.simplified-card .subject-pill { font-size: 15px; }
+@media (max-width: 768px) {
+    .schedule-jump { padding: 14px 16px; font-size: 15px; }
+    .simplified-card .event-title { font-size: 14px; }
+}
+
+
+/* 查詢入口與私人流程顯示優化 */
+.single-action { grid-template-columns: 1fr !important; }
+.lookup-panel { margin-top: 8px; }
+.lookup-row { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.lookup-btn { border: none; border-radius: 12px; padding: 14px 16px; background: var(--ipe-navy); color: #fff; font-weight: 900; font-size: 16px; cursor: pointer; }
+.lookup-btn:hover { background: var(--ipe-gold-dark); }
+.lookup-hint { margin: 10px 0 0; color: #7A8491; font-size: 14px; line-height: 1.6; }
+.lookup-results { display: grid; gap: 12px; margin-top: 14px; }
+.public-result-card { border-color: #EADCB8; }
+.private-notice .inline-jump { margin-top: 14px; }
+.private-schedule[hidden], .private-notice[hidden] { display: none !important; }
+@media (min-width: 760px) { .lookup-row { grid-template-columns: 1fr auto; } .lookup-btn { min-width: 140px; } }
+@media (max-width: 768px) {
+  .ipe-exam-wrap { width: 100%; max-width: 100%; }
+  .exam-content { padding-left: 14px; padding-right: 14px; }
+  .top-actions { position: sticky; top: 0; z-index: 20; background: rgba(246,248,251,.96); backdrop-filter: blur(8px); padding: 10px 0; margin-top: -10px; }
+  .action-link, .lookup-btn { min-height: 48px; }
+  .timeline-card { grid-template-columns: 82px 1fr; }
+  .event-body { min-width: 0; }
+  .subject-pill { white-space: normal; }
+}

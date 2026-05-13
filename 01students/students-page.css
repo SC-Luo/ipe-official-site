@@ -150,3 +150,33 @@
     .qna-opt .opt-badge { font-size: 17px; flex: 0 0 35px; }
     .qna-opt .opt-text { font-size: 16px; color: #444; }
 }
+
+/* =========================================
+   全站手機響應式與首頁返回按鈕優化
+   ========================================= */
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #F6F8FB; overflow-x: hidden; }
+.course-home-actions { margin: 0 0 24px; }
+.course-home-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 12px 20px; border-radius: 999px; text-decoration: none;
+    background: var(--ipe-navy); color: #fff !important; font-weight: 900;
+    box-shadow: 0 6px 18px rgba(27,40,54,.12);
+}
+.course-home-btn:hover { background: var(--ipe-gold-dark); }
+.ipe-table-wrap { -webkit-overflow-scrolling: touch; max-width: 100%; }
+.ipe-table { table-layout: auto; }
+@media (max-width: 768px) {
+    .ipe-wrap { width: 100%; max-width: 100%; margin: 0; box-shadow: none; }
+    .ipe-main-content { min-width: 0; width: 100%; padding: 28px 14px 42px; }
+    .course-home-actions { position: sticky; top: 0; z-index: 20; background: rgba(246,248,251,.96); backdrop-filter: blur(8px); padding: 10px 0; margin: -28px 0 18px; }
+    .course-home-btn { width: 100%; padding: 14px 16px; font-size: 15px; }
+    .section-label { font-size: 12px; letter-spacing: 2px; }
+    .ipe-chapter-title { font-size: 25px; word-break: keep-all; }
+    .chapter-subtitle { font-size: 15px; line-height: 1.75; }
+    .ipe-summary { align-items: flex-start; gap: 12px; line-height: 1.45; }
+    .ipe-table { min-width: 620px; }
+    .ipe-table-wrap::before { content: "表格可左右滑動查看"; display: block; padding: 10px 14px; color: var(--ipe-gold-dark); font-weight: 900; font-size: 13px; background: #FFF9ED; border-bottom: 1px solid #F1DEB8; }
+    .qna-header { align-items: flex-start; }
+    .qna-item { overflow-wrap: anywhere; }
+}
