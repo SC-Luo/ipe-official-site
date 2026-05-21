@@ -35,7 +35,211 @@
 <footer class="footer-note">IPE 檢定協會｜6/19 證照考試資訊</footer>
 </div>
 <script>
-const students = [{"name": "蔡佩珊", "group": "A", "groupText": "A組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "趙子心", "group": "A", "groupText": "A組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "蔡芸霏", "group": "A", "groupText": "A組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "郭思緯", "group": "A", "groupText": "A組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "陳祉綺", "group": "A", "groupText": "A組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "郭又瑄", "group": "A", "groupText": "A組", "subjects": ["皮膚", "美體"], "slot": "依流程表"}, {"name": "張玉玟", "group": "A", "groupText": "A組", "subjects": ["皮膚", "美體"], "slot": "依流程表"}, {"name": "蘇怡玲", "group": "A", "groupText": "A組", "subjects": ["熱蠟"], "slot": "依流程表"}, {"name": "施知言", "group": "A", "groupText": "A組", "subjects": ["皮膚"], "slot": "依流程表"}, {"name": "許品涵", "group": "B", "groupText": "B組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "陳怡因", "group": "B", "groupText": "B組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "陳欣怡", "group": "B", "groupText": "B組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "江翊菱", "group": "B", "groupText": "B組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "汪川惠", "group": "B", "groupText": "B組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "白宇茜", "group": "B", "groupText": "B組", "subjects": ["皮膚", "熱蠟"], "slot": "中午、下午 (連考無空窗)"}, {"name": "陳郁琳", "group": "B", "groupText": "B組", "subjects": ["皮膚", "熱蠟"], "slot": "中午、下午 (連考無空窗)"}, {"name": "葉宇婷", "group": "B", "groupText": "B組", "subjects": ["皮膚", "熱蠟"], "slot": "中午、下午 (連考無空窗)"}, {"name": "張氏秋翠", "group": "B", "groupText": "B組", "subjects": ["美體"], "slot": "早上 (僅此一場)"}, {"name": "黃婉真", "group": "B", "groupText": "B組", "subjects": ["美體"], "slot": "早上 (僅此一場)"}, {"name": "包姿亭", "group": "C", "groupText": "C組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "廖家儀", "group": "C", "groupText": "C組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "劉淑雅", "group": "C", "groupText": "C組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "莫英賢", "group": "C", "groupText": "C組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "施宜均", "group": "C", "groupText": "C組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "趙心慧", "group": "C", "groupText": "C組", "subjects": ["皮膚", "美體", "熱蠟"], "slot": "全天"}, {"name": "蔡佩芬", "group": "C", "groupText": "C組", "subjects": ["皮膚", "熱蠟"], "slot": "早上、中午 (連考無空窗)"}, {"name": "蔡靜雯", "group": "C", "groupText": "C組", "subjects": ["皮膚", "熱蠟"], "slot": "早上、中午 (連考無空窗)"}, {"name": "陳琬茹", "group": "C", "groupText": "C組", "subjects": ["皮膚"], "slot": "早上 (僅此一場)"}, {"name": "蔡沛珊", "group": "C", "groupText": "C組", "subjects": ["皮膚"], "slot": "早上 (僅此一場)"}];
+const students = [
+  {
+    "name": "蔡佩珊",
+    "group": "A",
+    "groupText": "A組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "趙子心",
+    "group": "A",
+    "groupText": "A組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "蔡芸霏",
+    "group": "A",
+    "groupText": "A組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "郭思緯",
+    "group": "A",
+    "groupText": "A組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "陳祉綺",
+    "group": "A",
+    "groupText": "A組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "郭又瑄",
+    "group": "A",
+    "groupText": "A組",
+    "subjects": ["皮膚", "美體"],
+    "slot": "依流程表"
+  },
+  {
+    "name": "張玉玟",
+    "group": "A",
+    "groupText": "A組",
+    "subjects": ["皮膚", "美體"],
+    "slot": "依流程表"
+  },
+  {
+    "name": "蘇怡玲",
+    "group": "A",
+    "groupText": "A組",
+    "subjects": ["熱蠟"],
+    "slot": "依流程表"
+  },
+  {
+    "name": "施知言",
+    "group": "A",
+    "groupText": "A組",
+    "subjects": ["皮膚"],
+    "slot": "依流程表"
+  },
+  {
+    "name": "許品涵",
+    "group": "B",
+    "groupText": "B組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "陳怡因",
+    "group": "B",
+    "groupText": "B組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "陳欣怡",
+    "group": "B",
+    "groupText": "B組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "江翊菱",
+    "group": "B",
+    "groupText": "B組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "汪川惠",
+    "group": "B",
+    "groupText": "B組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "白宇茜",
+    "group": "B",
+    "groupText": "B組",
+    "subjects": ["皮膚", "熱蠟"],
+    "slot": "中午、下午 (連考無空窗)"
+  },
+  {
+    "name": "陳郁琳",
+    "group": "B",
+    "groupText": "B組",
+    "subjects": ["皮膚", "熱蠟"],
+    "slot": "中午、下午 (連考無空窗)"
+  },
+  {
+    "name": "葉宇婷",
+    "group": "B",
+    "groupText": "B組",
+    "subjects": ["皮膚", "熱蠟"],
+    "slot": "中午、下午 (連考無空窗)"
+  },
+  {
+    "name": "張氏秋翠",
+    "group": "B",
+    "groupText": "B組",
+    "subjects": ["皮膚", "美體"],
+    "slot": "依流程表"
+  },
+  {
+    "name": "黃婉真",
+    "group": "B",
+    "groupText": "B組",
+    "subjects": ["美體"],
+    "slot": "早上 (僅此一場)"
+  },
+  {
+    "name": "包姿亭",
+    "group": "C",
+    "groupText": "C組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "廖家儀",
+    "group": "C",
+    "groupText": "C組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "劉淑雅",
+    "group": "C",
+    "groupText": "C組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "莫英賢",
+    "group": "C",
+    "groupText": "C組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "施宜均",
+    "group": "C",
+    "groupText": "C組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "趙心慧",
+    "group": "C",
+    "groupText": "C組",
+    "subjects": ["皮膚", "美體", "熱蠟"],
+    "slot": "全天"
+  },
+  {
+    "name": "蔡佩芬",
+    "group": "C",
+    "groupText": "C組",
+    "subjects": ["皮膚", "熱蠟"],
+    "slot": "早上、中午 (連考無空窗)"
+  },
+  {
+    "name": "蔡靜雯",
+    "group": "C",
+    "groupText": "C組",
+    "subjects": ["皮膚", "熱蠟"],
+    "slot": "早上、中午 (連考無空窗)"
+  },
+  {
+    "name": "陳琬茹",
+    "group": "C",
+    "groupText": "C組",
+    "subjects": ["皮膚"],
+    "slot": "早上 (僅此一場)"
+  },
+  {
+    "name": "蔡沛珊",
+    "group": "C",
+    "groupText": "C組",
+    "subjects": ["皮膚"],
+    "slot": "早上 (僅此一場)"
+  }
+];
 const input = document.getElementById('studentSearch');
 const btn = document.getElementById('lookupBtn');
 const results = document.getElementById('lookupResults');
